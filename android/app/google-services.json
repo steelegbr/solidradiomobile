@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "975278950048",
+    "firebase_url": "https://solid-radio.firebaseio.com",
+    "project_id": "solid-radio",
+    "storage_bucket": "solid-radio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975278950048:android:666a1d00cee09e44e7abc5",
+        "android_client_info": {
+          "package_name": "uk.co.solidradio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975278950048-b75lal0n4ut2h679gcovophi4sgrcpk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqxEq_sw1-5hA5qLhiJi0LyhSObiR_UJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975278950048-b75lal0n4ut2h679gcovophi4sgrcpk8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "975278950048-obpm4s1jevgn0dmsuuvj2ui0qhu46f0t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "uk.co.solidradio"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

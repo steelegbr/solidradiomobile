@@ -1,9 +1,9 @@
 /**
- * Solid Radio Actions
+ * Solid Radio Sagas
  */
 
 import remoteConfig from '@react-native-firebase/remote-config';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
 
 export const INITIAL_LOAD_REQUESTED = 'solidradio/INITIAL_LOAD_REQUESTED';
 export const INITIAL_LOAD_START = 'solidradio/INITIAL_LOAD_START';
@@ -46,38 +46,36 @@ export function reducer(state=defaultState, action) {
 
 }
 
-export function startInitialLoad() {
-    
-}
-
 /**
- * The intial load dispatching saga.
+ * Starts the initial application load.
  */
 
-export function* initialLoad() {
-    yeild takeLatest(INITIAL_LOAD_REQUESTED, initialLoadSaga);
+export function initialLoad() {
+    return {
+        type: INITIAL_LOAD_REQUESTED
+    };
 }
 
 /**
  * The initial load worker saga.
  */
 
-function* intialLoadSaga() {
+function* initialLoadSaga() {
 
     try {
 
         // Let everyone know we've started the process
 
-        yeild put({ type: INITIAL_LOAD_START });
+        yield put({ type: INITIAL_LOAD_START });
 
         // Request the settings
 
-        yeild remoteConfig().setConfigSettings({
+        yield remoteConfig().setConfigSettings({
             isDeveloperModeEnabled: __DEV__
         });
 
-        yeild remoteConfig().fetchAndActivate();
-        const settings = yeild remoteConfig().get();
+        yield remoteConfig().fetchAndActivate();
+        const settings = yield remoteConfig().get();
 
         // Extract the API settings
 
@@ -104,11 +102,28 @@ function* intialLoadSaga() {
 
         // Let the app know about the error
 
-        yeild put({ type: INITIAL_LOAD_FAILED, error });
+        yield put({ type: INITIAL_LOAD_FAILED, error });
 
         // Log it out to the analytics system (if we can)
 
     }
 
+}
 
+/**
+ * The intial load dispatching saga.
+ */
+
+function* watchInitialLoad() {
+    yield takeLatest(INITIAL_LOAD_REQUESTED, initialLoadSaga);
+}
+
+/**
+ * The root saga that triggers all the others.
+ */
+
+export function* rootSaga() {
+    yield all([
+        watchInitialLoad()
+    ]);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import { reducer, initialLoad, startInitialLoad } from './redux/Actions';
+import { reducer, rootSaga, initialLoad } from './redux/Sagas';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
@@ -27,8 +27,8 @@ const store = createStore(reducer,
 
 // Pull in our application settings
 
-sagaMiddleware.run(initialLoad);
-store.dispatch(requestApiSettings()).then(() => console.log(store.getState()));
+sagaMiddleware.run(rootSaga);
+store.dispatch(initialLoad());
 
 // The main app component
 

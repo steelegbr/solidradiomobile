@@ -1,10 +1,11 @@
 import React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import { reducer, requestApiSettings } from './redux/Actions';
+import { reducer, initialLoad, startInitialLoad } from './redux/Actions';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
+import createSagaMiddleware from 'redux-saga';
 
 const TestRoute = () => <Text>Test!</Text>
 
@@ -14,15 +15,19 @@ const client = axios.create({
   responseType: 'json'
 });
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(reducer, 
   applyMiddleware(
     thunkMiddleware,
-    axiosMiddleware(client)
+    axiosMiddleware(client),
+    sagaMiddleware
   )
 );
 
 // Pull in our application settings
 
+sagaMiddleware.run(initialLoad);
 store.dispatch(requestApiSettings()).then(() => console.log(store.getState()));
 
 // The main app component

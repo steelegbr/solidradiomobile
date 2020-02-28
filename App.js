@@ -1,4 +1,5 @@
 import React from 'react';
+import { Component } from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import { reducer, rootSaga, initialLoad } from './redux/Sagas';
 import { createStore, applyMiddleware } from 'redux';
@@ -6,8 +7,9 @@ import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 import createSagaMiddleware from 'redux-saga';
-
-const TestRoute = () => <Text>Test!</Text>
+import TestComponent from './components/TestComponent';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as StoreProvider } from 'react-redux';
 
 // Setup Redux
 
@@ -31,8 +33,9 @@ sagaMiddleware.run(rootSaga);
 store.dispatch(initialLoad());
 
 // The main app component
+// TODO: Splash screen for loading!
 
-export default class SolidRadioApp extends React.Component {
+export default class SolidRadioApp extends Component {
   state = {
     index: 0,
     routes: [
@@ -59,22 +62,26 @@ export default class SolidRadioApp extends React.Component {
     ]
   }
 
-  _handleIndexChange = index => this.setState({ index });
+  handleIndexChange = index => this.setState({ index });
 
-  _renderScene = BottomNavigation.SceneMap({
-      radio: TestRoute,
-      schedule: TestRoute,
-      podcasts: TestRoute,
-      presenters: TestRoute
-  })
+  renderScene = BottomNavigation.SceneMap({
+      radio: TestComponent,
+      schedule: TestComponent,
+      podcasts: TestComponent,
+      presenters: TestComponent
+  });
 
   render() {
       return (
-          <BottomNavigation
-              navigationState={this.state}
-              onIndexChange={this._handleIndexChange}
-              renderScene={this._renderScene}
-          />
+        <StoreProvider store={store}>
+          <PaperProvider>
+            <BottomNavigation
+                navigationState={this.state}
+                onIndexChange={this.handleIndexChange}
+                renderScene={this.renderScene}
+            />
+          </PaperProvider>
+        </StoreProvider>
       );
   }
 

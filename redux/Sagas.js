@@ -75,28 +75,30 @@ function* initialLoadSaga() {
         });
 
         yield remoteConfig().fetchAndActivate();
-        const settings = yield remoteConfig().get();
+        const settings = yield remoteConfig().getAll();
 
         // Extract the API settings
 
         if ('server' in settings && 'key' in settings) {
-            const server = settings['server'];
-            const key = settings['key'];
+
+            const server = settings.server.value;
+            const key = settings.key.value;
+
+            //TODO: Move this down the logic chain!
+
+            yield put(
+                { 
+                    type: INITIAL_LOAD_SUCCESS,
+                    server: server,
+                    key: key
+                }
+            );
+
         } else {
             throw 'Missing API settings from remote configuration.';
         }
 
-        // Run with the settings
-
-        put(
-            { 
-                type: INITIAL_LOAD_SUCCESS,
-                action: {
-                    server: server,
-                    key: key
-                } 
-            }
-        )
+        // Trigger the parallel station loads
 
     } catch (error) {
 

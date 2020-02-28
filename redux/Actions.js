@@ -3,10 +3,12 @@
  */
 
 import remoteConfig from '@react-native-firebase/remote-config';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-export const GET_API_SETTINGS = 'solidradio/api/SETTINGS';
-export const GET_API_SETTINGS_SUCCESS = 'solidradio/api/SETTINGS_SUCCESS';
-export const GET_API_SETTINGS_FAILED = 'solidradio/api/SETTINGS_FAILED';
+export const INITIAL_LOAD_REQUESTED = 'solidradio/INITIAL_LOAD_REQUESTED';
+export const INITIAL_LOAD_START = 'solidradio/INITIAL_LOAD_START';
+export const INITIAL_LOAD_SUCCESS = 'solidradio/INITIAL_LOAD_SUCCESS';
+export const INITIAL_LOAD_FAILED = 'solidradio/INITIAL_LOAD_FAILED';
 
 defaultState = { 
     api : {
@@ -18,24 +20,24 @@ defaultState = {
 export function reducer(state=defaultState, action) {
 
     switch (action.type) {
-        case GET_API_SETTINGS:
+        case INITIAL_LOAD_START:
             return {
                  ...state, 
-                 status: 'loading'
+                 initialLoad: 'started'
             };
-        case GET_API_SETTINGS_SUCCESS:
+        case INITIAL_LOAD_SUCCESS:
             return { 
                 ...state, 
-                status: 'success',
+                initialLoad: 'success',
                 api: {
                     server: action.server,
                     key: action.key
                 }
             };
-        case GET_API_SETTINGS_FAILED:
+        case INITIAL_LOAD_FAILED:
             return {
                 ...state,
-                status: 'error',
+                intialLoad: 'error',
                 error: action.error
             };
         default:
@@ -44,79 +46,69 @@ export function reducer(state=defaultState, action) {
 
 }
 
-function getApiSettings() {
-    return {
-        type: GET_API_SETTINGS
-    };
-};
-
-function setApiSettings(server, key) {
-    return {
-        type: GET_API_SETTINGS_SUCCESS,
-        server: server,
-        key: key
-    };
-};
-
-function failApiSettings(error) {
-    return {
-        type: GET_API_SETTINGS_FAILED,
-        error: error
-    };
-};
+export function startInitialLoad() {
+    
+}
 
 /**
- * Async function that triggers the API settings request.
+ * The intial load dispatching saga.
  */
 
-export function requestApiSettings() {
-    return function(dispatch) {
+export function* initialLoad() {
+    yeild takeLatest(INITIAL_LOAD_REQUESTED, initialLoadSaga);
+}
+
+/**
+ * The initial load worker saga.
+ */
+
+function* intialLoadSaga() {
+
+    try {
 
         // Let everyone know we've started the process
 
-        dispatch(getApiSettings());
+        yeild put({ type: INITIAL_LOAD_START });
 
         // Request the settings
 
-        return remoteConfig().setConfigSettings(
-                {
-                    isDeveloperModeEnabled: __DEV__
-                }
-            )
-            .then(
-                response => {
-                    return remoteConfig().fetchAndActivate();
-                },
-                error => {
-                    dispatch(failApiSettings(error));
-                }
-            )
-            .then(
-                response => {
-                    //if (response) {
-                        return remoteConfig().getAll();
-                    //} else {
-                    //    throw `Failed to get the API settings. Reason: ${remoteConfig().lastFetchTime}`;
-                   // }
-                },
-                error => {
-                    dispatch(failApiSettings(error));
-                }
-            )
-            .then(
-                settings => {
-                    
-                    if ('server' in settings && 'key' in settings) {
-                        dispatch(setApiSettings(settings['server'], settings['key']))
-                    } else {
-                        dispatch(failApiSettings('Missing API settings from remote configuration.'));
-                    }
+        yeild remoteConfig().setConfigSettings({
+            isDeveloperModeEnabled: __DEV__
+        });
 
-                },
-                error => {
-                    dispatch(failApiSettings(error));
-                }
-            );
+        yeild remoteConfig().fetchAndActivate();
+        const settings = yeild remoteConfig().get();
+
+        // Extract the API settings
+
+        if ('server' in settings && 'key' in settings) {
+            const server = settings['server'];
+            const key = settings['key'];
+        } else {
+            throw 'Missing API settings from remote configuration.';
+        }
+
+        // Run with the settings
+
+        put(
+            { 
+                type: INITIAL_LOAD_SUCCESS,
+                action: {
+                    server: server,
+                    key: key
+                } 
+            }
+        )
+
+    } catch (error) {
+
+        // Let the app know about the error
+
+        yeild put({ type: INITIAL_LOAD_FAILED, error });
+
+        // Log it out to the analytics system (if we can)
 
     }
+
+
 }

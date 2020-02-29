@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { BottomNavigation } from 'react-native-paper';
 import TestComponent from './TestComponent';
+import StationCarousel from './StationCarousel';
 
 /**
  * The main menu container
@@ -37,7 +38,7 @@ export default class Menu extends Component {
   handleIndexChange = index => this.setState({ index });
 
   renderScene = BottomNavigation.SceneMap({
-      radio: TestComponent,
+      radio: StationCarousel,
       schedule: TestComponent,
       podcasts: TestComponent,
       presenters: TestComponent

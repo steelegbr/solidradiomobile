@@ -2,17 +2,26 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Provider as PaperProvider } from 'react-native-paper';
 import Menu from './Menu';
 import SplashScreen from './SplashScreen';
 
 class Wrapper extends Component {
 
     render() {
-        const { loadingComplete } = this.props;
+        const { loadingComplete, theme } = this.props;
         if (loadingComplete) {
-            return(<Menu />);
+            return(
+                <PaperProvider theme={theme}> 
+                    <Menu />
+                </PaperProvider>
+            );
         } else {
-            return(<SplashScreen />);
+            return(
+                <PaperProvider theme={theme}> 
+                    <SplashScreen />
+                </PaperProvider>
+            );
         }
     }
 
@@ -20,7 +29,8 @@ class Wrapper extends Component {
 
 const mapStateToProps = state => {
     return {
-        loadingComplete: state.initialLoad == 'success'
+        loadingComplete: state.initialLoad == 'success',
+        theme: state.theme
     };
 };
 

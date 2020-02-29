@@ -3,7 +3,7 @@
  */
 
 import remoteConfig from '@react-native-firebase/remote-config';
-import { call, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, all, delay } from 'redux-saga/effects';
 
 export const INITIAL_LOAD_REQUESTED = 'solidradio/INITIAL_LOAD_REQUESTED';
 export const INITIAL_LOAD_START = 'solidradio/INITIAL_LOAD_START';
@@ -11,6 +11,7 @@ export const INITIAL_LOAD_SUCCESS = 'solidradio/INITIAL_LOAD_SUCCESS';
 export const INITIAL_LOAD_FAILED = 'solidradio/INITIAL_LOAD_FAILED';
 
 defaultState = { 
+    initialLoad: 'not_started',
     api : {
         server: null,
         key: null
@@ -37,7 +38,7 @@ export function reducer(state=defaultState, action) {
         case INITIAL_LOAD_FAILED:
             return {
                 ...state,
-                intialLoad: 'error',
+                initialLoad: 'error',
                 error: action.error
             };
         default:
@@ -86,6 +87,8 @@ function* initialLoadSaga() {
 
             //TODO: Move this down the logic chain!
 
+            yield delay(5000);
+
             yield put(
                 { 
                     type: INITIAL_LOAD_SUCCESS,
@@ -93,6 +96,7 @@ function* initialLoadSaga() {
                     key: key
                 }
             );
+
 
         } else {
             throw 'Missing API settings from remote configuration.';

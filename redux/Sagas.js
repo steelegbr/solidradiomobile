@@ -5,6 +5,7 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 import { select, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
+import { DefaultTheme } from 'react-native-paper';
 import produce from 'immer';
 
 export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
@@ -23,7 +24,16 @@ defaultState = {
         key: null
     },
     stations: {},
-    currentStation: null
+    currentStation: null,
+    theme: {
+        ...DefaultTheme,
+        roundness: 10,
+        colours: {
+            ...DefaultTheme.colors,
+            primary: "#7300AE",
+            accent: "#7300AE"
+        }
+    }
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -118,6 +128,7 @@ function* initialLoadSaga() {
                     }
                 }
             });
+            
         }
 
     } catch (error) {

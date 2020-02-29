@@ -10,18 +10,38 @@ import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { Provider as StoreProvider } from 'react-redux';
 import Wrapper from './components/Wrapper';
 
-// Setup Redux
+// Setup Axios
 
-const client = axios.create({
+const axiosClient = axios.create({
   responseType: 'json'
 });
+
+const axiosConfig = {
+  interceptors: {
+    request: [
+      function ({ getState, dispatch, getSourceAction }, request) {
+
+        // Interceptor for adding authorisation token and server name to requests
+
+        const currentState = getState();
+        request.url = `https://${currentState.api.server}${request.url}`;
+        request.headers.common['Authorization'] = `Token ${currentState.api.key}`;
+
+        return request;
+
+      }
+    ]
+  }
+}
+
+// Setup Reux and Sagas
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(reducer, 
   applyMiddleware(
     thunkMiddleware,
-    axiosMiddleware(client),
+    axiosMiddleware(axiosClient, axiosConfig),
     sagaMiddleware
   )
 );

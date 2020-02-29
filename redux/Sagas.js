@@ -3,15 +3,18 @@
  */
 
 import remoteConfig from '@react-native-firebase/remote-config';
-import { call, put, takeEvery, takeLatest, all, delay } from 'redux-saga/effects';
+import { select, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
+import produce from 'immer';
 
-export const INITIAL_LOAD_REQUESTED = 'solidradio/INITIAL_LOAD_REQUESTED';
-export const INITIAL_LOAD_START = 'solidradio/INITIAL_LOAD_START';
-export const INITIAL_LOAD_API = 'solidradio/INITIAL_LOAD_API';
-export const INTIIAL_LOAD_SUCCESS = 'solidradio/INITIAL_LOAD_SUCCESS';
-export const INITIAL_LOAD_FAILED = 'solidradio/INITIAL_LOAD_FAILED';
-export const STATION_LOAD_START = 'solidradio/STATION_LOAD_START';
+export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
+export const INITIAL_LOAD_START = 'INITIAL_LOAD_START';
+export const INITIAL_LOAD_API = 'INITIAL_LOAD_API';
+export const INTIIAL_LOAD_SUCCESS = 'INITIAL_LOAD_SUCCESS';
+export const INITIAL_LOAD_FAIL = 'INITIAL_LOAD_FAIL';
+export const STATION_LOAD_START = 'STATION_LOAD';
+export const STATION_LOAD_SUCCESS = 'STATION_LOAD_SUCCESS';
+export const STATION_LOAD_FAIL = 'STATION_LOAD_FAIL';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -23,36 +26,32 @@ defaultState = {
     currentStation: null
 }
 
-export function reducer(state=defaultState, action) {
+export function reducer(baseState=defaultState, action) {
 
-    switch (action.type) {
-        case INITIAL_LOAD_START:
-            return {
-                 ...state, 
-                 initialLoad: 'started'
-            };
-        case INITIAL_LOAD_API:
-            return { 
-                ...state,
-                api: {
+    return produce(baseState, draftState => {
+        switch (action.type) {
+            case INITIAL_LOAD_START:
+                draftState.initialLoad = 'started';
+                break;
+            case INITIAL_LOAD_API:
+                draftState.api =  {
                     server: action.server,
                     key: action.key
-                }
-            };
-        case INTIIAL_LOAD_SUCCESS:
-            return {
-                ...state,
-                intial: 'success'
-            };
-        case INITIAL_LOAD_FAILED:
-            return {
-                ...state,
-                initialLoad: 'error',
-                error: action.error
-            };
-        default:
-            return state;
-    }
+                };
+                break;
+            case INTIIAL_LOAD_SUCCESS:
+                draftState.initialLoad = 'success';
+                break;
+            case INITIAL_LOAD_FAIL:
+                draftState.initialLoad = 'error';
+                draftState.error = action.error;
+                break;
+            case STATION_LOAD_SUCCESS:
+                draftState.stations[action.payload.data.name] = action.payload.data;
+                draftState.initialLoad = 'success';
+                break;
+        }
+    });
 
 }
 
@@ -108,9 +107,16 @@ function* initialLoadSaga() {
 
         const stationNames = settings.stations.value.split('|');
         for (let i = 0; i < stationNames.length; i++) {
+
+            let urlEncodedStationName = encodeURI(stationNames[i]);
+
             yield put({
                 type: STATION_LOAD_START,
-                name: stationNames[i]
+                payload: {
+                    request: {
+                        url: `/api/station/${urlEncodedStationName}/`
+                    }
+                }
             });
         }
 
@@ -118,7 +124,7 @@ function* initialLoadSaga() {
 
         // Let the app know about the error
 
-        yield put({ type: INITIAL_LOAD_FAILED, error: error });
+        yield put({ type: INITIAL_LOAD_FAIL, error: error });
 
         // Log it out to the analytics system (if we can)
 
@@ -137,19 +143,32 @@ function* watchInitialLoad() {
 }
 
 /**
- * Loads a station from the API.
+ * Handles a station load failure.
  */
 
-function* loadStation(action) {
-    console.log(action);
+function* stationLoadFail(action) {
+    
+    // Log the error to crashalytics
+
+    crashlytics().recordError(action.error);
+
+    // Determine if we're bombing out or not
+
+    const currentState = yield select();
+    if (currentState.stations.length == 0) {
+        put({
+            type: INITIAL_LOAD_FAIL
+        });
+    }
+
 }
 
 /**
- * The station load dispatching saga.
+ * Watches for every station loading failure.
  */
 
-function* watchStationLoad() {
-    yield takeEvery(STATION_LOAD_START, loadStation);
+function* watchStationLoadFail() {
+    yield takeEvery(STATION_LOAD_FAIL, stationLoadFail);
 }
 
 /**
@@ -159,6 +178,6 @@ function* watchStationLoad() {
 export function* rootSaga() {
     yield all([
         watchInitialLoad(),
-        watchStationLoad()
+        watchStationLoadFail()
     ]);
 }

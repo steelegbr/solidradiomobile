@@ -15,6 +15,7 @@
     "@react-native-firebase/remote-config": "^6.3.4",
     "@react-navigation/native": "^5.0.7",
     "axios": "^0.19.2",
+    "immer": "^5.3.6",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-cli": "^2.0.1",

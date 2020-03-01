@@ -18,17 +18,17 @@ class StationCarousel extends Component {
     render() {
         const { stations } = this.props;
         const sliderWidth = Dimensions.get("window").width;
-        const itemWidth = sliderWidth * 0.8;
+        const itemWidth = sliderWidth * 0.9;
         return(
             <View style={carouselStyles.parent}>
-            <Carousel
-                ref={(c) => { this._carousel = c; }}
-                data={stations}
-                renderItem={this._renderItem}
-                sliderWidth={sliderWidth}
-                itemWidth={itemWidth}
-                windowSize={1}
-            />
+                <Carousel
+                    ref={(c) => { this._carousel = c; }}
+                    data={stations}
+                    renderItem={this._renderItem}
+                    sliderWidth={sliderWidth}
+                    itemWidth={itemWidth}
+                    windowSize={1}
+                />
             </View>
         );
     }

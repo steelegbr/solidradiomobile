@@ -1,46 +1,112 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { Card } from 'react-native-paper';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { Button, Title, Caption } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 class StationCard extends Component {
 
     render() {
-        const { station } = this.props;
+        const { station, styles } = this.props;
         return(
-            <Card>
-                <Card.Cover 
-                    source={{uri: station.logo}}
-                    style={cardStyles.logo}
-                    resizeMode="contain"
-                />
-                <Card.Title title={station.name} />
-                <Card.Content><Text>Content 1</Text></Card.Content>
-                <Card.Content><Text>Content 2</Text></Card.Content>
-                <Card.Actions><Text>Some Actions</Text></Card.Actions>
-            </Card>
+            <TouchableOpacity
+                activeOpacity={1}
+                style={styles.wrapper}
+            >
+                <View style={styles.logoWrapper}>
+                    <Image 
+                        source={{ uri: station.logo }} 
+                        style={styles.logo}
+                    />
+                </View>
+                <View style={styles.showImageWrapper}>
+                    <Image
+                        source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
+                        style={styles.showImage}
+                    />
+                </View>
+                <View style={styles.intermediateText}>
+                    <Title>On Air</Title>
+                    <Caption>Breakfast Without the Waffle</Caption>
+                </View>
+                <View style={styles.intermediateText}>
+                    <Title>Now Playing</Title>
+                    <Caption>Eurythmics &amp; Aretha Franklin - Sisters Are Doin' It for Themselves</Caption>
+                </View>
+                <View style={styles.actions}>
+                    <Button
+                        icon="play"
+                        mode="contained"
+                        style={styles.button}
+                    >
+                        Listen Live
+                    </Button>
+                </View>
+            </TouchableOpacity>
         );
     }
 
 }
 
-const cardStyles = StyleSheet.create({
-    logo: {
-        
-    },
-});
+const borderRadius = 30;
+const borderWidth = 0.3;
 
 function mapStateToProps(state, ownProps) {
 
     const station = state.stations[ownProps.stationName];
     console.log(station);
+    console.log(state.theme);
 
     return {
         station: {
             name: station.name,
-            logo: station.logo
-        }
+            logo: station.logo_inverse
+        },
+        styles: StyleSheet.create({
+            logoWrapper: {
+                backgroundColor: station.primary_colour,
+                borderTopLeftRadius: borderRadius,
+                borderTopRightRadius: borderRadius
+            },
+            logo : {
+                backgroundColor: station.primary_colour,
+                height: 50,
+                borderTopLeftRadius: borderRadius,
+                borderTopRightRadius: borderRadius,
+                resizeMode: "contain"
+            },
+            showImageWrapper: {
+            },
+            showImage: {
+                width: "100%",
+                height: 300,
+                resizeMode: "cover"
+            },
+            wrapper: {
+                borderRadius: borderRadius,
+                shadowColor: "black",
+                shadowOpacity: 0.25,
+                shadowOffset: { width: 5, height: 10 },
+                borderRadius: borderRadius,
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                borderWidth: borderWidth
+            },
+            intermediateText: {
+                backgroundColor: state.theme.colors.background,
+                padding: 5,
+                borderBottomWidth: borderWidth
+            },
+            actions: {
+                backgroundColor: state.theme.colors.background,
+                borderBottomLeftRadius: borderRadius,
+                borderBottomRightRadius: borderRadius,
+                padding: 20
+            },
+            button: {
+                backgroundColor: station.primary_colour
+            }
+        })
     };
 
 }

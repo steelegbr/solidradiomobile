@@ -23,12 +23,12 @@ defaultState = {
         server: null,
         key: null
     },
-    stations: {},
+    stations: [],
     currentStation: null,
     theme: {
         ...DefaultTheme,
         roundness: 10,
-        colours: {
+        colors: {
             ...DefaultTheme.colors,
             primary: "#7300AE",
             accent: "#7300AE"
@@ -167,8 +167,9 @@ function* stationLoadFail(action) {
 
     const currentState = yield select();
     if (currentState.stations.length == 0) {
-        put({
-            type: INITIAL_LOAD_FAIL
+        yield put({
+            type: INITIAL_LOAD_FAIL,
+            error: action.error
         });
     }
 

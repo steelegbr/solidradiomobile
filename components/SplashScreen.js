@@ -3,8 +3,7 @@ import { Component } from 'react';
 import { StyleSheet, View, ActivityIndicator, Image } from 'react-native'
 import { Button, Text } from 'react-native-paper';
 import { connect } from 'react-redux';
-import {initialLoad } from '../redux/Sagas';
-import { bindActionCreators } from 'redux';
+import { initialLoad } from '../reducers/actions';
 
 class SplashScreen extends Component {
 

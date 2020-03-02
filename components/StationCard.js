@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Button, Title, Caption, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 
@@ -13,6 +13,7 @@ class StationCard extends Component {
                 activeOpacity={1}
                 style={styles.wrapper}
             >
+                <ScrollView>
                 <Surface
                     style={styles.surface}
                 >
@@ -46,6 +47,7 @@ class StationCard extends Component {
                         </Button>
                     </View>
                 </Surface>
+                </ScrollView>
             </TouchableOpacity>
         );
     }
@@ -53,7 +55,6 @@ class StationCard extends Component {
 }
 
 const borderRadius = 20;
-const borderWidth = 0.3;
 
 function mapStateToProps(state, ownProps) {
 
@@ -66,7 +67,7 @@ function mapStateToProps(state, ownProps) {
             name: station.name,
             logo: station.logo_inverse
         },
-        styles: StyleSheet.create({
+        styles: {
             logoWrapper: {
                 backgroundColor: station.primary_colour,
                 borderTopLeftRadius: borderRadius,
@@ -108,7 +109,7 @@ function mapStateToProps(state, ownProps) {
             surface: {
                 borderRadius: borderRadius
             }
-        })
+        }
     };
 
 }

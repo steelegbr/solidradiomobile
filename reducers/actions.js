@@ -13,6 +13,9 @@ export const INITIAL_LOAD_FAIL = 'INITIAL_LOAD_FAIL';
 export const STATION_LOAD_START = 'STATION_LOAD';
 export const STATION_LOAD_SUCCESS = 'STATION_LOAD_SUCCESS';
 export const STATION_LOAD_FAIL = 'STATION_LOAD_FAIL';
+export const NOW_PLAYING_SUCCESS = 'NOW_PLAYING_SUCCESS';
+export const NOW_PLAYING_FAIL = 'NOW_PLAYING_FAIL';
+export const NOW_PLAYING_UPDATE = 'NOW_PLAYING_UPDATE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -57,14 +60,21 @@ export function reducer(baseState=defaultState, action) {
             case STATION_LOAD_SUCCESS:
                 const station = action.payload.data;
                 const stationName = station.name;
-                draftState.stations[station.name] = station;
-                draftState.stations[station.name].nowPlaying = {
+                draftState.stations[stationName] = station;
+                draftState.stations[stationName].nowPlaying = {
                     artist: "",
                     title: "",
                     artUrl: ""
                 };
                 draftState.stationCount = baseState.stationCount + 1;
                 draftState.initialLoad = 'success';
+                break;
+            case NOW_PLAYING_UPDATE:
+                draftState.stations[action.stationName].nowPlaying = {
+                    artist: action.artist,
+                    title: action.title,
+                    artUrl: action.artUrl
+                }
                 break;
         }
     });
@@ -93,8 +103,8 @@ export function initialLoadStarted() {
 
 /**
  * Sets the API parameters.
- * @param {string} server 
- * @param {string} key 
+ * @param {string} server The API server.
+ * @param {string} key The key we authenticate with.
  */
 
 export function setApiParams(server, key) {
@@ -107,7 +117,7 @@ export function setApiParams(server, key) {
 
 /**
  * Loads a station from the API.
- * @param {string} name 
+ * @param {string} name The name of the station to load.
  */
 
 export function loadStation(name) {
@@ -127,12 +137,56 @@ export function loadStation(name) {
 
 /**
  * Handles the failure to perform the initial application load.
- * @param {error} error 
+ * @param {error} error The error encountered.
  */
 
 export function initialLoadFailure(error) {
     return {
         type: INITIAL_LOAD_FAIL,
         error: error
+    };
+}
+
+/**
+ * Indicates the now playing web socket was successfully connected.
+ * @param {string} stationName The name of the station.
+ */
+
+export function nowPlayingSuccess(stationName) {
+    return {
+        type: NOW_PLAYING_SUCCESS,
+        station: stationName
+    };
+}
+
+/**
+ * Indicates an error occurred with the now playing process.
+ * @param {string} stationName The name of the station.
+ * @param {error} error The error encountered.
+ */
+
+export function nowPlayingFailure(stationName, error) {
+    return {
+        type: NOW_PLAYING_FAIL,
+        station: stationName,
+        error: error
+    };
+}
+
+/**
+ * Updates the now playing for a specified station.
+ * @param {string} stationName The name of the station the update is for.
+ * @param {string} artist The current artist.
+ * @param {string} title The current title.
+ * @param {string} artUrl The current album art URL.
+ */
+
+export function nowPlayingUpdate(stationName, artist, title, artUrl) {
+    return {
+        type: NOW_PLAYING_UPDATE,
+        stationName: stationName,
+        artist: artist,
+        title: title,
+        artUrl: artUrl
     };
 }

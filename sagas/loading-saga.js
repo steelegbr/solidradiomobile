@@ -3,9 +3,9 @@
  */
 
 import remoteConfig from '@react-native-firebase/remote-config';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, all, takeEvery, select } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, INITIAL_LOAD_REQUESTED } from '../reducers/actions';
+import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL } from '../reducers/actions';
 
 /**
  * The initial load worker saga.
@@ -61,9 +61,32 @@ function* initialLoadSaga() {
 }
 
 /**
+ * Handles the failure to load a station from the API.
+ * @param {action} action The action from the failed API call.
+ */
+
+function* stationLoadFail(action) {
+    
+    // Log the error to crashalytics
+
+    crashlytics().recordError(action.error);
+
+    // Determine if we're bombing out or not
+
+    const currentState = yield select();
+    if (currentState.stationCount == 0) {
+        yield put(initialLoadFailure(action.error));
+    }
+
+}
+
+/**
  * The intial load dispatching saga.
  */
 
 export function* watchInitialLoad() {
-    yield takeLatest(INITIAL_LOAD_REQUESTED, initialLoadSaga);
+    yield all([
+        yield takeLatest(INITIAL_LOAD_REQUESTED, initialLoadSaga),
+        yield takeEvery(STATION_LOAD_FAIL, stationLoadFail)
+    ]);
 }

@@ -1,19 +1,18 @@
 import React from 'react';
 import { Component } from 'react';
-import { View, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Button, Title, Caption, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 class StationCard extends Component {
 
     render() {
-        const { station, styles } = this.props;
+        const { station, styles, nowPlaying } = this.props;
         return(
             <TouchableOpacity
                 activeOpacity={1}
                 style={styles.wrapper}
             >
-                <ScrollView>
                 <Surface
                     style={styles.surface}
                 >
@@ -35,7 +34,7 @@ class StationCard extends Component {
                     </View>
                     <View style={styles.intermediateText}>
                         <Title>Now Playing</Title>
-                        <Caption>Eurythmics &amp; Aretha Franklin - Sisters Are Doin' It for Themselves</Caption>
+                        <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
                     </View>
                     <View style={styles.actions}>
                         <Button
@@ -47,7 +46,6 @@ class StationCard extends Component {
                         </Button>
                     </View>
                 </Surface>
-                </ScrollView>
             </TouchableOpacity>
         );
     }
@@ -59,14 +57,13 @@ const borderRadius = 20;
 function mapStateToProps(state, ownProps) {
 
     const station = state.stations[ownProps.stationName];
-    console.log(station);
-    console.log(state.theme);
 
     return {
         station: {
             name: station.name,
             logo: station.logo_inverse
         },
+        nowPlaying: station.nowPlaying,
         styles: {
             logoWrapper: {
                 backgroundColor: station.primary_colour,
@@ -84,7 +81,7 @@ function mapStateToProps(state, ownProps) {
             },
             showImage: {
                 width: "100%",
-                height: 300,
+                height: Dimensions.get('window').height * 0.45,
                 resizeMode: "cover"
             },
             wrapper: {
@@ -95,7 +92,7 @@ function mapStateToProps(state, ownProps) {
             },
             intermediateText: {
                 backgroundColor: state.theme.colors.background,
-                padding: 5
+                padding: 10
             },
             actions: {
                 backgroundColor: state.theme.colors.background,

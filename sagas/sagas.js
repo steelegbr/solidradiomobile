@@ -4,7 +4,7 @@
 
 import { all } from 'redux-saga/effects';
 import { watchInitialLoad } from './loading-saga';
-import { watchStationLoadFail } from './station-load-fail-saga';
+import { watchNowPlaying } from './now-playing-saga';
 
 /**
  * The root saga that triggers all the others.
@@ -13,6 +13,6 @@ import { watchStationLoadFail } from './station-load-fail-saga';
 export function* rootSaga() {
     yield all([
         watchInitialLoad(),
-        watchStationLoadFail()
+        watchNowPlaying()
     ]);
 }

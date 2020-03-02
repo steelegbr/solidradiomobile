@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import { Button, Title, Caption } from 'react-native-paper';
+import { Button, Title, Caption, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 class StationCard extends Component {
@@ -13,42 +13,46 @@ class StationCard extends Component {
                 activeOpacity={1}
                 style={styles.wrapper}
             >
-                <View style={styles.logoWrapper}>
-                    <Image 
-                        source={{ uri: station.logo }} 
-                        style={styles.logo}
-                    />
-                </View>
-                <View style={styles.showImageWrapper}>
-                    <Image
-                        source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
-                        style={styles.showImage}
-                    />
-                </View>
-                <View style={styles.intermediateText}>
-                    <Title>On Air</Title>
-                    <Caption>Breakfast Without the Waffle</Caption>
-                </View>
-                <View style={styles.intermediateText}>
-                    <Title>Now Playing</Title>
-                    <Caption>Eurythmics &amp; Aretha Franklin - Sisters Are Doin' It for Themselves</Caption>
-                </View>
-                <View style={styles.actions}>
-                    <Button
-                        icon="play"
-                        mode="contained"
-                        style={styles.button}
-                    >
-                        Listen Live
-                    </Button>
-                </View>
+                <Surface
+                    style={styles.surface}
+                >
+                    <View style={styles.logoWrapper}>
+                        <Image 
+                            source={{ uri: station.logo }} 
+                            style={styles.logo}
+                        />
+                    </View>
+                    <View style={styles.showImageWrapper}>
+                        <Image
+                            source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
+                            style={styles.showImage}
+                        />
+                    </View>
+                    <View style={styles.intermediateText}>
+                        <Title>On Air</Title>
+                        <Caption>Breakfast Without the Waffle</Caption>
+                    </View>
+                    <View style={styles.intermediateText}>
+                        <Title>Now Playing</Title>
+                        <Caption>Eurythmics &amp; Aretha Franklin - Sisters Are Doin' It for Themselves</Caption>
+                    </View>
+                    <View style={styles.actions}>
+                        <Button
+                            icon="play"
+                            mode="contained"
+                            style={styles.button}
+                        >
+                            Listen Live
+                        </Button>
+                    </View>
+                </Surface>
             </TouchableOpacity>
         );
     }
 
 }
 
-const borderRadius = 30;
+const borderRadius = 20;
 const borderWidth = 0.3;
 
 function mapStateToProps(state, ownProps) {
@@ -84,18 +88,13 @@ function mapStateToProps(state, ownProps) {
             },
             wrapper: {
                 borderRadius: borderRadius,
-                shadowColor: "black",
-                shadowOpacity: 0.25,
-                shadowOffset: { width: 5, height: 10 },
                 borderRadius: borderRadius,
                 flexDirection: "column",
-                justifyContent: "flex-end",
-                borderWidth: borderWidth
+                justifyContent: "flex-end"
             },
             intermediateText: {
                 backgroundColor: state.theme.colors.background,
-                padding: 5,
-                borderBottomWidth: borderWidth
+                padding: 5
             },
             actions: {
                 backgroundColor: state.theme.colors.background,
@@ -105,6 +104,9 @@ function mapStateToProps(state, ownProps) {
             },
             button: {
                 backgroundColor: station.primary_colour
+            },
+            surface: {
+                borderRadius: borderRadius
             }
         })
     };

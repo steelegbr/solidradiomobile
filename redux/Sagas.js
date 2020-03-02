@@ -5,7 +5,7 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 import { select, put, takeEvery, takeLatest, all } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { DefaultTheme } from 'react-native-paper';
+import { DefaultTheme, DarkTheme } from 'react-native-paper';
 import produce from 'immer';
 
 export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
@@ -23,13 +23,14 @@ defaultState = {
         server: null,
         key: null
     },
-    stations: [],
+    stations: {},
+    stationCount: 0,
     currentStation: null,
     theme: {
-        ...DefaultTheme,
+        ...DarkTheme,
         roundness: 10,
         colors: {
-            ...DefaultTheme.colors,
+            ...DarkTheme.colors,
             primary: "#7300AE",
             accent: "#7300AE"
         }
@@ -58,6 +59,7 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case STATION_LOAD_SUCCESS:
                 draftState.stations[action.payload.data.name] = action.payload.data;
+                draftState.stationCount = baseState.stationCount + 1;
                 draftState.initialLoad = 'success';
                 break;
         }
@@ -166,7 +168,7 @@ function* stationLoadFail(action) {
     // Determine if we're bombing out or not
 
     const currentState = yield select();
-    if (currentState.stations.length == 0) {
+    if (currentState.stationCount == 0) {
         yield put({
             type: INITIAL_LOAD_FAIL,
             error: action.error

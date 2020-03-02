@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
-import { reducer, rootSaga, initialLoad } from './redux/Sagas';
+import { reducer, initialLoad } from './reducers/actions';
+import { rootSaga } from './sagas/sagas';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
@@ -8,30 +9,13 @@ import axiosMiddleware from 'redux-axios-middleware';
 import createSagaMiddleware from 'redux-saga';
 import { Provider as StoreProvider } from 'react-redux';
 import Wrapper from './components/Wrapper';
+import { axiosConfig } from './middleware/auth-token';
 
 // Setup Axios
 
 const axiosClient = axios.create({
   responseType: 'json'
 });
-
-const axiosConfig = {
-  interceptors: {
-    request: [
-      function ({ getState, dispatch, getSourceAction }, request) {
-
-        // Interceptor for adding authorisation token and server name to requests
-
-        const currentState = getState();
-        request.url = `https://${currentState.api.server}${request.url}`;
-        request.headers.common['Authorization'] = `Token ${currentState.api.key}`;
-
-        return request;
-
-      }
-    ]
-  }
-}
 
 // Setup Reux and Sagas
 

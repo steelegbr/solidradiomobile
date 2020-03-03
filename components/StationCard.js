@@ -12,6 +12,8 @@ class StationCard extends Component {
 
         const { station, nowPlaying, theme, borderRadius, vertical, tablet } = this.props;
 
+        // Album art with fallback
+
         const albumArtSize = Dimensions.get('window').height * 0.45;
 
         const styles = {
@@ -29,12 +31,12 @@ class StationCard extends Component {
             },
             showImageVertical: {
                 width: "100%",
-                height: Dimensions.get('window').height * 0.45,
+                height: Dimensions.get('window').height * 0.40,
                 resizeMode: "cover"
             },
             showImageHorizontal: {
                 width: Dimensions.get('window').width * 0.5,
-                height: Dimensions.get('window').height - 300,
+                height: Dimensions.get('window').height - 270,
                 resizeMode: "cover"
             },
             wrapper: {
@@ -66,13 +68,16 @@ class StationCard extends Component {
                 backgroundColor: theme.background,
                 borderBottomLeftRadius: borderRadius,
                 borderBottomRightRadius: borderRadius,
-                padding: 20
+                padding: 20,
+                alignItems: "flex-start"
             },
             button: {
                 backgroundColor: station.primaryColour
             },
             surface: {
-                borderRadius: borderRadius
+                borderRadius: borderRadius,
+                alignSelf: "stretch",
+                marginTop: 20
             },
             albumArt: {
                 width: albumArtSize,
@@ -160,7 +165,7 @@ class StationCard extends Component {
                                     <Title>Now Playing</Title>
                                     <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
                                 </View>
-                                { tablet &&
+                                { tablet && nowPlaying.artUrl != null &&
                                     <View style={styles.albumArtWrapper}>
                                         <Image
                                             source={{ uri: nowPlaying.artUrl }}

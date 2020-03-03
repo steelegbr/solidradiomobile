@@ -94,7 +94,11 @@ function* nowPlayingSaga(action) {
 
             let artist = songUpdate.song.display_artist;
             let title = songUpdate.song.title;
-            let artUrl = `https://${server}${songUpdate.song.image}`;
+            let artUrl = null;
+    
+            if (songUpdate.song.image != null) {
+                artUrl = `https://${server}${songUpdate.song.image}`;
+            }
 
             yield put(nowPlayingUpdate(stationName, artist, title, artUrl));
 

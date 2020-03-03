@@ -7,7 +7,55 @@ import { connect } from 'react-redux';
 class StationCard extends Component {
 
     render() {
-        const { station, styles, nowPlaying } = this.props;
+
+        // Read in the properties and adjust the style
+
+        const { station, nowPlaying, theme, borderRadius } = this.props;
+
+        const styles = {
+            logoWrapper: {
+                backgroundColor: station.primaryColour,
+                borderTopLeftRadius: borderRadius,
+                borderTopRightRadius: borderRadius
+            },
+            logo : {
+                backgroundColor: station.primaryColour,
+                height: 50,
+                borderTopLeftRadius: borderRadius,
+                borderTopRightRadius: borderRadius,
+                resizeMode: "contain"
+            },
+            showImageWrapper: {
+            },
+            showImage: {
+                width: "100%",
+                height: Dimensions.get('window').height * 0.45,
+                resizeMode: "cover"
+            },
+            wrapper: {
+                borderRadius: borderRadius,
+                borderRadius: borderRadius,
+                flexDirection: "column",
+                justifyContent: "flex-end"
+            },
+            intermediateText: {
+                backgroundColor: theme.background,
+                padding: 10
+            },
+            actions: {
+                backgroundColor: theme.background,
+                borderBottomLeftRadius: borderRadius,
+                borderBottomRightRadius: borderRadius,
+                padding: 20
+            },
+            button: {
+                backgroundColor: station.primaryColour
+            },
+            surface: {
+                borderRadius: borderRadius
+            }
+        }
+
         return(
             <TouchableOpacity
                 activeOpacity={1}
@@ -52,8 +100,6 @@ class StationCard extends Component {
 
 }
 
-const borderRadius = 20;
-
 function mapStateToProps(state, ownProps) {
 
     const station = state.stations[ownProps.stationName];
@@ -61,52 +107,14 @@ function mapStateToProps(state, ownProps) {
     return {
         station: {
             name: station.name,
-            logo: station.logo_inverse
+            logo: station.logo_inverse,
+            primaryColour: station.primary_colour
         },
         nowPlaying: station.nowPlaying,
-        styles: {
-            logoWrapper: {
-                backgroundColor: station.primary_colour,
-                borderTopLeftRadius: borderRadius,
-                borderTopRightRadius: borderRadius
-            },
-            logo : {
-                backgroundColor: station.primary_colour,
-                height: 50,
-                borderTopLeftRadius: borderRadius,
-                borderTopRightRadius: borderRadius,
-                resizeMode: "contain"
-            },
-            showImageWrapper: {
-            },
-            showImage: {
-                width: "100%",
-                height: Dimensions.get('window').height * 0.45,
-                resizeMode: "cover"
-            },
-            wrapper: {
-                borderRadius: borderRadius,
-                borderRadius: borderRadius,
-                flexDirection: "column",
-                justifyContent: "flex-end"
-            },
-            intermediateText: {
-                backgroundColor: state.theme.colors.background,
-                padding: 10
-            },
-            actions: {
-                backgroundColor: state.theme.colors.background,
-                borderBottomLeftRadius: borderRadius,
-                borderBottomRightRadius: borderRadius,
-                padding: 20
-            },
-            button: {
-                backgroundColor: station.primary_colour
-            },
-            surface: {
-                borderRadius: borderRadius
-            }
-        }
+        theme: {
+            background: state.theme.colors.background
+        },
+        borderRadius: state.theme.roundness
     };
 
 }

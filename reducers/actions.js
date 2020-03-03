@@ -16,6 +16,7 @@ export const STATION_LOAD_FAIL = 'STATION_LOAD_FAIL';
 export const NOW_PLAYING_SUCCESS = 'NOW_PLAYING_SUCCESS';
 export const NOW_PLAYING_FAIL = 'NOW_PLAYING_FAIL';
 export const NOW_PLAYING_UPDATE = 'NOW_PLAYING_UPDATE';
+export const ORIENTATION_UPDATE = 'ORIENTATION_UPDATE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -34,7 +35,8 @@ defaultState = {
             primary: "#7300AE",
             accent: "#7300AE"
         }
-    }
+    },
+    vertical: true
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -75,6 +77,9 @@ export function reducer(baseState=defaultState, action) {
                     title: action.title,
                     artUrl: action.artUrl
                 }
+                break;
+            case ORIENTATION_UPDATE:
+                draftState.vertical = action.vertical;
                 break;
         }
     });
@@ -188,5 +193,17 @@ export function nowPlayingUpdate(stationName, artist, title, artUrl) {
         artist: artist,
         title: title,
         artUrl: artUrl
+    };
+}
+
+/**
+ * Indicates a change in screen orientation.
+ * @param {boolean} vertical Indicates if the screen is vertical.
+ */
+
+export function changeOrientation(vertical) {
+    return {
+        type: ORIENTATION_UPDATE,
+        vertical: vertical
     };
 }

@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'SolidRadioMobile' do
-  # Pods for SolidRadioMobile
+target 'SolidRadio' do
+  # Pods for SolidRadio
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -34,7 +34,7 @@ target 'SolidRadioMobile' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'SolidRadioMobileTests' do
+  target 'SolidRadioTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -42,10 +42,10 @@ target 'SolidRadioMobile' do
   use_native_modules!
 end
 
-target 'SolidRadioMobile-tvOS' do
-  # Pods for SolidRadioMobile-tvOS
+target 'SolidRadio-tvOS' do
+  # Pods for SolidRadio-tvOS
 
-  target 'SolidRadioMobile-tvOSTests' do
+  target 'SolidRadio-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

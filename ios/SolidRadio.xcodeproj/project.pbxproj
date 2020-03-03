@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* SolidRadioMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SolidRadioMobileTests.m */; };
+		00E356F31AD99517003FC87E /* SolidRadioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SolidRadioTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		18A81ED15456DB96FF0BD307 /* libPods-SolidRadioMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C922D680DB6E50EBC4226CE9 /* libPods-SolidRadioMobile-tvOS.a */; };
-		21185D470D4B31D942F1820A /* libPods-SolidRadioMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D57240ED9E8EDC4679E70128 /* libPods-SolidRadioMobile.a */; };
+		18A81ED15456DB96FF0BD307 /* libPods-SolidRadio-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C922D680DB6E50EBC4226CE9 /* libPods-SolidRadio-tvOS.a */; };
+		21185D470D4B31D942F1820A /* libPods-SolidRadio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D57240ED9E8EDC4679E70128 /* libPods-SolidRadio.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* SolidRadioMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SolidRadioMobileTests.m */; };
-		956DCFDB5C12EEF94820D50A /* libPods-SolidRadioMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 739C788B55992AC6A5FECA2B /* libPods-SolidRadioMobileTests.a */; };
-		C5A3E442EF4F86759D8E7E85 /* libPods-SolidRadioMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8593E731BF8CCBCD70D491 /* libPods-SolidRadioMobile-tvOSTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* SolidRadioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SolidRadioTests.m */; };
+		956DCFDB5C12EEF94820D50A /* libPods-SolidRadioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 739C788B55992AC6A5FECA2B /* libPods-SolidRadioTests.a */; };
+		C5A3E442EF4F86759D8E7E85 /* libPods-SolidRadio-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8593E731BF8CCBCD70D491 /* libPods-SolidRadio-tvOSTests.a */; };
 		E4635201240593530051C9BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4635200240593530051C9BC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -29,46 +29,46 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = SolidRadioMobile;
+			remoteInfo = SolidRadio;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "SolidRadioMobile-tvOS";
+			remoteInfo = "SolidRadio-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* SolidRadioMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidRadioMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* SolidRadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidRadioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* SolidRadioMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolidRadioMobileTests.m; sourceTree = "<group>"; };
-		03B95D321310ABEA6BF82ABF /* Pods-SolidRadioMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobile.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobile/Pods-SolidRadioMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		09468922795F1FAAF2F1B946 /* Pods-SolidRadioMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobile-tvOS/Pods-SolidRadioMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		0D8593E731BF8CCBCD70D491 /* libPods-SolidRadioMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadioMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* SolidRadioMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolidRadioMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SolidRadioMobile/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SolidRadioMobile/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* SolidRadioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolidRadioTests.m; sourceTree = "<group>"; };
+		03B95D321310ABEA6BF82ABF /* Pods-SolidRadio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadio/Pods-SolidRadio.debug.xcconfig"; sourceTree = "<group>"; };
+		09468922795F1FAAF2F1B946 /* Pods-SolidRadio-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOS.release.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOS/Pods-SolidRadio-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		0D8593E731BF8CCBCD70D491 /* libPods-SolidRadio-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadio-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* SolidRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolidRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SolidRadio/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SolidRadio/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SolidRadioMobile/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SolidRadioMobile/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SolidRadioMobile/main.m; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* SolidRadioMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SolidRadioMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* SolidRadioMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SolidRadioMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadioMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobile-tvOSTests/Pods-SolidRadioMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadioMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobile-tvOS/Pods-SolidRadioMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		739C788B55992AC6A5FECA2B /* libPods-SolidRadioMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadioMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadioMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobile-tvOSTests/Pods-SolidRadioMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		9556C690ABA87926AD9F1BDC /* Pods-SolidRadioMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobileTests.release.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobileTests/Pods-SolidRadioMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		C922D680DB6E50EBC4226CE9 /* libPods-SolidRadioMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadioMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobileTests/Pods-SolidRadioMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D57240ED9E8EDC4679E70128 /* libPods-SolidRadioMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadioMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SolidRadio/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SolidRadio/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SolidRadio/main.m; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* SolidRadio-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SolidRadio-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* SolidRadio-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SolidRadio-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadio-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOSTests/Pods-SolidRadio-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadio-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOS/Pods-SolidRadio-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		739C788B55992AC6A5FECA2B /* libPods-SolidRadioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadio-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOSTests/Pods-SolidRadio-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9556C690ABA87926AD9F1BDC /* Pods-SolidRadioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioTests.release.xcconfig"; path = "Target Support Files/Pods-SolidRadioTests/Pods-SolidRadioTests.release.xcconfig"; sourceTree = "<group>"; };
+		C922D680DB6E50EBC4226CE9 /* libPods-SolidRadio-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadio-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadioTests/Pods-SolidRadioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D57240ED9E8EDC4679E70128 /* libPods-SolidRadio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4635200240593530051C9BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadioMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioMobile.release.xcconfig"; path = "Target Support Files/Pods-SolidRadioMobile/Pods-SolidRadioMobile.release.xcconfig"; sourceTree = "<group>"; };
+		F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio.release.xcconfig"; path = "Target Support Files/Pods-SolidRadio/Pods-SolidRadio.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				956DCFDB5C12EEF94820D50A /* libPods-SolidRadioMobileTests.a in Frameworks */,
+				956DCFDB5C12EEF94820D50A /* libPods-SolidRadioTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21185D470D4B31D942F1820A /* libPods-SolidRadioMobile.a in Frameworks */,
+				21185D470D4B31D942F1820A /* libPods-SolidRadio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A81ED15456DB96FF0BD307 /* libPods-SolidRadioMobile-tvOS.a in Frameworks */,
+				18A81ED15456DB96FF0BD307 /* libPods-SolidRadio-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,20 +100,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5A3E442EF4F86759D8E7E85 /* libPods-SolidRadioMobile-tvOSTests.a in Frameworks */,
+				C5A3E442EF4F86759D8E7E85 /* libPods-SolidRadio-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* SolidRadioMobileTests */ = {
+		00E356EF1AD99517003FC87E /* SolidRadioTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* SolidRadioMobileTests.m */,
+				00E356F21AD99517003FC87E /* SolidRadioTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = SolidRadioMobileTests;
+			path = SolidRadioTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -124,7 +124,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* SolidRadioMobile */ = {
+		13B07FAE1A68108700A75B9A /* SolidRadio */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -135,7 +135,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = SolidRadioMobile;
+			name = SolidRadio;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -143,10 +143,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				D57240ED9E8EDC4679E70128 /* libPods-SolidRadioMobile.a */,
-				C922D680DB6E50EBC4226CE9 /* libPods-SolidRadioMobile-tvOS.a */,
-				0D8593E731BF8CCBCD70D491 /* libPods-SolidRadioMobile-tvOSTests.a */,
-				739C788B55992AC6A5FECA2B /* libPods-SolidRadioMobileTests.a */,
+				D57240ED9E8EDC4679E70128 /* libPods-SolidRadio.a */,
+				C922D680DB6E50EBC4226CE9 /* libPods-SolidRadio-tvOS.a */,
+				0D8593E731BF8CCBCD70D491 /* libPods-SolidRadio-tvOSTests.a */,
+				739C788B55992AC6A5FECA2B /* libPods-SolidRadioTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,14 +154,14 @@
 		5DD3F9F32CF1F0DC3B1A36D8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				03B95D321310ABEA6BF82ABF /* Pods-SolidRadioMobile.debug.xcconfig */,
-				F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadioMobile.release.xcconfig */,
-				63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadioMobile-tvOS.debug.xcconfig */,
-				09468922795F1FAAF2F1B946 /* Pods-SolidRadioMobile-tvOS.release.xcconfig */,
-				57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadioMobile-tvOSTests.debug.xcconfig */,
-				8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadioMobile-tvOSTests.release.xcconfig */,
-				CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioMobileTests.debug.xcconfig */,
-				9556C690ABA87926AD9F1BDC /* Pods-SolidRadioMobileTests.release.xcconfig */,
+				03B95D321310ABEA6BF82ABF /* Pods-SolidRadio.debug.xcconfig */,
+				F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadio.release.xcconfig */,
+				63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadio-tvOS.debug.xcconfig */,
+				09468922795F1FAAF2F1B946 /* Pods-SolidRadio-tvOS.release.xcconfig */,
+				57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadio-tvOSTests.debug.xcconfig */,
+				8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadio-tvOSTests.release.xcconfig */,
+				CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioTests.debug.xcconfig */,
+				9556C690ABA87926AD9F1BDC /* Pods-SolidRadioTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -177,9 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				E4635200240593530051C9BC /* GoogleService-Info.plist */,
-				13B07FAE1A68108700A75B9A /* SolidRadioMobile */,
+				13B07FAE1A68108700A75B9A /* SolidRadio */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* SolidRadioMobileTests */,
+				00E356EF1AD99517003FC87E /* SolidRadioTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				5DD3F9F32CF1F0DC3B1A36D8 /* Pods */,
@@ -193,10 +193,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* SolidRadioMobile.app */,
-				00E356EE1AD99517003FC87E /* SolidRadioMobileTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* SolidRadioMobile-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* SolidRadioMobile-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* SolidRadio.app */,
+				00E356EE1AD99517003FC87E /* SolidRadioTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* SolidRadio-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* SolidRadio-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,9 +211,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* SolidRadioMobileTests */ = {
+		00E356ED1AD99517003FC87E /* SolidRadioTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SolidRadioMobileTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SolidRadioTests" */;
 			buildPhases = (
 				8D174C9589C22D4AC1E39C76 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -225,14 +225,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = SolidRadioMobileTests;
-			productName = SolidRadioMobileTests;
-			productReference = 00E356EE1AD99517003FC87E /* SolidRadioMobileTests.xctest */;
+			name = SolidRadioTests;
+			productName = SolidRadioTests;
+			productReference = 00E356EE1AD99517003FC87E /* SolidRadioTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* SolidRadioMobile */ = {
+		13B07F861A680F5B00A75B9A /* SolidRadio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SolidRadioMobile" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SolidRadio" */;
 			buildPhases = (
 				9090544327291FE29114A4F6 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -248,14 +248,14 @@
 			);
 			dependencies = (
 			);
-			name = SolidRadioMobile;
-			productName = SolidRadioMobile;
-			productReference = 13B07F961A680F5B00A75B9A /* SolidRadioMobile.app */;
+			name = SolidRadio;
+			productName = SolidRadio;
+			productReference = 13B07F961A680F5B00A75B9A /* SolidRadio.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* SolidRadioMobile-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* SolidRadio-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadioMobile-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadio-tvOS" */;
 			buildPhases = (
 				49CB7A86CB742A2AF12F8303 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -268,14 +268,14 @@
 			);
 			dependencies = (
 			);
-			name = "SolidRadioMobile-tvOS";
-			productName = "SolidRadioMobile-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* SolidRadioMobile-tvOS.app */;
+			name = "SolidRadio-tvOS";
+			productName = "SolidRadio-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* SolidRadio-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* SolidRadioMobile-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* SolidRadio-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadioMobile-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadio-tvOSTests" */;
 			buildPhases = (
 				75168F2462205B34B5EE49CA /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -287,9 +287,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "SolidRadioMobile-tvOSTests";
-			productName = "SolidRadioMobile-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* SolidRadioMobile-tvOSTests.xctest */;
+			name = "SolidRadio-tvOSTests";
+			productName = "SolidRadio-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* SolidRadio-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -316,7 +316,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SolidRadioMobile" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SolidRadio" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -330,10 +330,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* SolidRadioMobile */,
-				00E356ED1AD99517003FC87E /* SolidRadioMobileTests */,
-				2D02E47A1E0B4A5D006451C7 /* SolidRadioMobile-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* SolidRadioMobile-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* SolidRadio */,
+				00E356ED1AD99517003FC87E /* SolidRadioTests */,
+				2D02E47A1E0B4A5D006451C7 /* SolidRadio-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* SolidRadio-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -417,7 +417,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SolidRadioMobile-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SolidRadio-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -449,7 +449,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SolidRadioMobile-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SolidRadio-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -481,7 +481,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SolidRadioMobileTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SolidRadioTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -503,7 +503,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SolidRadioMobile-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SolidRadio-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -516,7 +516,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SolidRadioMobile/Pods-SolidRadioMobile-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SolidRadio/Pods-SolidRadio-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -555,7 +555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SolidRadioMobile/Pods-SolidRadioMobile-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SolidRadio/Pods-SolidRadio-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -603,7 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* SolidRadioMobileTests.m in Sources */,
+				00E356F31AD99517003FC87E /* SolidRadioTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* SolidRadioMobileTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* SolidRadioTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,12 +638,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* SolidRadioMobile */;
+			target = 13B07F861A680F5B00A75B9A /* SolidRadio */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* SolidRadioMobile-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* SolidRadio-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -655,7 +655,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = SolidRadioMobile;
+			path = SolidRadio;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -663,14 +663,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioMobileTests.debug.xcconfig */;
+			baseConfigurationReference = CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SolidRadioMobileTests/Info.plist;
+				INFOPLIST_FILE = SolidRadioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -680,17 +680,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadioMobile.app/SolidRadioMobile";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadio.app/SolidRadio";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9556C690ABA87926AD9F1BDC /* Pods-SolidRadioMobileTests.release.xcconfig */;
+			baseConfigurationReference = 9556C690ABA87926AD9F1BDC /* Pods-SolidRadioTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = SolidRadioMobileTests/Info.plist;
+				INFOPLIST_FILE = SolidRadioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -700,18 +700,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadioMobile.app/SolidRadioMobile";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadio.app/SolidRadio";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03B95D321310ABEA6BF82ABF /* Pods-SolidRadioMobile.debug.xcconfig */;
+			baseConfigurationReference = 03B95D321310ABEA6BF82ABF /* Pods-SolidRadio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				INFOPLIST_FILE = SolidRadioMobile/Info.plist;
+				INFOPLIST_FILE = SolidRadio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
@@ -720,7 +720,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.solidradio;
-				PRODUCT_NAME = SolidRadioMobile;
+				PRODUCT_NAME = SolidRadio;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -728,11 +728,11 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadioMobile.release.xcconfig */;
+			baseConfigurationReference = F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = SolidRadioMobile/Info.plist;
+				INFOPLIST_FILE = SolidRadio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
@@ -741,7 +741,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.solidradio;
-				PRODUCT_NAME = SolidRadioMobile;
+				PRODUCT_NAME = SolidRadio;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -749,7 +749,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadioMobile-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadio-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -760,14 +760,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "SolidRadioMobile-tvOS/Info.plist";
+				INFOPLIST_FILE = "SolidRadio-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadioMobile-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadio-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -777,7 +777,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09468922795F1FAAF2F1B946 /* Pods-SolidRadioMobile-tvOS.release.xcconfig */;
+			baseConfigurationReference = 09468922795F1FAAF2F1B946 /* Pods-SolidRadio-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -788,14 +788,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "SolidRadioMobile-tvOS/Info.plist";
+				INFOPLIST_FILE = "SolidRadio-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadioMobile-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadio-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -805,7 +805,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadioMobile-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadio-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -815,24 +815,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "SolidRadioMobile-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "SolidRadio-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadioMobile-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadio-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadioMobile-tvOS.app/SolidRadioMobile-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadio-tvOS.app/SolidRadio-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadioMobile-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadio-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -842,17 +842,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "SolidRadioMobile-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "SolidRadio-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadioMobile-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.SolidRadio-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadioMobile-tvOS.app/SolidRadioMobile-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SolidRadio-tvOS.app/SolidRadio-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -959,7 +959,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SolidRadioMobileTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SolidRadioTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -968,7 +968,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SolidRadioMobile" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SolidRadio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -977,7 +977,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadioMobile-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadio-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -986,7 +986,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadioMobile-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "SolidRadio-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -995,7 +995,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SolidRadioMobile" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "SolidRadio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -5,7 +5,8 @@
 import { Dimensions } from 'react-native';
 import { eventChannel, END } from 'redux-saga';
 import { call, put, take } from 'redux-saga/effects';
-import { changeOrientation } from '../reducers/actions';
+import { changeOrientation, setTablet } from '../reducers/actions';
+import DeviceInfo from 'react-native-device-info';
 
 /**
  * Indicates if the screen is vertical.
@@ -26,7 +27,6 @@ function setupDimensionChannel() {
         // Setup the event handler for changes
 
         const changeHandler = () => {
-            console.log('Changing...');
             emit(isVertical());
         }
 
@@ -53,10 +53,15 @@ function setupDimensionChannel() {
 
 export function* orientationSaga() {
 
+    // Indicate if we are a tablet or not
+
+    yield put(setTablet(DeviceInfo.isTablet()));
+
+    // Continue on
+
     const channel = yield call(setupDimensionChannel);
     while (true) {
         let vertical = yield take(channel);
-        console.log(`Vertical: ${vertical}`);
         yield put(changeOrientation(vertical));
     }
 

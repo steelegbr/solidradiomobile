@@ -300,6 +300,8 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
+  - RNDeviceInfo (5.5.3):
+    - React
   - RNFBApp (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - React
@@ -346,6 +348,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
@@ -422,6 +425,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBCrashlytics:
@@ -476,6 +481,7 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
+  RNDeviceInfo: 67607dfe9cfbed105838144c40187a8392aa404d
   RNFBApp: 7d4006751de8bb5cafa2e8d2e7d94ee250df81db
   RNFBCrashlytics: 93e1cc09a93aa4bb1e9b5a07af0efb2702db5a39
   RNFBRemoteConfig: acfef78587e8d544b53338c07ecbc172fae1b781

@@ -17,6 +17,7 @@ export const NOW_PLAYING_SUCCESS = 'NOW_PLAYING_SUCCESS';
 export const NOW_PLAYING_FAIL = 'NOW_PLAYING_FAIL';
 export const NOW_PLAYING_UPDATE = 'NOW_PLAYING_UPDATE';
 export const ORIENTATION_UPDATE = 'ORIENTATION_UPDATE';
+export const TABLET_UPDATE = 'TABLET_UPDATE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -36,7 +37,8 @@ defaultState = {
             accent: "#7300AE"
         }
     },
-    vertical: true
+    vertical: true,
+    tablet: false
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -80,6 +82,9 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case ORIENTATION_UPDATE:
                 draftState.vertical = action.vertical;
+                break;
+            case TABLET_UPDATE:
+                draftState.tablet = action.tablet;
                 break;
         }
     });
@@ -205,5 +210,17 @@ export function changeOrientation(vertical) {
     return {
         type: ORIENTATION_UPDATE,
         vertical: vertical
+    };
+}
+
+/**
+ * Sets a flag to indicate if the device is a tablet.
+ * @param {boolean} isTablet Indicates if the device is a tablet or not.
+ */
+
+export function setTablet(isTablet) {
+    return {
+        type: TABLET_UPDATE,
+        tablet: isTablet
     };
 }

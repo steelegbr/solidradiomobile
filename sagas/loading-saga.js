@@ -41,7 +41,7 @@ function* initialLoadSaga() {
 
         // Trigger the parallel station loads
 
-        const stationNames = settings.stations.value.split('|');
+        const stationNames = JSON.parse(settings.stations.value);
         for (let i = 0; i < stationNames.length; i++) {
             yield put(loadStation(stationNames[i]));
         }

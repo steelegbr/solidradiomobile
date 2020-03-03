@@ -91,7 +91,12 @@ function* nowPlayingSaga(action) {
 
             let payload = yield take(channel);
             let songUpdate = JSON.parse(payload);
-            yield put(nowPlayingUpdate(stationName, songUpdate.song.display_artist, songUpdate.song.title, songUpdate.song.image));
+
+            let artist = songUpdate.song.display_artist;
+            let title = songUpdate.song.title;
+            let artUrl = `https://${server}${songUpdate.song.image}`;
+
+            yield put(nowPlayingUpdate(stationName, artist, title, artUrl));
 
         }
 

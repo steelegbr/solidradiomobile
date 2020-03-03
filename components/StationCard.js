@@ -10,7 +10,9 @@ class StationCard extends Component {
 
         // Read in the properties and adjust the style
 
-        const { station, nowPlaying, theme, borderRadius } = this.props;
+        const { station, nowPlaying, theme, borderRadius, vertical, tablet } = this.props;
+
+        const albumArtSize = Dimensions.get('window').height * 0.45;
 
         const styles = {
             logoWrapper: {
@@ -25,22 +27,40 @@ class StationCard extends Component {
                 borderTopRightRadius: borderRadius,
                 resizeMode: "contain"
             },
-            showImageWrapper: {
-            },
-            showImage: {
+            showImageVertical: {
                 width: "100%",
                 height: Dimensions.get('window').height * 0.45,
+                resizeMode: "cover"
+            },
+            showImageHorizontal: {
+                width: Dimensions.get('window').width * 0.5,
+                height: Dimensions.get('window').height - 300,
                 resizeMode: "cover"
             },
             wrapper: {
                 borderRadius: borderRadius,
                 borderRadius: borderRadius,
                 flexDirection: "column",
-                justifyContent: "flex-end"
+                justifyContent: "flex-end",
+                padding: 5
             },
-            intermediateText: {
+            horizontalWrapper: {
+                flexDirection: "row"
+            },
+            horizontalTextWrapper: {
+                flexDirection: "column",
+                flex: 2
+            },
+            verticalIntermediateText: {
                 backgroundColor: theme.background,
+                alignItems: "center",
                 padding: 10
+            },
+            horizontalIntermediateText: {
+                backgroundColor: theme.background,
+                padding: 10,
+                alignItems: "center",
+                flex: 1
             },
             actions: {
                 backgroundColor: theme.background,
@@ -53,49 +73,117 @@ class StationCard extends Component {
             },
             surface: {
                 borderRadius: borderRadius
+            },
+            albumArt: {
+                width: albumArtSize,
+                height: albumArtSize,
+                resizeMode: "cover",
+                alignSelf: "center"
+            },
+            albumArtWrapper: {
+                backgroundColor: theme.background
             }
         }
 
-        return(
-            <TouchableOpacity
-                activeOpacity={1}
-                style={styles.wrapper}
-            >
-                <Surface
-                    style={styles.surface}
+        if (vertical) {
+
+            return(
+                <TouchableOpacity
+                    activeOpacity={1}
+                    style={styles.wrapper}
                 >
-                    <View style={styles.logoWrapper}>
-                        <Image 
-                            source={{ uri: station.logo }} 
-                            style={styles.logo}
-                        />
-                    </View>
-                    <View style={styles.showImageWrapper}>
-                        <Image
-                            source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
-                            style={styles.showImage}
-                        />
-                    </View>
-                    <View style={styles.intermediateText}>
-                        <Title>On Air</Title>
-                        <Caption>Breakfast Without the Waffle</Caption>
-                    </View>
-                    <View style={styles.intermediateText}>
-                        <Title>Now Playing</Title>
-                        <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
-                    </View>
-                    <View style={styles.actions}>
-                        <Button
-                            icon="play"
-                            mode="contained"
-                            style={styles.button}
-                        >
-                            Listen Live
-                        </Button>
-                    </View>
-                </Surface>
-            </TouchableOpacity>
-        );
+                    <Surface
+                        style={styles.surface}
+                    >
+                        <View style={styles.logoWrapper}>
+                            <Image 
+                                source={{ uri: station.logo }} 
+                                style={styles.logo}
+                            />
+                        </View>
+                        <View>
+                            <Image
+                                source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
+                                style={styles.showImageVertical}
+                            />
+                        </View>
+                        <View style={styles.verticalIntermediateText}>
+                            <Title>On Air</Title>
+                            <Caption>Breakfast Without the Waffle</Caption>
+                        </View>
+                        <View style={styles.verticalIntermediateText}>
+                            <Title>Now Playing</Title>
+                            <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
+                        </View>
+                        <View style={styles.actions}>
+                            <Button
+                                icon="play"
+                                mode="contained"
+                                style={styles.button}
+                            >
+                                Listen Live
+                            </Button>
+                        </View>
+                    </Surface>
+                </TouchableOpacity>
+            );
+
+        } else {
+
+            return(
+                <TouchableOpacity
+                    activeOpacity={1}
+                    style={styles.wrapper}
+                >
+                    <Surface
+                        style={styles.surface}
+                    >
+                        <View style={styles.logoWrapper}>
+                            <Image 
+                                source={{ uri: station.logo }} 
+                                style={styles.logo}
+                            />
+                        </View>
+                        <View style={styles.horizontalWrapper}>
+                            <View>
+                                <Image
+                                    source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
+                                    style={styles.showImageHorizontal}
+                                />
+                            </View>
+                            <View style={styles.horizontalTextWrapper}>
+                                <View style={styles.horizontalIntermediateText}>
+                                    <Title>On Air</Title>
+                                    <Caption>Breakfast Without the Waffle</Caption>
+                                </View>
+                                <View style={styles.horizontalIntermediateText}>
+                                    <Title>Now Playing</Title>
+                                    <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
+                                </View>
+                                { tablet &&
+                                    <View style={styles.albumArtWrapper}>
+                                        <Image
+                                            source={{ uri: nowPlaying.artUrl }}
+                                            style={styles.albumArt}
+                                        />
+                                    </View>
+                                }
+                            </View>
+                        </View>
+                        <View style={styles.actions}>
+                            <Button
+                                icon="play"
+                                mode="contained"
+                                style={styles.button}
+                            >
+                                Listen Live
+                            </Button>
+                        </View>
+                    </Surface>
+                </TouchableOpacity>
+            );
+
+        }
     }
 
 }
@@ -114,7 +202,9 @@ function mapStateToProps(state, ownProps) {
         theme: {
             background: state.theme.colors.background
         },
-        borderRadius: state.theme.roundness
+        borderRadius: state.theme.roundness,
+        vertical: state.vertical,
+        tablet: state.tablet
     };
 
 }

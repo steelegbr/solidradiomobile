@@ -14,11 +14,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface SolidRadioMobileTests : XCTestCase
+@interface SolidRadioTests : XCTestCase
 
 @end
 
-@implementation SolidRadioMobileTests
+@implementation SolidRadioTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

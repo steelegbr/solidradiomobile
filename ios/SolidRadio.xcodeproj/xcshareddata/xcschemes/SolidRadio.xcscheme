@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "Solid Radio.app"
-               BlueprintName = "SolidRadioMobile"
-               ReferencedContainer = "container:SolidRadioMobile.xcodeproj">
+               BlueprintName = "SolidRadio"
+               ReferencedContainer = "container:SolidRadio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SolidRadioMobileTests.xctest"
-               BlueprintName = "SolidRadioMobileTests"
-               ReferencedContainer = "container:SolidRadioMobile.xcodeproj">
+               BuildableName = "SolidRadioTests.xctest"
+               BlueprintName = "SolidRadioTests"
+               ReferencedContainer = "container:SolidRadio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,8 +60,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Solid Radio.app"
-            BlueprintName = "SolidRadioMobile"
-            ReferencedContainer = "container:SolidRadioMobile.xcodeproj">
+            BlueprintName = "SolidRadio"
+            ReferencedContainer = "container:SolidRadio.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -70,9 +70,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SolidRadioMobileTests.xctest"
-               BlueprintName = "SolidRadioMobileTests"
-               ReferencedContainer = "container:SolidRadioMobile.xcodeproj">
+               BuildableName = "SolidRadioTests.xctest"
+               BlueprintName = "SolidRadioTests"
+               ReferencedContainer = "container:SolidRadio.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -93,8 +93,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Solid Radio.app"
-            BlueprintName = "SolidRadioMobile"
-            ReferencedContainer = "container:SolidRadioMobile.xcodeproj">
+            BlueprintName = "SolidRadio"
+            ReferencedContainer = "container:SolidRadio.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -110,8 +110,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Solid Radio.app"
-            BlueprintName = "SolidRadioMobile"
-            ReferencedContainer = "container:SolidRadioMobile.xcodeproj">
+            BlueprintName = "SolidRadio"
+            ReferencedContainer = "container:SolidRadio.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

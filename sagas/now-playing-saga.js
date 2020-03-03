@@ -24,7 +24,6 @@ function connectToStationSocket(server, station) {
         };
 
         socket.onerror = (error) => {
-            console.log(error);
             reject(error);
         };
 

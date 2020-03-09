@@ -105,7 +105,6 @@ function* nowPlayingSaga(action) {
         }
 
     } catch (error) {
-        console.log(error);
         yield put(nowPlayingFailure(stationName, error));
     } finally {
 
@@ -136,13 +135,7 @@ function* nowPlayingSaga(action) {
 
 function* nowPlayingErrorSaga(action) {
 
-    // Record the error locally
-
-    console.log(`Encountered now playing error for ${action.station}.`);
-    console.log(action.error);
-
-    // And remotely
-
+    crashlytics().log(`Encountered now playing error for ${action.station}.`);
     crashlytics().recordError(action.error);
 
 }

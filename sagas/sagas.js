@@ -7,6 +7,7 @@ import { watchInitialLoad } from './loading-saga';
 import { watchNowPlaying } from './now-playing-saga';
 import { orientationSaga } from './orientation-saga';
 import { watchOnAir } from './on-air-saga';
+import { watchSettings } from './settings-saga';
 
 /**
  * The root saga that triggers all the others.
@@ -17,6 +18,7 @@ export function* rootSaga() {
         watchInitialLoad(),
         watchNowPlaying(),
         orientationSaga(),
-        watchOnAir()
+        watchOnAir(),
+        watchSettings()
     ]);
 }

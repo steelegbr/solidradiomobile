@@ -3,13 +3,13 @@ import { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Title, Switch, Paragraph } from 'react-native-paper';
 import { connect } from 'react-redux';
-import { setDarkMode } from '../reducers/actions';
+import { setDarkMode, setHighBitrate } from '../reducers/actions';
 
 class Settings extends Component {
 
     render() {
 
-        const { darkMode, highBitrate, styles, setDarkMode } = this.props;
+        const { darkMode, highBitrate, styles, setDarkMode, setHighBitrate } = this.props;
 
         return(
             <View >
@@ -20,7 +20,7 @@ class Settings extends Component {
                 </View>
                 <View style={styles.row}>
                     <Paragraph>Stream High Bitrate</Paragraph>
-                    <Switch value={highBitrate} />
+                    <Switch value={highBitrate} onValueChange={() => setHighBitrate(!highBitrate)} />
                 </View>
             </View>
         );
@@ -56,7 +56,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setDarkMode: mode => dispatch(setDarkMode(mode))
+        setDarkMode: mode => dispatch(setDarkMode(mode)),
+        setHighBitrate: mode => dispatch(setHighBitrate(mode))
     };
 };
 

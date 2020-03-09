@@ -139,6 +139,10 @@ export function reducer(baseState=defaultState, action) {
                 }
 
                 break;
+
+            case SET_HIGH_BITRATE:
+                draftState.settings.highBitrate = action.mode;
+                break;
         }
     });
 

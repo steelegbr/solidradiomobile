@@ -3,7 +3,7 @@
  */
 
 import produce from 'immer';
-import { DefaultTheme } from 'react-native-paper';
+import { DefaultTheme, DarkTheme } from 'react-native-paper';
 
 export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
 export const INITIAL_LOAD_START = 'INITIAL_LOAD_START';
@@ -21,6 +21,8 @@ export const TABLET_UPDATE = 'TABLET_UPDATE';
 export const ONAIR_LOAD_START = 'ONAIR_LOAD';
 export const ONAIR_LOAD_FAIL = 'ONAIR_LOAD_FAIL';
 export const ONAIR_LOAD_SUCCESS = 'ONAIR_LOAD_SUCCESS';
+export const SET_DARK_MODE = 'TOGGLE_DARK_MODE';
+export const SET_HIGH_BITRATE = 'TOGGLE_HIGH_BITRATE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -42,7 +44,11 @@ defaultState = {
     },
     vertical: true,
     tablet: false,
-    backOffTime: 30
+    backOffTime: 30,
+    settings: {
+        darkMode: false,
+        highBitrate: false
+    }
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -105,8 +111,33 @@ export function reducer(baseState=defaultState, action) {
                     startTime: action.payload.data.start
                 }
                 break;
-            case ONAIR_LOAD_FAIL:
-                console.log(action);
+            case SET_DARK_MODE:
+
+                const darkMode = action.mode;
+                draftState.settings.darkMode = darkMode;
+
+                if (darkMode) {
+                    draftState.theme = {
+                        ...DarkTheme,
+                        roundness: 10,
+                        colors: {
+                            ...DarkTheme.colors,
+                            primary: "#7300AE",
+                            accent: "#7300AE"
+                        }
+                    };
+                } else {
+                    draftState.theme = {
+                        ...DefaultTheme,
+                        roundness: 10,
+                        colors: {
+                            ...DefaultTheme.colors,
+                            primary: "#7300AE",
+                            accent: "#7300AE"
+                        }
+                    };
+                }
+
                 break;
         }
     });
@@ -285,4 +316,28 @@ export function getStationNameFromOnAir(action) {
 
     return decodeURI(urlEncodedStationName);
 
+}
+
+/**
+ * Sets dark mode.
+ * @param {bool} mode TRUE or FALSE for dark mode.
+ */
+
+export function setDarkMode(mode) {
+    return {
+        type: SET_DARK_MODE,
+        mode: mode
+    };
+}
+
+/**
+ * Sets whether we use high bitrate streaming.
+ * @param {bool} mode TRUE or FALSE for high bitrate.
+ */
+
+export function setHighBitrate(mode) {
+    return {
+        type: SET_HIGH_BITRATE,
+        mode: mode
+    };
 }

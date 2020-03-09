@@ -5,6 +5,7 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { BottomNavigation } from 'react-native-paper';
 import TestComponent from './TestComponent';
 import StationCarousel from './StationCarousel';
+import Settings from './Settings';
 
 /**
  * The main menu container
@@ -49,7 +50,7 @@ class Menu extends Component {
       schedule: TestComponent,
       podcasts: TestComponent,
       presenters: TestComponent,
-      settings: TestComponent
+      settings: Settings
   });
 
   render() {

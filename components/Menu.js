@@ -14,26 +14,31 @@ class Menu extends Component {
   state = {
     index: 0,
     routes: [
-        {
-            key: 'radio',
-            title: 'Radio',
-            icon: 'radio'
-        },
-        {
-          key: 'schedule',
-          title: 'Schedule',
-          icon: 'calendar-today'
-        },
-        {
-          key: 'podcasts',
-          title: 'Podcasts',
-          icon: 'library-music'
-        },
-        {
-          key: 'presenters',
-          title: 'Presenters',
-          icon: 'face'
+      {
+          key: 'radio',
+          title: 'Radio',
+          icon: 'radio'
       },
+      {
+        key: 'schedule',
+        title: 'Schedule',
+        icon: 'calendar-today'
+      },
+      {
+        key: 'podcasts',
+        title: 'Podcasts',
+        icon: 'library-music'
+      },
+      {
+        key: 'presenters',
+        title: 'Presenters',
+        icon: 'face'
+      },
+      {
+        key: 'settings',
+        title: 'Settings',
+        icon: 'settings'
+      }
     ]
   }
 
@@ -43,7 +48,8 @@ class Menu extends Component {
       radio: StationCarousel,
       schedule: TestComponent,
       podcasts: TestComponent,
-      presenters: TestComponent
+      presenters: TestComponent,
+      settings: TestComponent
   });
 
   render() {

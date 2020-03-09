@@ -112,8 +112,15 @@ function* nowPlayingSaga(action) {
         // Clean up the connection
 
         if (yield cancelled()) {
-            channel.close();
-            socket.close();
+
+            if (typeof channel !== 'undefined') {
+                channel.close();
+            }
+
+            if (typeof socket !== 'undefined') {
+                socket.close();
+            }
+
         } else {
             yield put(nowPlayingFailure(stationName, Error(`Web socket closed for ${stationName}.`)));
         }

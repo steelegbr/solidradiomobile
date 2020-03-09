@@ -3,7 +3,7 @@
  */
 
 
-import { put, all, takeEvery, sleep } from 'redux-saga/effects';
+import { put, all, takeEvery, delay, select } from 'redux-saga/effects';
 import { loadOnAir, getStationNameFromOnAir, STATION_LOAD_SUCCESS, ONAIR_LOAD_FAIL, ONAIR_LOAD_SUCCESS } from '../reducers/actions';
 import crashlytics from '@react-native-firebase/crashlytics';
 
@@ -52,7 +52,6 @@ function* onAirLoadSuccess(action) {
     // Figure out the station
 
     const stationName = getStationNameFromOnAir(action);
-    console.log(`Successfully loaded the on air information for ${stationName}.`);
 
     // Sleep it off until the next hour
 
@@ -60,10 +59,9 @@ function* onAirLoadSuccess(action) {
     const now = new Date();
     const sleepMins = 60 - now.getMinutes();
     const sleepSecs = 61 - now.getSeconds();
-    const sleepTime = 60 * sleepMins + sleepSecs + Math.ceil(Math.random() * currentState.backOffTime);
+    const sleepTime = 1000 * (60 * sleepMins + sleepSecs + Math.ceil(Math.random() * currentState.backOffTime));
 
-    console.log(`Sleeping off for ${sleepTime} seconds.`);
-    yield sleep(sleepTime);
+    yield delay(sleepTime);
     yield put(loadOnAir(stationName));
 
 }

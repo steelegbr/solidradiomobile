@@ -18,6 +18,9 @@ export const NOW_PLAYING_FAIL = 'NOW_PLAYING_FAIL';
 export const NOW_PLAYING_UPDATE = 'NOW_PLAYING_UPDATE';
 export const ORIENTATION_UPDATE = 'ORIENTATION_UPDATE';
 export const TABLET_UPDATE = 'TABLET_UPDATE';
+export const ONAIR_LOAD_START = 'ONAIR_LOAD';
+export const ONAIR_LOAD_FAIL = 'ONAIR_LOAD_FAIL';
+export const ONAIR_LOAD_SUCCESS = 'ONAIR_LOAD_SUCCESS';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -38,7 +41,8 @@ defaultState = {
         }
     },
     vertical: true,
-    tablet: false
+    tablet: false,
+    backOffTime: 30
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -66,10 +70,16 @@ export function reducer(baseState=defaultState, action) {
                 const stationName = station.name;
                 draftState.stations[stationName] = station;
                 draftState.stations[stationName].nowPlaying = {
-                    artist: "",
-                    title: "",
-                    artUrl: ""
+                    artist: null,
+                    title: null,
+                    artUrl: null
                 };
+                draftState.stations[stationName].onAir = {
+                    show: null,
+                    description: null,
+                    image: null,
+                    startTime: null
+                }
                 draftState.stationCount = baseState.stationCount + 1;
                 draftState.initialLoad = 'success';
                 break;
@@ -85,6 +95,18 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case TABLET_UPDATE:
                 draftState.tablet = action.tablet;
+                break;
+            case ONAIR_LOAD_SUCCESS:
+                const onAirStationName = getStationNameFromOnAir(action);
+                draftState.stations[onAirStationName].onAir = {
+                    show: action.payload.data.title,
+                    description: action.payload.data.description,
+                    image: action.payload.data.image,
+                    startTime: action.payload.data.start
+                }
+                break;
+            case ONAIR_LOAD_FAIL:
+                console.log(action);
                 break;
         }
     });
@@ -136,9 +158,30 @@ export function loadStation(name) {
 
     return {
         type: STATION_LOAD_START,
+        stationName: name,
         payload: {
             request: {
                 url: `/api/station/${urlEncodedStationName}/`
+            }
+        }
+    };
+
+}
+
+/**
+ * Loads the currently on air information for a station.
+ * @param {string} name The name of station to get the on air information for.
+ */
+
+export function loadOnAir(name) {
+
+    let urlEncodedStationName = encodeURI(name);
+
+    return {
+        type: ONAIR_LOAD_START,
+        payload: {
+            request: {
+                url: `/api/epg/${urlEncodedStationName}/current/`
             }
         }
     };
@@ -223,4 +266,23 @@ export function setTablet(isTablet) {
         type: TABLET_UPDATE,
         tablet: isTablet
     };
+}
+
+/**
+ * Obtains the station name from the ON_AIR_SUCCESS or FAIL action.
+ * @param {action} action The action updating the on air information.
+ */
+
+export function getStationNameFromOnAir(action) {
+
+    // Pick out the station name
+
+    const url = action.payload.config.url;
+    const re = new RegExp('epg\/([^/]+)\/');
+    const urlEncodedStationName = re.exec(url)[1];
+
+    // Decode it for return
+
+    return decodeURI(urlEncodedStationName);
+
 }

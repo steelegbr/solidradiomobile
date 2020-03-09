@@ -10,11 +10,18 @@ class StationCard extends Component {
 
         // Read in the properties and adjust the style
 
-        const { station, nowPlaying, theme, borderRadius, vertical, tablet } = this.props;
+        const { station, nowPlaying, theme, borderRadius, vertical, tablet, onAir } = this.props;
 
         // Album art with fallback
 
         const albumArtSize = Dimensions.get('window').height * 0.45;
+
+        // Set the now on air properties
+
+        const onAirImage = onAir.image == null ? station.logo_square : onAir.image;
+        const onAirShow = onAir.show == null ? 'Loading...' : onAir.show;
+
+        // Dynamically adjust layout for screen size
 
         const styles = {
             logoWrapper: {
@@ -108,13 +115,13 @@ class StationCard extends Component {
                         </View>
                         <View>
                             <Image
-                                source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
+                                source={{ uri: onAirImage }}
                                 style={styles.showImageVertical}
                             />
                         </View>
                         <View style={styles.verticalIntermediateText}>
                             <Title>On Air</Title>
-                            <Caption>Breakfast Without the Waffle</Caption>
+                            <Caption>{onAirShow}</Caption>
                         </View>
                         <View style={styles.verticalIntermediateText}>
                             <Title>Now Playing</Title>
@@ -152,14 +159,14 @@ class StationCard extends Component {
                         <View style={styles.horizontalWrapper}>
                             <View>
                                 <Image
-                                    source={{ uri: "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg" }}
+                                    source={{ uri: onAirImage }}
                                     style={styles.showImageHorizontal}
                                 />
                             </View>
                             <View style={styles.horizontalTextWrapper}>
                                 <View style={styles.horizontalIntermediateText}>
                                     <Title>On Air</Title>
-                                    <Caption>Breakfast Without the Waffle</Caption>
+                                    <Caption>{onAirShow}</Caption>
                                 </View>
                                 <View style={styles.horizontalIntermediateText}>
                                     <Title>Now Playing</Title>
@@ -201,9 +208,11 @@ function mapStateToProps(state, ownProps) {
         station: {
             name: station.name,
             logo: station.logo_inverse,
-            primaryColour: station.primary_colour
+            primaryColour: station.primary_colour,
+            logo_square: station.logo_square
         },
         nowPlaying: station.nowPlaying,
+        onAir: station.onAir,
         theme: {
             background: state.theme.colors.background
         },

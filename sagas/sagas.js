@@ -8,6 +8,7 @@ import { watchNowPlaying } from './now-playing-saga';
 import { orientationSaga } from './orientation-saga';
 import { watchOnAir } from './on-air-saga';
 import { watchSettings } from './settings-saga';
+import { watchAnalytics } from './analytics-saga';
 
 /**
  * The root saga that triggers all the others.
@@ -19,6 +20,7 @@ export function* rootSaga() {
         watchNowPlaying(),
         orientationSaga(),
         watchOnAir(),
-        watchSettings()
+        watchSettings(),
+        watchAnalytics()
     ]);
 }

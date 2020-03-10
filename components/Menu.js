@@ -71,6 +71,7 @@ class Menu extends Component {
 }
 
 const mapStateToProps = state => {
+
   return {
     styles: StyleSheet.create({
       container: {

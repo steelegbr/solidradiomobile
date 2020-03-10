@@ -304,6 +304,10 @@ PODS:
     - React
   - RNDeviceInfo (5.5.3):
     - React
+  - RNFBAnalytics (6.3.4):
+    - Firebase/Core (~> 6.13.0)
+    - React
+    - RNFBApp
   - RNFBApp (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - React
@@ -352,6 +356,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNDefaultPreference (from `../node_modules/react-native-default-preference`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
+  - "RNFBAnalytics (from `../node_modules/@react-native-firebase/analytics`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
@@ -432,6 +437,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-default-preference"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
+  RNFBAnalytics:
+    :path: "../node_modules/@react-native-firebase/analytics"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBCrashlytics:
@@ -488,6 +495,7 @@ SPEC CHECKSUMS:
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   RNDefaultPreference: 12d246dd2222e66dadcd76cc1250560663befc3a
   RNDeviceInfo: 67607dfe9cfbed105838144c40187a8392aa404d
+  RNFBAnalytics: b8bad44e6653af73219b1a7af24bf3452cb02c1b
   RNFBApp: 7d4006751de8bb5cafa2e8d2e7d94ee250df81db
   RNFBCrashlytics: 93e1cc09a93aa4bb1e9b5a07af0efb2702db5a39
   RNFBRemoteConfig: acfef78587e8d544b53338c07ecbc172fae1b781

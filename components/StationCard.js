@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Button, Title, Caption, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
+import { generateStationTheme } from '../branding/branding';
 
 class StationCard extends Component {
 
@@ -14,7 +15,7 @@ class StationCard extends Component {
 
         // Album art with fallback
 
-        const albumArtSize = Dimensions.get('window').height * 0.45;
+        const albumArtSize = Dimensions.get('window').height * 0.35;
 
         // Set the now on air properties
 
@@ -38,12 +39,12 @@ class StationCard extends Component {
             },
             showImageVertical: {
                 width: "100%",
-                height: Dimensions.get('window').height * 0.40,
+                height: Dimensions.get('window').height - 500,
                 resizeMode: "cover"
             },
             showImageHorizontal: {
                 width: Dimensions.get('window').width * 0.5,
-                height: Dimensions.get('window').height - 270,
+                height: Dimensions.get('window').height - 330,
                 resizeMode: "cover"
             },
             wrapper: {
@@ -61,25 +62,19 @@ class StationCard extends Component {
                 flex: 2
             },
             verticalIntermediateText: {
-                backgroundColor: theme.background,
                 alignItems: "center",
                 padding: 10
             },
             horizontalIntermediateText: {
-                backgroundColor: theme.background,
                 padding: 10,
                 alignItems: "center",
                 flex: 1
             },
             actions: {
-                backgroundColor: theme.background,
                 borderBottomLeftRadius: borderRadius,
                 borderBottomRightRadius: borderRadius,
                 padding: 20,
                 alignItems: "flex-start"
-            },
-            button: {
-                backgroundColor: station.primaryColour
             },
             surface: {
                 borderRadius: borderRadius,
@@ -91,9 +86,6 @@ class StationCard extends Component {
                 height: albumArtSize,
                 resizeMode: "cover",
                 alignSelf: "center"
-            },
-            albumArtWrapper: {
-                backgroundColor: theme.background
             }
         }
 
@@ -131,7 +123,8 @@ class StationCard extends Component {
                             <Button
                                 icon="play"
                                 mode="contained"
-                                style={styles.button}
+                                theme={theme}
+                                dark={true}
                             >
                                 Listen Live
                             </Button>
@@ -173,7 +166,7 @@ class StationCard extends Component {
                                     <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
                                 </View>
                                 { tablet && nowPlaying.artUrl != null &&
-                                    <View style={styles.albumArtWrapper}>
+                                    <View>
                                         <Image
                                             source={{ uri: nowPlaying.artUrl }}
                                             style={styles.albumArt}
@@ -186,7 +179,8 @@ class StationCard extends Component {
                             <Button
                                 icon="play"
                                 mode="contained"
-                                style={styles.button}
+                                theme={theme}
+                                dark={true}
                             >
                                 Listen Live
                             </Button>
@@ -209,13 +203,12 @@ function mapStateToProps(state, ownProps) {
             name: station.name,
             logo: station.logo_inverse,
             primaryColour: station.primary_colour,
+            textColour: station.text_colour,
             logo_square: station.logo_square
         },
         nowPlaying: station.nowPlaying,
         onAir: station.onAir,
-        theme: {
-            background: state.theme.colors.background
-        },
+        theme: generateStationTheme(state.settings.darkMode, station),
         borderRadius: state.theme.roundness,
         vertical: state.vertical,
         tablet: state.tablet

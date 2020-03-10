@@ -3,7 +3,8 @@
  */
 
 import produce from 'immer';
-import { DefaultTheme, DarkTheme } from 'react-native-paper';
+import { generateStationTheme, generateTheme } from '../branding/branding';
+import { act } from 'react-test-renderer';
 
 export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
 export const INITIAL_LOAD_START = 'INITIAL_LOAD_START';
@@ -21,8 +22,10 @@ export const TABLET_UPDATE = 'TABLET_UPDATE';
 export const ONAIR_LOAD_START = 'ONAIR_LOAD';
 export const ONAIR_LOAD_FAIL = 'ONAIR_LOAD_FAIL';
 export const ONAIR_LOAD_SUCCESS = 'ONAIR_LOAD_SUCCESS';
-export const SET_DARK_MODE = 'TOGGLE_DARK_MODE';
-export const SET_HIGH_BITRATE = 'TOGGLE_HIGH_BITRATE';
+export const SET_DARK_MODE = 'SET_DARK_MODE';
+export const SET_HIGH_BITRATE = 'SET_HIGH_BITRATE';
+export const SET_CURRENT_STATION = 'SET_CURRENT_STATION';
+export const SET_STATION_NAME_LIST = 'SET_STATION_NAME_LIST';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -32,16 +35,9 @@ defaultState = {
     },
     stations: {},
     stationCount: 0,
+    stationNames: [],
     currentStation: null,
-    theme: {
-        ...DefaultTheme,
-        roundness: 10,
-        colors: {
-            ...DefaultTheme.colors,
-            primary: "#7300AE",
-            accent: "#7300AE"
-        }
-    },
+    theme: generateTheme(false),
     vertical: true,
     tablet: false,
     backOffTime: 30,
@@ -116,32 +112,23 @@ export function reducer(baseState=defaultState, action) {
                 const darkMode = action.mode;
                 draftState.settings.darkMode = darkMode;
 
-                if (darkMode) {
-                    draftState.theme = {
-                        ...DarkTheme,
-                        roundness: 10,
-                        colors: {
-                            ...DarkTheme.colors,
-                            primary: "#7300AE",
-                            accent: "#7300AE"
-                        }
-                    };
+                if (draftState.currentStation == undefined) {
+                    draftState.theme = generateTheme(darkMode);
                 } else {
-                    draftState.theme = {
-                        ...DefaultTheme,
-                        roundness: 10,
-                        colors: {
-                            ...DefaultTheme.colors,
-                            primary: "#7300AE",
-                            accent: "#7300AE"
-                        }
-                    };
+                    draftState.theme = generateStationTheme(darkMode, draftState.stations[draftState.currentStation]);
                 }
 
                 break;
 
             case SET_HIGH_BITRATE:
                 draftState.settings.highBitrate = action.mode;
+                break;
+            case SET_CURRENT_STATION:
+                draftState.currentStation = action.station;
+                draftState.theme = generateStationTheme(draftState.settings.darkMode, draftState.stations[action.station]);
+                break;
+            case SET_STATION_NAME_LIST:
+                draftState.stationNames = action.stations;
                 break;
         }
     });
@@ -343,5 +330,41 @@ export function setHighBitrate(mode) {
     return {
         type: SET_HIGH_BITRATE,
         mode: mode
+    };
+}
+
+/**
+ * Sets the current station.
+ * @param {string} stationName The name of the station.
+ */
+
+export function setCurrentStation(stationName) {
+    return {
+        type: SET_CURRENT_STATION,
+        station: stationName
+    }
+}
+
+/**
+ * Sets the branding colour for the app.
+ * @param {hex string} colour The branding colour.
+ */
+
+export function setBrandingColour(colour) {
+    return {
+        type: SET_BRANDING_COLOUR,
+        colour: colour
+    };
+}
+
+/**
+ * Sets the names of the stations in order.
+ * @param {array of string} stations Station names.
+ */
+
+export function setStationNameList(stations) {
+    return {
+        type: SET_STATION_NAME_LIST,
+        stations: stations
     };
 }

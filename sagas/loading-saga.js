@@ -5,7 +5,7 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 import { put, takeLatest, all, takeEvery, select } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL } from '../reducers/actions';
+import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL } from '../reducers/actions';
 
 /**
  * The initial load worker saga.
@@ -42,6 +42,8 @@ function* initialLoadSaga() {
         // Trigger the parallel station loads
 
         const stationNames = JSON.parse(settings.stations.value);
+        yield put(setStationNameList(stationNames));
+
         for (let i = 0; i < stationNames.length; i++) {
             yield put(loadStation(stationNames[i]));
         }

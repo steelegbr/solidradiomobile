@@ -10,6 +10,9 @@ import createSagaMiddleware from 'redux-saga';
 import { Provider as StoreProvider } from 'react-redux';
 import Wrapper from './components/Wrapper';
 import { axiosConfig } from './middleware/auth-token';
+import logger from 'redux-logger';
+
+let reduxMiddleware = [];
 
 // Setup Axios
 
@@ -17,16 +20,23 @@ const axiosClient = axios.create({
   responseType: 'json'
 });
 
+reduxMiddleware.push(axiosMiddleware(axiosClient, axiosConfig));
+
 // Setup Reux and Sagas
 
 const sagaMiddleware = createSagaMiddleware();
+reduxMiddleware.push(sagaMiddleware);
+
+// Logging in DEV only
+
+if (__DEV__) {
+  reduxMiddleware.push(logger);
+}
+
+// Create the store
 
 const store = createStore(reducer, 
-  applyMiddleware(
-    thunkMiddleware,
-    axiosMiddleware(axiosClient, axiosConfig),
-    sagaMiddleware
-  )
+  applyMiddleware(...reduxMiddleware)
 );
 
 // Pull in our application settings

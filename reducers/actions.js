@@ -129,6 +129,7 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;
+                draftState.currentStation = draftState.stationNames[0];
                 break;
         }
     });

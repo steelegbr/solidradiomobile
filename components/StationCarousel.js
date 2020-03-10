@@ -30,6 +30,7 @@ class StationCarousel extends Component {
                     itemWidth={itemWidth}
                     windowSize={1}
                     onSnapToItem={(index) => setCurrentStation(stations[index].name)}
+                    loop={true}
                 />
             </View>
         );

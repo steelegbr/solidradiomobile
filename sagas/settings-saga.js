@@ -1,6 +1,11 @@
-import { all, takeEvery, put, take, takeLatest } from 'redux-saga/effects';
+import { all, takeEvery, put, takeLatest } from 'redux-saga/effects';
 import { SET_DARK_MODE, STATION_LOAD_SUCCESS, setDarkMode, setHighBitrate, SET_HIGH_BITRATE } from '../reducers/actions';
 import DefaultPreference from 'react-native-default-preference';
+import analytics from '@react-native-firebase/analytics';
+
+const KEY_HIGH_BITRATE = 'highBitrate';
+const KEY_DARK_MODE = 'darkMode';
+const KEY_USER_PREFERENCE = 'user_preference';
 
 /**
  * Saves the change to the dark mode setting.
@@ -9,7 +14,11 @@ import DefaultPreference from 'react-native-default-preference';
 
 function* saveDarkModeSetting(action) {
     const darkMode = boolToString(action.mode);
-    yield DefaultPreference.set('darkMode', darkMode);
+    yield DefaultPreference.set(KEY_DARK_MODE, darkMode);
+    yield analytics().logEvent(KEY_USER_PREFERENCE, {
+        property: KEY_DARK_MODE,
+        value: darkMode
+    });
 }
 
 /**
@@ -19,7 +28,11 @@ function* saveDarkModeSetting(action) {
 
 function* saveHighBitrateSetting(action) {
     const highBitrate = boolToString(action.mode);
-    yield DefaultPreference.set('highBitrate', highBitrate);
+    yield DefaultPreference.set(KEY_HIGH_BITRATE, highBitrate);
+    yield analytics().logEvent(KEY_USER_PREFERENCE, {
+        property: KEY_HIGH_BITRATE,
+        value: highBitrate
+    });
 }
 
 /**
@@ -46,8 +59,8 @@ function stringToBool(string) {
 
 function* loadSettings() {
 
-    const darkMode = stringToBool(yield DefaultPreference.get('darkMode'));
-    const highBitrate = stringToBool(yield DefaultPreference.get('highBitrate'));
+    const darkMode = stringToBool(yield DefaultPreference.get(KEY_DARK_MODE));
+    const highBitrate = stringToBool(yield DefaultPreference.get(KEY_HIGH_BITRATE));
     yield put(setDarkMode(darkMode));
     yield put(setHighBitrate(highBitrate));
 

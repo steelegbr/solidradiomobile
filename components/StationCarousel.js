@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import { StyleSheet, Dimensions, View } from 'react-native'
 import StationCard from './StationCard';
+import { setCurrentStation } from '../reducers/actions';
 
 class StationCarousel extends Component {
 
@@ -16,9 +17,9 @@ class StationCarousel extends Component {
     }
 
     render() {
-        const { stations } = this.props;
+        const { stations, setCurrentStation } = this.props;
         const sliderWidth = Dimensions.get("window").width;
-        const itemWidth = sliderWidth * 0.9;
+        const itemWidth = sliderWidth * 0.8;
         return(
             <View style={carouselStyles.parent}>
                 <Carousel
@@ -28,6 +29,7 @@ class StationCarousel extends Component {
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
                     windowSize={1}
+                    onSnapToItem={(index) => setCurrentStation(stations[index].name)}
                 />
             </View>
         );
@@ -51,8 +53,13 @@ const mapStateToProps = state => {
 
     let stations = new Array();
 
-    for (var stationName in state.stations) {
-        stations.push(state.stations[stationName]);
+    for (var stationIndex in state.stationNames) {
+
+        var stationName = state.stationNames[stationIndex];
+        if (stationName in state.stations) {
+            stations.push(state.stations[stationName]);
+        }
+
     }
 
     // Send it down the line
@@ -62,8 +69,10 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = {
-
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentStation: stationName => dispatch(setCurrentStation(stationName))
+    };
 };
 
-export default connect(mapStateToProps)(StationCarousel);
+export default connect(mapStateToProps, mapDispatchToProps)(StationCarousel);

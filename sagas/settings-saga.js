@@ -1,11 +1,9 @@
 import { all, takeEvery, put, takeLatest } from 'redux-saga/effects';
 import { SET_DARK_MODE, STATION_LOAD_SUCCESS, setDarkMode, setHighBitrate, SET_HIGH_BITRATE } from '../reducers/actions';
 import DefaultPreference from 'react-native-default-preference';
-import analytics from '@react-native-firebase/analytics';
 
-const KEY_HIGH_BITRATE = 'highBitrate';
-const KEY_DARK_MODE = 'darkMode';
-const KEY_USER_PREFERENCE = 'user_preference';
+export const KEY_HIGH_BITRATE = 'highBitrate';
+export const KEY_DARK_MODE = 'darkMode';
 
 /**
  * Saves the change to the dark mode setting.
@@ -15,10 +13,6 @@ const KEY_USER_PREFERENCE = 'user_preference';
 function* saveDarkModeSetting(action) {
     const darkMode = boolToString(action.mode);
     yield DefaultPreference.set(KEY_DARK_MODE, darkMode);
-    yield analytics().logEvent(KEY_USER_PREFERENCE, {
-        property: KEY_DARK_MODE,
-        value: darkMode
-    });
 }
 
 /**
@@ -29,10 +23,6 @@ function* saveDarkModeSetting(action) {
 function* saveHighBitrateSetting(action) {
     const highBitrate = boolToString(action.mode);
     yield DefaultPreference.set(KEY_HIGH_BITRATE, highBitrate);
-    yield analytics().logEvent(KEY_USER_PREFERENCE, {
-        property: KEY_HIGH_BITRATE,
-        value: highBitrate
-    });
 }
 
 /**

@@ -5,6 +5,7 @@ import Carousel from 'react-native-snap-carousel';
 import { StyleSheet, Dimensions, View } from 'react-native'
 import StationCard from './StationCard';
 import { setCurrentStation } from '../reducers/actions';
+import PlayerOverlay from './PlayerOverlay';
 
 class StationCarousel extends Component {
 
@@ -22,6 +23,7 @@ class StationCarousel extends Component {
         const itemWidth = sliderWidth * 0.8;
         return(
             <View style={carouselStyles.parent}>
+                <PlayerOverlay />
                 <Carousel
                     ref={(c) => { this._carousel = c; }}
                     data={stations}

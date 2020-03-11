@@ -10,7 +10,7 @@ class PlayerOverlay extends Component {
 
     renderArt = () => {
 
-        const { artUrl, styles } = this.props;
+        const { artUrl, styles, fall } = this.props;
 
         // Calculate our song art size and positions
 
@@ -27,8 +27,6 @@ class PlayerOverlay extends Component {
         ];
 
         // Animation
-
-        const fall = new Animated.Value(1);
 
         const artLeftPositionAnimation = Animated.interpolate(fall, {
             inputRange: [0, 1],
@@ -93,7 +91,7 @@ class PlayerOverlay extends Component {
 
     render() {
 
-        const { vertical } = this.props;
+        const { vertical, fall } = this.props;
         const snapPoints = [70, Dimensions.get("window").height - 150];
 
         return(
@@ -101,6 +99,7 @@ class PlayerOverlay extends Component {
                     snapPoints={snapPoints}
                     renderContent={this.renderContent}
                     renderHeader={this.renderHeader}
+                    callbackNode={fall}
                 />
         );
     }
@@ -117,7 +116,8 @@ const mapStateToProps = state => {
                 width: "100%",
                 height: "100%"
             }
-        }
+        },
+        fall: new Animated.Value(1)
     };
 };
 

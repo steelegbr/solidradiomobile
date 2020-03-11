@@ -1,40 +1,100 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Dimensions } from 'react-native'
+import { View, Dimensions, Image } from 'react-native'
 import { Title, Caption, Surface } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
+import Animated from 'react-native-reanimated';
 
 class PlayerOverlay extends Component {
 
+    renderArt = () => {
+
+        const { artUrl, styles } = this.props;
+
+        // Calculate our song art size and positions
+
+        const artSizes = [50, Dimensions.get("window").width - 200]
+
+        const artTopPositions = [
+            -40, 
+            Dimensions.get("window").width / 2 - artSizes[1] / 2
+        ];
+
+        const artLeftPositions = [
+            20,
+            Dimensions.get("window").width / 2 - artSizes[1] / 2
+        ];
+
+        // Animation
+
+        const fall = new Animated.Value(1);
+
+        const artLeftPositionAnimation = Animated.interpolate(fall, {
+            inputRange: [0, 1],
+            outputRange: artLeftPositions.slice().reverse(),
+            extrapolate: Animated.Extrapolate.CLAMP
+        });
+
+        const artSizeAnimation = Animated.interpolate(fall, {
+            inputRange: [0, 1],
+            outputRange: artSizes.slice().reverse(),
+            extrapolate: Animated.Extrapolate.CLAMP
+        });
+
+        const artTopPositionAnimation = Animated.interpolate(fall, {
+            inputRange: [0, 1],
+            outputRange: artTopPositions.slice().reverse(),
+            extrapolate: Animated.Extrapolate.CLAMP
+        });
+
+        // Draw it
+
+        return (
+            <Animated.View
+                key={'art-container'}
+                style={[
+                    {
+                        height: artSizeAnimation,
+                        width: artSizeAnimation,
+                        left: artLeftPositionAnimation,
+                        top: artTopPositionAnimation
+                    }
+                ]}
+            >
+                <Image 
+                    key={'art-image'}
+                    source={{ uri: artUrl }}
+                    style={styles.artImage}
+                />
+            </Animated.View>
+        );
+
+    }
+
     renderContent = () => {
 
-        const { theme } = this.props;
-
         return(
-            <Surface theme={theme}>
-                <Caption>Some stuff goes here...</Caption>
-            </Surface>
+            <View>
+                <Caption>More stuff variety...</Caption>
+            </View>
         );
     }
 
     renderHeader = () => {
 
-        const { theme } = this.props;
-
-        return(
-            <Surface theme={theme}>
+        return([
+            <View key={'header'}>
                 <Title>Hello!</Title>
-            </Surface>
-        );
+            </View>,
+            this.renderArt()
+        ]);
     }
 
     render() {
 
         const { vertical } = this.props;
-        const snapPoints = [70, Dimensions.get("screen").height - 150];
-
-        console.log(`Vertical: ${vertical}`);
+        const snapPoints = [70, Dimensions.get("window").height - 150];
 
         return(
                 <BottomSheet
@@ -50,7 +110,14 @@ class PlayerOverlay extends Component {
 const mapStateToProps = state => {
     return {
         theme: state.theme,
-        vertical: state.vertical
+        vertical: state.vertical,
+        artUrl: "https://dev.radiomusicstats.co.uk/media/songs/images/1443_f07a5a1e86624b3cb8ec76543b9863d7.png",
+        styles: {
+            artImage: {
+                width: "100%",
+                height: "100%"
+            }
+        }
     };
 };
 

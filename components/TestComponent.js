@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Component } from 'react';
 import { Text } from 'react-native-paper';
 import { connect } from 'react-redux';
+import PlayerOverlay from './PlayerOverlay';
 
 class TestComponent extends Component {
 

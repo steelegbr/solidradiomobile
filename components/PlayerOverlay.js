@@ -2,11 +2,13 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Dimensions, Image } from 'react-native'
-import { Title, Caption, Surface } from 'react-native-paper';
+import { Title, Caption, Button, Text } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 
 class PlayerOverlay extends Component {
+
+    bottomSheetRef = React.createRef();
 
     renderArt = () => {
 
@@ -17,12 +19,12 @@ class PlayerOverlay extends Component {
         const artSizes = [50, Dimensions.get("window").width - 200]
 
         const artTopPositions = [
-            -40, 
-            Dimensions.get("window").width / 2 - artSizes[1] / 2
+            20, 
+            200
         ];
 
         const artLeftPositions = [
-            20,
+            10,
             Dimensions.get("window").width / 2 - artSizes[1] / 2
         ];
 
@@ -72,30 +74,58 @@ class PlayerOverlay extends Component {
 
     renderContent = () => {
 
-        return(
-            <View>
-                <Caption>More stuff variety...</Caption>
-            </View>
-        );
+        const { styles } = this.props;
+
+        return([
+            <Animated.View
+                key={'content-container'}
+                style={styles.contentContainer}
+            >
+            </Animated.View>
+        ]);
+        
+    }
+
+    onHeaderPress = () => {
+        const currentRef = this.bottomSheetRef.current;
+        if (currentRef != null) {
+            currentRef.snapTo(1);
+        }
     }
 
     renderHeader = () => {
 
+        const { styles, theme } = this.props;
+
         return([
-            <View key={'header'}>
-                <Title>Hello!</Title>
-            </View>,
-            this.renderArt()
+            this.renderArt(),
+            <Animated.View
+                key={'header-container'}
+                onPress={this.onHeaderPress}
+                style={styles.headerContainer}
+            >
+                <Text theme={theme}>Solid Radio</Text>
+                <Caption theme={theme}>Song Artist - Song Title That's Way Too Long</Caption>
+                <Button
+                    icon="cast"
+                    theme={theme}
+                />
+                <Button
+                    icon="play"
+                    theme={theme}
+                />
+            </Animated.View>
         ]);
     }
 
     render() {
 
         const { vertical, fall } = this.props;
-        const snapPoints = [70, Dimensions.get("window").height - 150];
+        const snapPoints = [70, Dimensions.get("window").height - 100];
 
         return(
                 <BottomSheet
+                    ref={this.bottomSheetRef}
                     snapPoints={snapPoints}
                     renderContent={this.renderContent}
                     renderHeader={this.renderHeader}
@@ -115,6 +145,16 @@ const mapStateToProps = state => {
             artImage: {
                 width: "100%",
                 height: "100%"
+            },
+            headerContainer: {
+                height: 100,
+                //backgroundColor: state.theme.colors.surface,
+                backgroundColor: "#00ff00"
+            },
+            contentContainer: {
+                height: Dimensions.get("window").height - 100,
+                //backgroundColor: state.theme.colors.surface,
+                backgroundColor: "#ff0000"
             }
         },
         fall: new Animated.Value(1)

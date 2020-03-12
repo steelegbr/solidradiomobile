@@ -4,7 +4,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import Menu from './Menu';
-import StationCarousel from './StationCarousel'
 import SplashScreen from './SplashScreen';
 
 class Wrapper extends Component {

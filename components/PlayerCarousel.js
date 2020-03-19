@@ -3,17 +3,12 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import { StyleSheet, Dimensions, View } from 'react-native'
-import StationCard from './StationCard';
 import PlayerOverlay from './PlayerOverlay';
 
-class StationCarousel extends Component {
+class PlayerCarousel extends Component {
 
     _renderItem ({ item, index }) {
-        return(
-            <StationCard
-                stationName={item.name}
-            />
-        );
+        
     }
 
     render() {
@@ -49,30 +44,12 @@ const carouselStyles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-
-    // Convert the map of stations into an array
-
-    let stations = new Array();
-
-    for (var stationIndex in state.stationNames) {
-
-        var stationName = state.stationNames[stationIndex];
-        if (stationName in state.stations) {
-            stations.push(state.stations[stationName]);
-        }
-
-    }
-
-    // Send it down the line
-
     return {
-        stations: stations
-    };
+    }
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-    };
+
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StationCarousel);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerCarousel);

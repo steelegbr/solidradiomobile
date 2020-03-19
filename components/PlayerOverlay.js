@@ -2,10 +2,11 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Dimensions, Image } from 'react-native'
-import { Title, Caption, Button, Text } from 'react-native-paper';
+import { Caption, Button, Text } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import PlayerCarousel from './PlayerCarousel';
 
 class PlayerOverlay extends Component {
 
@@ -13,13 +14,17 @@ class PlayerOverlay extends Component {
 
     renderContent = () => {
 
-        const { styles } = this.props;
+        const { styles, artUrl } = this.props;
 
         return([
-            <Animated.View
-                style={styles.contentContainer}
-            >
-            </Animated.View>
+            <View style={styles.contentContainer}>
+                <View style={styles.contentImageWrapper}>
+                    <Image
+                        source={{ uri: artUrl }}
+                        style={styles.contentImage}
+                    />
+                </View>
+            </View>
         ]);
         
     }
@@ -33,7 +38,7 @@ class PlayerOverlay extends Component {
 
     renderHeader = () => {
 
-        const { styles, theme, fall, artUrl } = this.props;
+        const { styles, theme, fall, header } = this.props;
 
         const animatedHeaderContentOpacity = Animated.interpolate(fall, {
             inputRange: [0.75, 1],
@@ -56,14 +61,14 @@ class PlayerOverlay extends Component {
                         onPress={this.onHeaderPress}
                     >
                         <Image
-                            source={{ uri: artUrl }}
+                            source={{ uri: header.artUrl }}
                             style={styles.headerImage}
                         />
                     </TouchableWithoutFeedback>
                     <View style={styles.headerText}>
-                        <Text theme={theme}>Solid Radio</Text>
+                        <Text theme={theme}>{header.title}</Text>
                         <Caption theme={theme}>
-                            Song Artist - Song Title That's Way Too Long
+                            {header.subtitle}
                         </Caption>
                     </View>
                     <View style={styles.headerButton}>
@@ -84,27 +89,62 @@ class PlayerOverlay extends Component {
 
     render() {
 
-        const { vertical, fall } = this.props;
-        const snapPoints = [70, Dimensions.get("window").height - 100];
+        const { snapPoints, fall, showOnscreen } = this.props;
 
-        return(
-                <BottomSheet
-                    ref={this.bottomSheetRef}
-                    snapPoints={snapPoints}
-                    renderContent={this.renderContent}
-                    renderHeader={this.renderHeader}
-                    callbackNode={fall}
-                />
-        );
+        if (showOnscreen) {
+
+            return(
+                    <BottomSheet
+                        ref={this.bottomSheetRef}
+                        snapPoints={snapPoints}
+                        renderContent={this.renderContent}
+                        renderHeader={this.renderHeader}
+                        callbackNode={fall}
+                    />
+            );
+
+        } else {
+            return null;
+        }
     }
 
 }
 
 const mapStateToProps = state => {
+
+    // Work out if and what we should be displaying onscreen
+
+    const showOnscreen = state.player.playlist.length > 0;
+    let header = { title: '', subtitle: '', artUrl: '' }
+    const currentItem = state.player.playlist[state.player.currentItem];
+
+    if (currentItem !== undefined && currentItem.type == 'station') {
+        const station = state.stations[currentItem.name]
+        header.title = `${station.name} - ${station.onAir.show}`;
+        header.subtitle = `${station.nowPlaying.artist} - ${station.nowPlaying.title}`;
+        if (station.nowPlaying.artUrl !== '') {
+            header.artUrl = station.nowPlaying.artUrl;
+        } else {
+            header.artUrl = station.onAir.image;
+        }
+    }
+
+    // Calculate dynamic sizing
+
+    const headerHeight = 70;
+    let imageSize = 0;
+
+    if (state.vertical) {
+        imageSize = Dimensions.get('window').width * 0.8;
+    } else {
+        imageSize = Dimensions.get('window').width * 0.6;
+    }
+
     return {
+        showOnscreen: showOnscreen,
+        header: header,
         theme: state.theme,
-        vertical: state.vertical,
-        artUrl: "https://dev.radiomusicstats.co.uk/media/songs/images/1443_f07a5a1e86624b3cb8ec76543b9863d7.png",
+        snapPoints: [headerHeight, Dimensions.get("window").height - headerHeight - 95],
         styles: {
             headerImage: {
                 width: 55,
@@ -129,19 +169,23 @@ const mapStateToProps = state => {
                 flex: 1,
                 padding: 10
             },
-            artistTitle: {
-                backgroundColor: "#ff0000",
-                flexWrap: 'wrap',
-                flex: 2
-            },
             headerButton: {
                 alignSelf: 'center',
                 alignItems: 'flex-end',
                 flexDirection: 'row'
             },
             contentContainer: {
-                height: Dimensions.get("window").height - 100,
+                height: Dimensions.get("window").height - headerHeight,
                 backgroundColor: state.theme.colors.surface,
+                flexDirection: 'column'
+            },
+            contentImageWrapper: {
+                alignItems: 'center',
+                padding: 10
+            },
+            contentImage: {
+                width: imageSize,
+                height: imageSize,
             }
         },
         fall: new Animated.Value(1)

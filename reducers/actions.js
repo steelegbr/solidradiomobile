@@ -26,6 +26,7 @@ export const SET_DARK_MODE = 'SET_DARK_MODE';
 export const SET_HIGH_BITRATE = 'SET_HIGH_BITRATE';
 export const SET_CURRENT_STATION = 'SET_CURRENT_STATION';
 export const SET_STATION_NAME_LIST = 'SET_STATION_NAME_LIST';
+export const LOAD_PLAYER_STATION = 'LOAD_PLAYER_STATION';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -44,6 +45,10 @@ defaultState = {
     settings: {
         darkMode: false,
         highBitrate: false
+    },
+    player: {
+        playlist: [],
+        currentItem: 0
     }
 }
 
@@ -130,6 +135,13 @@ export function reducer(baseState=defaultState, action) {
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;
                 draftState.currentStation = draftState.stationNames[0];
+                break;
+            case LOAD_PLAYER_STATION:
+                draftState.player.playlist = [{
+                    type: 'station',
+                    name: action.stationName
+                }];
+                draftState.player.currentItem = 0;
                 break;
         }
     });
@@ -367,5 +379,17 @@ export function setStationNameList(stations) {
     return {
         type: SET_STATION_NAME_LIST,
         stations: stations
+    };
+}
+
+/**
+ * Loads a specified station into the player.
+ * @param {string} stationName The name of the station.
+ */
+
+export function loadPlayerStation(stationName) {
+    return {
+        type: LOAD_PLAYER_STATION,
+        stationName: stationName
     };
 }

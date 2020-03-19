@@ -4,6 +4,7 @@ import { View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Button, Title, Caption, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { generateStationTheme } from '../branding/branding';
+import { setCurrentStation, loadPlayerStation } from '../reducers/actions';
 
 class StationCard extends Component {
 
@@ -11,7 +12,7 @@ class StationCard extends Component {
 
         // Read in the properties and adjust the style
 
-        const { station, nowPlaying, theme, borderRadius, vertical, tablet, onAir } = this.props;
+        const { station, nowPlaying, theme, borderRadius, vertical, tablet, onAir, setCurrentStation, loadPlayerStation } = this.props;
 
         // Album art with fallback
 
@@ -125,6 +126,10 @@ class StationCard extends Component {
                                 mode="contained"
                                 theme={theme}
                                 dark={true}
+                                onPress={() => {
+                                    setCurrentStation(station.name);
+                                    loadPlayerStation(station.name);
+                                }}
                             >
                                 Listen Live
                             </Button>
@@ -181,6 +186,10 @@ class StationCard extends Component {
                                 mode="contained"
                                 theme={theme}
                                 dark={true}
+                                onPress={() => {
+                                    setCurrentStation(station.name);
+                                    loadPlayerStation(station.name);
+                                }}
                             >
                                 Listen Live
                             </Button>
@@ -216,8 +225,11 @@ function mapStateToProps(state, ownProps) {
 
 }
 
-const mapDispatchToProps = {
-
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentStation: stationName => dispatch(setCurrentStation(stationName)),
+        loadPlayerStation: stationName => dispatch(loadPlayerStation(stationName))
+    };
 };
 
-export default connect(mapStateToProps)(StationCard);
+export default connect(mapStateToProps, mapDispatchToProps)(StationCard);

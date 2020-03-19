@@ -11,75 +11,12 @@ class PlayerOverlay extends Component {
 
     bottomSheetRef = React.createRef();
 
-    renderArt = () => {
-
-        const { artUrl, styles, fall } = this.props;
-
-        // Calculate our song art size and positions
-
-        const artSizes = [50, Dimensions.get("window").width - 200]
-
-        const artTopPositions = [
-            20, 
-            200
-        ];
-
-        const artLeftPositions = [
-            10,
-            Dimensions.get("window").width / 2 - artSizes[1] / 2
-        ];
-
-        // Animation
-
-        const artLeftPositionAnimation = Animated.interpolate(fall, {
-            inputRange: [0, 1],
-            outputRange: artLeftPositions.slice().reverse(),
-            extrapolate: Animated.Extrapolate.CLAMP
-        });
-
-        const artSizeAnimation = Animated.interpolate(fall, {
-            inputRange: [0, 1],
-            outputRange: artSizes.slice().reverse(),
-            extrapolate: Animated.Extrapolate.CLAMP
-        });
-
-        const artTopPositionAnimation = Animated.interpolate(fall, {
-            inputRange: [0, 1],
-            outputRange: artTopPositions.slice().reverse(),
-            extrapolate: Animated.Extrapolate.CLAMP
-        });
-
-        // Draw it
-
-        return (
-            <Animated.View
-                key={'art-container'}
-                style={[
-                    {
-                        height: artSizeAnimation,
-                        width: artSizeAnimation,
-                        left: artLeftPositionAnimation,
-                        top: artTopPositionAnimation
-                    }
-                ]}
-            >
-                <Image 
-                    key={'art-image'}
-                    source={{ uri: artUrl }}
-                    style={styles.artImage}
-                />
-            </Animated.View>
-        );
-
-    }
-
     renderContent = () => {
 
         const { styles } = this.props;
 
         return([
             <Animated.View
-                key={'content-container'}
                 style={styles.contentContainer}
             >
             </Animated.View>
@@ -96,7 +33,7 @@ class PlayerOverlay extends Component {
 
     renderHeader = () => {
 
-        const { styles, theme, fall } = this.props;
+        const { styles, theme, fall, artUrl } = this.props;
 
         const animatedHeaderContentOpacity = Animated.interpolate(fall, {
             inputRange: [0.75, 1],
@@ -104,45 +41,45 @@ class PlayerOverlay extends Component {
             extrapolate: Animated.Extrapolate.CLAMP,
         });
 
-        return([
-            <TouchableWithoutFeedback
-                key={'header-container'}
-                onPress={this.onHeaderPress}
-            >
-                <Animated.View>
-                    <Animated.View
-                        style={[
-                            styles.headerContainer,
-                            {
-                                opacity: animatedHeaderContentOpacity
-                            },
-                        ]}
+        return(
+            <View style={styles.headerContainer}>
+                <Animated.View
+                    style={[
+                        styles.headerSubContainer,
+                        {
+                            opacity: animatedHeaderContentOpacity
+                        }
+                    ]}
+                >
+                    <TouchableWithoutFeedback
+                        style={styles.headerImageWrapper}
+                        onPress={this.onHeaderPress}
                     >
-                        <View style={styles.headerText}>
-                            <Text theme={theme}>Solid Radio</Text>
-                            <Caption 
-                                theme={theme}
-                                style={styles.artistTitle}
-                            >
-                                Song Artist - Song Title That's Way Too Long
-                            </Caption>
-                        </View>
-                        <View style={styles.headerButton}>
-                            <Button
-                                icon="cast"
-                                theme={theme}
-                                
-                            />
-                            <Button
-                                icon="play"
-                                theme={theme}
-                            />
-                        </View>
-                    </Animated.View>
+                        <Image
+                            source={{ uri: artUrl }}
+                            style={styles.headerImage}
+                        />
+                    </TouchableWithoutFeedback>
+                    <View style={styles.headerText}>
+                        <Text theme={theme}>Solid Radio</Text>
+                        <Caption theme={theme}>
+                            Song Artist - Song Title That's Way Too Long
+                        </Caption>
+                    </View>
+                    <View style={styles.headerButton}>
+                        <Button
+                            icon="cast"
+                            theme={theme}
+                            
+                        />
+                        <Button
+                            icon="play"
+                            theme={theme}
+                        />
+                    </View>
                 </Animated.View>
-            </TouchableWithoutFeedback>/*,
-            this.renderArt()*/
-        ]);
+            </View>
+        );
     }
 
     render() {
@@ -169,23 +106,28 @@ const mapStateToProps = state => {
         vertical: state.vertical,
         artUrl: "https://dev.radiomusicstats.co.uk/media/songs/images/1443_f07a5a1e86624b3cb8ec76543b9863d7.png",
         styles: {
-            artImage: {
-                width: "100%",
-                height: "100%"
+            headerImage: {
+                width: 55,
+                height: 55
+            },
+            headerImageWrapper: {
+                alignSelf: 'center',
+                flex: 0,
+                padding: 10
             },
             headerContainer: {
-                height: 120,
-                backgroundColor: state.theme.colors.surface,
+                height: 70,
+                backgroundColor: state.theme.colors.surface
+            },
+            headerSubContainer: {
                 flexDirection: 'row',
                 alignItems: 'stretch'
             },
             headerText: {
-                left: 80,
-                padding: 20,
-                width: Dimensions.get("window").width - 130,
                 flexDirection: 'column',
-                alignItems: 'stretch'
-                
+                alignItems: 'stretch',
+                flex: 1,
+                padding: 10
             },
             artistTitle: {
                 backgroundColor: "#ff0000",

@@ -5,6 +5,7 @@ import { View, Dimensions, Image } from 'react-native'
 import { Title, Caption, Button, Text } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class PlayerOverlay extends Component {
 
@@ -95,26 +96,52 @@ class PlayerOverlay extends Component {
 
     renderHeader = () => {
 
-        const { styles, theme } = this.props;
+        const { styles, theme, fall } = this.props;
+
+        const animatedHeaderContentOpacity = Animated.interpolate(fall, {
+            inputRange: [0.75, 1],
+            outputRange: [0, 1],
+            extrapolate: Animated.Extrapolate.CLAMP,
+        });
 
         return([
-            this.renderArt(),
-            <Animated.View
+            <TouchableWithoutFeedback
                 key={'header-container'}
                 onPress={this.onHeaderPress}
-                style={styles.headerContainer}
             >
-                <Text theme={theme}>Solid Radio</Text>
-                <Caption theme={theme}>Song Artist - Song Title That's Way Too Long</Caption>
-                <Button
-                    icon="cast"
-                    theme={theme}
-                />
-                <Button
-                    icon="play"
-                    theme={theme}
-                />
-            </Animated.View>
+                <Animated.View>
+                    <Animated.View
+                        style={[
+                            styles.headerContainer,
+                            {
+                                opacity: animatedHeaderContentOpacity
+                            },
+                        ]}
+                    >
+                        <View style={styles.headerText}>
+                            <Text theme={theme}>Solid Radio</Text>
+                            <Caption 
+                                theme={theme}
+                                style={styles.artistTitle}
+                            >
+                                Song Artist - Song Title That's Way Too Long
+                            </Caption>
+                        </View>
+                        <View style={styles.headerButton}>
+                            <Button
+                                icon="cast"
+                                theme={theme}
+                                
+                            />
+                            <Button
+                                icon="play"
+                                theme={theme}
+                            />
+                        </View>
+                    </Animated.View>
+                </Animated.View>
+            </TouchableWithoutFeedback>/*,
+            this.renderArt()*/
         ]);
     }
 
@@ -147,14 +174,32 @@ const mapStateToProps = state => {
                 height: "100%"
             },
             headerContainer: {
-                height: 100,
-                //backgroundColor: state.theme.colors.surface,
-                backgroundColor: "#00ff00"
+                height: 120,
+                backgroundColor: state.theme.colors.surface,
+                flexDirection: 'row',
+                alignItems: 'stretch'
+            },
+            headerText: {
+                left: 80,
+                padding: 20,
+                width: Dimensions.get("window").width - 130,
+                flexDirection: 'column',
+                alignItems: 'stretch'
+                
+            },
+            artistTitle: {
+                backgroundColor: "#ff0000",
+                flexWrap: 'wrap',
+                flex: 2
+            },
+            headerButton: {
+                alignSelf: 'center',
+                alignItems: 'flex-end',
+                flexDirection: 'row'
             },
             contentContainer: {
                 height: Dimensions.get("window").height - 100,
-                //backgroundColor: state.theme.colors.surface,
-                backgroundColor: "#ff0000"
+                backgroundColor: state.theme.colors.surface,
             }
         },
         fall: new Animated.Value(1)

@@ -16,16 +16,11 @@ class PlayerOverlay extends Component {
 
         const { styles, artUrl } = this.props;
 
-        return([
+        return(
             <View style={styles.contentContainer}>
-                <View style={styles.contentImageWrapper}>
-                    <Image
-                        source={{ uri: artUrl }}
-                        style={styles.contentImage}
-                    />
-                </View>
+                <PlayerCarousel />
             </View>
-        ]);
+        );
         
     }
 

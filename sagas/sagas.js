@@ -9,6 +9,7 @@ import { orientationSaga } from './orientation-saga';
 import { watchOnAir } from './on-air-saga';
 import { watchSettings } from './settings-saga';
 import { watchAnalytics } from './analytics-saga';
+import { watchAdmobConfig } from './admob-saga';
 
 /**
  * The root saga that triggers all the others.
@@ -21,6 +22,7 @@ export function* rootSaga() {
         orientationSaga(),
         watchOnAir(),
         watchSettings(),
-        watchAnalytics()
+        watchAnalytics(),
+        watchAdmobConfig()
     ]);
 }

@@ -4,7 +4,7 @@
 
 import produce from 'immer';
 import { generateStationTheme, generateTheme } from '../branding/branding';
-import { act } from 'react-test-renderer';
+import { AdsConsentStatus } from '@react-native-firebase/admob';
 
 export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
 export const INITIAL_LOAD_START = 'INITIAL_LOAD_START';
@@ -27,6 +27,8 @@ export const SET_HIGH_BITRATE = 'SET_HIGH_BITRATE';
 export const SET_CURRENT_STATION = 'SET_CURRENT_STATION';
 export const SET_STATION_NAME_LIST = 'SET_STATION_NAME_LIST';
 export const LOAD_PLAYER_STATION = 'LOAD_PLAYER_STATION';
+export const SET_ADMOB_PUBLISHER = 'SET_ADMOB_PUBLISHER';
+export const SET_ADMOB_CONSENT = 'SET_ADMOB_CONSENT';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -49,6 +51,10 @@ defaultState = {
     player: {
         playlist: [],
         currentItem: 0
+    },
+    admob: {
+        publisher: null,
+        consent: AdsConsentStatus.UNKNOWN
     }
 }
 
@@ -135,6 +141,12 @@ export function reducer(baseState=defaultState, action) {
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;
                 draftState.currentStation = draftState.stationNames[0];
+                break;
+            case SET_ADMOB_PUBLISHER:
+                draftState.admob.publisher = action.publisherId;
+                break;
+            case SET_ADMOB_CONSENT:
+                draftState.admob.consent = action.consent;
                 break;
             case LOAD_PLAYER_STATION:
                 draftState.player.playlist = [{
@@ -391,5 +403,29 @@ export function loadPlayerStation(stationName) {
     return {
         type: LOAD_PLAYER_STATION,
         stationName: stationName
+    };
+}
+
+/**
+ * Sets the AdMob publisher ID.
+ * @param {string} publisherId The publisher ID for AdMob
+ */
+
+export function setAdMobPublisher(publisherId) {
+    return {
+        type: SET_ADMOB_PUBLISHER,
+        publisherId: publisherId
+    };
+}
+
+/**
+ * Sets the AdMob consent status.
+ * @param {int} consent The consent status.
+ */
+
+export function setAdMobConsent(consent) {
+    return {
+        type: SET_ADMOB_CONSENT,
+        consent: consent
     };
 }

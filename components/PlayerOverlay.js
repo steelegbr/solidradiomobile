@@ -7,6 +7,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import PlayerCarousel from './PlayerCarousel';
+import AdComponent from './AdComponent';
 
 class PlayerOverlay extends Component {
 
@@ -14,11 +15,12 @@ class PlayerOverlay extends Component {
 
     renderContent = () => {
 
-        const { styles, artUrl } = this.props;
+        const { styles } = this.props;
 
         return(
             <View style={styles.contentContainer}>
-                <PlayerCarousel />
+                <PlayerCarousel style={styles.carousel} />
+                <AdComponent style={styles.admob} />
             </View>
         );
         
@@ -117,7 +119,7 @@ const mapStateToProps = state => {
         const station = state.stations[currentItem.name]
         header.title = `${station.name} - ${station.onAir.show}`;
         header.subtitle = `${station.nowPlaying.artist} - ${station.nowPlaying.title}`;
-        if (station.nowPlaying.artUrl !== '') {
+        if (station.nowPlaying.artUrl) {
             header.artUrl = station.nowPlaying.artUrl;
         } else {
             header.artUrl = station.onAir.image;
@@ -170,9 +172,10 @@ const mapStateToProps = state => {
                 flexDirection: 'row'
             },
             contentContainer: {
-                height: Dimensions.get("window").height - headerHeight,
+                height: Dimensions.get("window").height - headerHeight - 212,
                 backgroundColor: state.theme.colors.surface,
-                flexDirection: 'column'
+                flexDirection: 'column',
+                justifyContent: 'space-between'
             },
             contentImageWrapper: {
                 alignItems: 'center',
@@ -181,6 +184,9 @@ const mapStateToProps = state => {
             contentImage: {
                 width: imageSize,
                 height: imageSize,
+            },
+            admob: {
+                flex: 0
             }
         },
         fall: new Animated.Value(1)

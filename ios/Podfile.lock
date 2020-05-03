@@ -308,9 +308,9 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - RNDefaultPreference (1.4.1):
+  - RNDefaultPreference (1.4.2):
     - React
-  - RNDeviceInfo (5.5.3):
+  - RNDeviceInfo (5.5.6):
     - React
   - RNFBAdMob (6.7.1):
     - Firebase/AdMob (~> 6.13.0)
@@ -319,27 +319,28 @@ PODS:
     - PersonalizedAdConsent (~> 1.0.4)
     - React
     - RNFBApp
-  - RNFBAnalytics (6.3.4):
+  - RNFBAnalytics (6.7.1):
+    - Firebase/Analytics (~> 6.13.0)
     - Firebase/Core (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBApp (6.3.4):
+  - RNFBApp (6.7.1):
     - Firebase/Core (~> 6.13.0)
     - React
-  - RNFBCrashlytics (6.3.4):
+  - RNFBCrashlytics (6.7.1):
     - Crashlytics (~> 3.14.0)
     - Fabric (~> 1.10.2)
     - Firebase/Core (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBRemoteConfig (6.3.4):
+  - RNFBRemoteConfig (6.7.1):
     - Firebase/Core (~> 6.13.0)
     - Firebase/RemoteConfig (~> 6.13.0)
     - React
     - RNFBApp
-  - RNGestureHandler (1.6.0):
+  - RNGestureHandler (1.6.1):
     - React
-  - RNReanimated (1.7.0):
+  - RNReanimated (1.8.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -525,15 +526,15 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNDefaultPreference: 12d246dd2222e66dadcd76cc1250560663befc3a
-  RNDeviceInfo: 67607dfe9cfbed105838144c40187a8392aa404d
+  RNDefaultPreference: 56a405ce61033ac77b95004dccd7ac54c2eb50d1
+  RNDeviceInfo: c3ea4a4d4547740c548cdd1e5a78f9b04e524688
   RNFBAdMob: 8e6fd1d00c34ed743ccd11b823ed78a224492d00
-  RNFBAnalytics: b8bad44e6653af73219b1a7af24bf3452cb02c1b
-  RNFBApp: 7d4006751de8bb5cafa2e8d2e7d94ee250df81db
-  RNFBCrashlytics: 93e1cc09a93aa4bb1e9b5a07af0efb2702db5a39
-  RNFBRemoteConfig: acfef78587e8d544b53338c07ecbc172fae1b781
-  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
-  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
+  RNFBAnalytics: 7d56f7af0a1147e649df33e64372aea8923fdd01
+  RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645
+  RNFBCrashlytics: b34063b906dd0c57a5d286dd743a40c90c8326c7
+  RNFBRemoteConfig: 59818c5933149b5a6b7fe5159e3d4df09199e858
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
+  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 

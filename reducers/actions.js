@@ -29,6 +29,7 @@ export const SET_STATION_NAME_LIST = 'SET_STATION_NAME_LIST';
 export const LOAD_PLAYER_STATION = 'LOAD_PLAYER_STATION';
 export const SET_ADMOB_PUBLISHER = 'SET_ADMOB_PUBLISHER';
 export const SET_ADMOB_CONSENT = 'SET_ADMOB_CONSENT';
+export const SET_ADMOB_PRIVACY_POLICY = 'SET_ADMOB_PRIVACY_POLICY';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -54,7 +55,8 @@ defaultState = {
     },
     admob: {
         publisher: null,
-        consent: AdsConsentStatus.UNKNOWN
+        consent: AdsConsentStatus.UNKNOWN,
+        privacyPolicy: null
     }
 }
 
@@ -147,6 +149,9 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_ADMOB_CONSENT:
                 draftState.admob.consent = action.consent;
+                break;
+            case SET_ADMOB_PRIVACY_POLICY:
+                draftState.admob.privacyPolicy = action.uri;
                 break;
             case LOAD_PLAYER_STATION:
                 draftState.player.playlist = [{
@@ -427,5 +432,17 @@ export function setAdMobConsent(consent) {
     return {
         type: SET_ADMOB_CONSENT,
         consent: consent
+    };
+}
+
+/**
+ * Sets the URI of the admob privacy policy.
+ * @param {string} uri The privacy policy URI.
+ */
+
+export function setAdmobPrivacyPolicy(uri) {
+    return {
+        type: SET_ADMOB_PRIVACY_POLICY,
+        uri: uri
     };
 }

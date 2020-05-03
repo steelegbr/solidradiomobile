@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import Menu from './Menu';
 import SplashScreen from './SplashScreen';
+import { AdsConsentStatus } from "@react-native-firebase/admob";
 
 class Wrapper extends Component {
 
@@ -29,7 +30,7 @@ class Wrapper extends Component {
 
 const mapStateToProps = state => {
     return {
-        loadingComplete: state.initialLoad == 'success',
+        loadingComplete: state.initialLoad == 'success' && state.admob.consent != AdsConsentStatus.UNKNOWN,
         theme: state.theme
     };
 };

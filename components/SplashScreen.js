@@ -10,7 +10,7 @@ class SplashScreen extends Component {
     render() {
         const { loadingStatus, initialLoad } = this.props;
 
-        if (loadingStatus == 'not_started' || loadingStatus == 'started') {
+        if (loadingStatus == 'not_started' || loadingStatus == 'started' || loadingStatus == 'success') {
 
             return(
                 <View style={splashStyles.parent}>

@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import { StyleSheet, Dimensions, View } from 'react-native'
-import PlayerOverlay from './PlayerOverlay';
 import OnAirCard from './OnAirCard';
 import NowPlayingCard from './NowPlayingCard';
 
@@ -54,6 +53,7 @@ class PlayerCarousel extends Component {
                             itemWidth={itemWidth}
                             windowSize={1}
                             loop={false}
+                            style={carouselStyles.test}
                         />
                     </View>
                 );
@@ -74,7 +74,7 @@ const carouselStyles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center"
-    },
+    }
 });
 
 const mapStateToProps = state => {
@@ -90,7 +90,7 @@ const mapStateToProps = state => {
 
         return {
             renderMethod: "renderStationItem",
-            carouselItems: [[station.onAir, station], [station.nowPlaying, station], [null, station]],
+            carouselItems: [[station.onAir, station], [station.nowPlaying, station]],
             station: station
         }
 

@@ -30,6 +30,7 @@ export const LOAD_PLAYER_STATION = 'LOAD_PLAYER_STATION';
 export const SET_ADMOB_PUBLISHER = 'SET_ADMOB_PUBLISHER';
 export const SET_ADMOB_CONSENT = 'SET_ADMOB_CONSENT';
 export const SET_ADMOB_PRIVACY_POLICY = 'SET_ADMOB_PRIVACY_POLICY';
+export const SET_ADMOB_UNIT = 'SET_ADMOB_UNIT';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -56,7 +57,8 @@ defaultState = {
     admob: {
         publisher: null,
         consent: AdsConsentStatus.UNKNOWN,
-        privacyPolicy: null
+        privacyPolicy: null,
+        units: {}
     }
 }
 
@@ -152,6 +154,9 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_ADMOB_PRIVACY_POLICY:
                 draftState.admob.privacyPolicy = action.uri;
+                break;
+            case SET_ADMOB_UNIT:
+                draftState.admob.units[action.name] = action.id;
                 break;
             case LOAD_PLAYER_STATION:
                 draftState.player.playlist = [{
@@ -444,5 +449,19 @@ export function setAdmobPrivacyPolicy(uri) {
     return {
         type: SET_ADMOB_PRIVACY_POLICY,
         uri: uri
+    };
+}
+
+/**
+ * Sets the ID of an admob unit of a given name.
+ * @param {string} name The name of the unit.
+ * @param {string} id The ID of the unit.
+ */
+
+export function setAdmobUnitId(name, id) {
+    return {
+        type: SET_ADMOB_UNIT,
+        name: name,
+        id: id
     };
 }

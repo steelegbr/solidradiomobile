@@ -20,7 +20,13 @@ class PlayerOverlay extends Component {
         return(
             <View style={styles.contentContainer}>
                 <PlayerCarousel style={styles.carousel} />
-                <AdComponent style={styles.admob} />
+                <View>
+                    <Text>Scrub</Text>
+                    <View>
+                        <Text>Buttons</Text>
+                    </View>
+                </View>
+                <AdComponent style={styles.admob} unitId="playerOverlay" />
             </View>
         );
         
@@ -172,7 +178,8 @@ const mapStateToProps = state => {
                 flexDirection: 'row'
             },
             contentContainer: {
-                height: Dimensions.get("window").height - headerHeight - 212,
+                height: Dimensions.get("window").height - headerHeight - 165,
+                paddingTop: 10,
                 backgroundColor: state.theme.colors.surface,
                 flexDirection: 'column',
                 justifyContent: 'space-between'

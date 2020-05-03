@@ -5,7 +5,8 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 import { put, takeLatest, all, takeEvery, select } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL, setAdMobPublisher, setAdmobPrivacyPolicy } from '../reducers/actions';
+import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL, setAdMobPublisher, setAdmobPrivacyPolicy, setAdmobUnitId } from '../reducers/actions';
+import { Platform } from 'react-native';
 
 /**
  * The initial load worker saga.
@@ -40,8 +41,16 @@ function* initialLoadSaga() {
         const admobPrivacyPolicy = settings.admob_privacy_policy.value;
 
         yield put(setApiParams(server, key));
+
+        // Advertising
+
         yield put(setAdMobPublisher(admobPublisherId));
         yield put(setAdmobPrivacyPolicy(admobPrivacyPolicy));
+
+        const admobUnitNames = JSON.parse(settings.admob_unit_ids.value);
+        for (let i = 0; i < admobUnitNames.length; i++) {
+            yield put(setAdmobUnitId(admobUnitNames[i], settings[`admob_unit_id_${admobUnitNames[i]}_${Platform.OS}`].value));
+        }
 
         // Trigger the parallel station loads
 

@@ -4,12 +4,14 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { View, Image } from 'react-native'
 import { Caption, Button, Text } from 'react-native-paper';
 import { connect } from 'react-redux';
+import CastButton from './CastButton';
+import PlayPauseButton from './PlayPauseButton';
 
 /**
  * Component for displaying the header / footer in the swipe up overlay.
  */
 
-class OverlayHeaderComponent extends Component {
+class OverlayHeader extends Component {
 
     render() {
 
@@ -47,15 +49,8 @@ class OverlayHeaderComponent extends Component {
                         </Caption>
                     </View>
                     <View style={styles.headerButton}>
-                        <Button
-                            icon="cast"
-                            theme={theme}
-                            
-                        />
-                        <Button
-                            icon="play"
-                            theme={theme}
-                        />
+                        <CastButton />
+                        <PlayPauseButton />
                     </View>
                 </Animated.View>
             </View>
@@ -124,4 +119,4 @@ function mapStateToProps(state, ownProps) {
 
 }
 
-export default connect(mapStateToProps)(OverlayHeaderComponent);
+export default connect(mapStateToProps)(OverlayHeader);

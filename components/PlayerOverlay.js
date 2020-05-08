@@ -5,10 +5,10 @@ import { View, Dimensions, Image } from 'react-native'
 import { Caption, Button, Text } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import PlayerCarousel from './PlayerCarousel';
 import AdComponent from './AdComponent';
-import OverlayHeaderComponent from './OverlayHeaderComponent';
+import OverlayHeader from './OverlayHeader';
+import PlayerOverlayControls from './PlayerOverlayControls';
 
 class PlayerOverlay extends Component {
 
@@ -21,12 +21,7 @@ class PlayerOverlay extends Component {
         return(
             <View style={styles.contentContainer}>
                 <PlayerCarousel style={styles.carousel} />
-                <View>
-                    <Text>Scrub</Text>
-                    <View>
-                        <Text>Buttons</Text>
-                    </View>
-                </View>
+                <PlayerOverlayControls />
                 <AdComponent style={styles.admob} unitId="playerOverlay" />
             </View>
         );
@@ -45,7 +40,7 @@ class PlayerOverlay extends Component {
         const { fall } = this.props;
 
         return(
-            <OverlayHeaderComponent fall={fall} onHeaderPress={this.onHeaderPress} />
+            <OverlayHeader fall={fall} onHeaderPress={this.onHeaderPress} />
         );
     }
 

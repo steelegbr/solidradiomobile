@@ -20,6 +20,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* SolidRadioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SolidRadioTests.m */; };
 		956DCFDB5C12EEF94820D50A /* libPods-SolidRadioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 739C788B55992AC6A5FECA2B /* libPods-SolidRadioTests.a */; };
 		C5A3E442EF4F86759D8E7E85 /* libPods-SolidRadio-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8593E731BF8CCBCD70D491 /* libPods-SolidRadio-tvOSTests.a */; };
+		E4184DF02465B5BE00B85F20 /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4184DEF2465B5BE00B85F20 /* dummy.swift */; };
 		E4635201240593530051C9BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4635200240593530051C9BC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -46,8 +47,13 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SolidRadioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolidRadioTests.m; sourceTree = "<group>"; };
 		03B95D321310ABEA6BF82ABF /* Pods-SolidRadio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadio/Pods-SolidRadio.debug.xcconfig"; sourceTree = "<group>"; };
+		04C6B5D897D848BABC166329 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		09468922795F1FAAF2F1B946 /* Pods-SolidRadio-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOS.release.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOS/Pods-SolidRadio-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		0CC7B1F20ABE46B7B0CC1156 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		0CE02B1D1FFD4AD5841324DC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		0D2B28940CAE4D06913122BA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		0D8593E731BF8CCBCD70D491 /* libPods-SolidRadio-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadio-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EBF250FE6734C0B931A1ACD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SolidRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolidRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SolidRadio/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SolidRadio/AppDelegate.m; sourceTree = "<group>"; };
@@ -57,18 +63,31 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SolidRadio/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* SolidRadio-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SolidRadio-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SolidRadio-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SolidRadio-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1E1EE8D9F24BE9A7099723 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		42FBA2D28EF04121B5EB3CF3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		4F566337D51543858484D853 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		57BDC39A75FAB16E4E03AFA7 /* Pods-SolidRadio-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOSTests/Pods-SolidRadio-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		63B4BA485F8FEDBB55EB7B90 /* Pods-SolidRadio-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOS/Pods-SolidRadio-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		739C788B55992AC6A5FECA2B /* libPods-SolidRadioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C92EA04D64942B5A64A21E8 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		8659B814881F4EAEA95C5F27 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		86C6EF6C5F20446C8F66E478 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		8D21CECAFD49F2BA577B5D31 /* Pods-SolidRadio-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-SolidRadio-tvOSTests/Pods-SolidRadio-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9371045029DE485C833ABDDD /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9556C690ABA87926AD9F1BDC /* Pods-SolidRadioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioTests.release.xcconfig"; path = "Target Support Files/Pods-SolidRadioTests/Pods-SolidRadioTests.release.xcconfig"; sourceTree = "<group>"; };
 		C922D680DB6E50EBC4226CE9 /* libPods-SolidRadio-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadio-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9341DF52A284EC69A941D4D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadioTests.debug.xcconfig"; path = "Target Support Files/Pods-SolidRadioTests/Pods-SolidRadioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D57240ED9E8EDC4679E70128 /* libPods-SolidRadio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SolidRadio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4184DEE2465B5BD00B85F20 /* SolidRadio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SolidRadio-Bridging-Header.h"; sourceTree = "<group>"; };
+		E4184DEF2465B5BE00B85F20 /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
 		E4635200240593530051C9BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E7C537D38D164BAF9FA20A37 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		EC7CF44C4EE44E838D80EDA0 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidRadio.release.xcconfig"; path = "Target Support Files/Pods-SolidRadio/Pods-SolidRadio.release.xcconfig"; sourceTree = "<group>"; };
+		FB6936664DC4403FB47C97AF /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +153,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				E4184DEF2465B5BE00B85F20 /* dummy.swift */,
+				E4184DEE2465B5BD00B85F20 /* SolidRadio-Bridging-Header.h */,
 			);
 			name = SolidRadio;
 			sourceTree = "<group>";
@@ -204,6 +225,22 @@
 		E2A1ED5C2C1741E4BA828FF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F566337D51543858484D853 /* AntDesign.ttf */,
+				42FBA2D28EF04121B5EB3CF3 /* Entypo.ttf */,
+				C9341DF52A284EC69A941D4D /* EvilIcons.ttf */,
+				7C92EA04D64942B5A64A21E8 /* Feather.ttf */,
+				0D2B28940CAE4D06913122BA /* FontAwesome.ttf */,
+				8659B814881F4EAEA95C5F27 /* FontAwesome5_Brands.ttf */,
+				FB6936664DC4403FB47C97AF /* FontAwesome5_Regular.ttf */,
+				0CC7B1F20ABE46B7B0CC1156 /* FontAwesome5_Solid.ttf */,
+				2D1E1EE8D9F24BE9A7099723 /* Fontisto.ttf */,
+				9371045029DE485C833ABDDD /* Foundation.ttf */,
+				04C6B5D897D848BABC166329 /* Ionicons.ttf */,
+				EC7CF44C4EE44E838D80EDA0 /* MaterialCommunityIcons.ttf */,
+				E7C537D38D164BAF9FA20A37 /* MaterialIcons.ttf */,
+				86C6EF6C5F20446C8F66E478 /* Octicons.ttf */,
+				0CE02B1D1FFD4AD5841324DC /* SimpleLineIcons.ttf */,
+				0EBF250FE6734C0B931A1ACD /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -304,6 +341,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1140;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -614,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				E4184DF02465B5BE00B85F20 /* dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,6 +708,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA7AEEC9C676038FC3D1FEE9 /* Pods-SolidRadioTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -690,6 +732,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9556C690ABA87926AD9F1BDC /* Pods-SolidRadioTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = SolidRadioTests/Info.plist;
@@ -711,9 +754,11 @@
 			baseConfigurationReference = 03B95D321310ABEA6BF82ABF /* Pods-SolidRadio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = SolidRadio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
@@ -723,6 +768,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.solidradio;
 				PRODUCT_NAME = SolidRadio;
+				SWIFT_OBJC_BRIDGING_HEADER = "SolidRadio-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -733,8 +781,10 @@
 			baseConfigurationReference = F1D16FA6E8C33B47F20C7188 /* Pods-SolidRadio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = SolidRadio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
@@ -744,6 +794,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.solidradio;
 				PRODUCT_NAME = SolidRadio;
+				SWIFT_OBJC_BRIDGING_HEADER = "SolidRadio-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

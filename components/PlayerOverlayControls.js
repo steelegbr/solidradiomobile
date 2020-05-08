@@ -5,12 +5,13 @@ import Scrubber from 'react-native-scrubber';
 import PlayPauseButton from './PlayPauseButton';
 import CastButton from './CastButton';
 import SkipButton, { DIRECTION_FORWARDS, DIRECTION_BACKWARDS } from './SkipButton';
+import TrackPlayer from 'react-native-track-player';
 
 /**
  * Controls for managing the player in the full overlay view.
  */
 
-class PlayerOverlayControls extends Component {
+class PlayerOverlayControls extends TrackPlayer.ProgressComponent {
 
     render() {
 
@@ -20,8 +21,8 @@ class PlayerOverlayControls extends Component {
             <View>
                 <View style={styles.scrubber}>
                     <Scrubber
-                        value={0}
-                        totalDuration={0}
+                        value={this.state.position}
+                        totalDuration={this.state.bufferedPosition}
                         trackColor={theme.colors.primary}
                         scrubbedColor={theme.colors.accent}
                     />

@@ -10,6 +10,7 @@ import { watchOnAir } from './on-air-saga';
 import { watchSettings } from './settings-saga';
 import { watchAnalytics } from './analytics-saga';
 import { watchAdmob } from './admob-saga';
+import { watchPlayer } from './player-saga';
 
 /**
  * The root saga that triggers all the others.
@@ -23,6 +24,7 @@ export function* rootSaga() {
         watchOnAir(),
         watchSettings(),
         watchAnalytics(),
-        watchAdmob()
+        watchAdmob(),
+        watchPlayer()
     ]);
 }

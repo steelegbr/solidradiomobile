@@ -5,6 +5,7 @@
 import produce from 'immer';
 import { generateStationTheme, generateTheme } from '../branding/branding';
 import { AdsConsentStatus } from '@react-native-firebase/admob';
+import { PlayerState } from '../audio/player';
 
 export const INITIAL_LOAD_REQUESTED = 'INITIAL_LOAD_REQUESTED';
 export const INITIAL_LOAD_START = 'INITIAL_LOAD_START';
@@ -31,6 +32,7 @@ export const SET_ADMOB_PUBLISHER = 'SET_ADMOB_PUBLISHER';
 export const SET_ADMOB_CONSENT = 'SET_ADMOB_CONSENT';
 export const SET_ADMOB_PRIVACY_POLICY = 'SET_ADMOB_PRIVACY_POLICY';
 export const SET_ADMOB_UNIT = 'SET_ADMOB_UNIT';
+export const SET_PLAYER_STATE = 'SET_PLAYER_STATE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -52,7 +54,8 @@ defaultState = {
     },
     player: {
         playlist: [],
-        currentItem: 0
+        currentItem: 0,
+        state: PlayerState.UNINITIALISED
     },
     admob: {
         publisher: null,
@@ -164,6 +167,9 @@ export function reducer(baseState=defaultState, action) {
                     name: action.stationName
                 }];
                 draftState.player.currentItem = 0;
+                break;
+            case SET_PLAYER_STATE:
+                draftState.player.state = action.state;
                 break;
         }
     });
@@ -463,5 +469,17 @@ export function setAdmobUnitId(name, id) {
         type: SET_ADMOB_UNIT,
         name: name,
         id: id
+    };
+}
+
+/**
+ * Sets the current state of the audio player.
+ * @param {int} state The current state of the audio player.
+ */
+
+export function setPlayerState(state) {
+    return {
+        type: SET_PLAYER_STATE,
+        state: state
     };
 }

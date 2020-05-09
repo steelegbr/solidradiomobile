@@ -3,7 +3,7 @@
  */
 
 import TrackPlayer from 'react-native-track-player';
-import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION } from '../reducers/actions';
+import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { put, all, call, select, takeEvery, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
@@ -63,7 +63,7 @@ function* handleErrorEvent(error) {
 
     // Handle the error
 
-    console.log(error);
+    yield put(audioPlayerError(error));
 
 }
 
@@ -95,11 +95,6 @@ function* handleStateEvent(data) {
     };
 
     yield put(setPlayerState(translatedState));
-
-    console.log({
-        data: data,
-        translatedState: translatedState
-    });
 
 }
 
@@ -149,9 +144,19 @@ function* loadPlayerStation(action) {
         TrackPlayer.reset();
     }
 
-    // Move into the loading state
+    // Set the capabilities
 
-    //yield put(setPlayerState(PlayerState.LOADING));
+    TrackPlayer.updateOptions({
+        capabilities: [
+            TrackPlayer.CAPABILITY_PLAY,
+            TrackPlayer.CAPABILITY_PAUSE,
+            TrackPlayer.CAPABILITY_STOP
+        ],
+        compactCapabilities: [
+            TrackPlayer.CAPABILITY_PLAY,
+            TrackPlayer.CAPABILITY_PAUSE
+        ]
+    });
 
     // Load the station and play it
 
@@ -161,12 +166,76 @@ function* loadPlayerStation(action) {
     const stationTrack = {
         id: action.stationName,
         url: streamUrl,
-        artist: getStreamArtist(action.stationName, station),
-        title: getStreamTitle(station)
+        artist: getStreamArtist(station),
+        title: getStreamTitle(station),
+        artwork: getStreamArt(station),
+        album: getStreamAlbum(action.stationName, station)
     };
 
     yield TrackPlayer.add([stationTrack]);
     yield TrackPlayer.play();
+
+    // Log the start
+
+    yield put(logStreamStart(action.stationName, state.settings.highBitrate));
+    yield put(logStreamSongPlay(action.stationName, stationTrack.artist, stationTrack.title));
+
+}
+
+/**
+ * Handles now playing updates to see if we're stream and should update the metadata.
+ * @param {action} action The now playing action.
+ */
+
+function* handleNowPlaying(action) {
+
+    // Check if we're streaming
+
+    const state = yield select();
+    if (!isStreaming(state)) {
+        return;
+    }
+
+    // And it's the right station
+
+    const currentStationName = state.player.playlist[0].name;
+    if (action.stationName !== currentStationName) {
+        return;
+    }
+
+    // Update the metadata
+
+    const station = state.stations[currentStationName];
+
+    yield TrackPlayer.updateMetadataForTrack(currentStationName, {
+        artist: getStreamArtist(station),
+        title: getStreamTitle(station),
+        artwork: getStreamArt(station),
+        album: getStreamAlbum(action.stationName, station)
+    });
+
+    // Log to analytics
+
+    yield put(logStreamSongPlay(currentStationName, action.artist, action.title));
+
+}
+
+/**
+ * Indicates if the current audio is a stream or not.
+ * @param {state} state The current application state.
+ */
+
+function isStreaming(state) {
+
+    if (state.player.state == PlayerState.ERROR || state.player.state == PlayerState.IDLE || state.player.state == PlayerState.UNINITIALISED) {
+        return false;
+    }
+
+    if (state.player.playlist.length != 1 || state.player.playlist[0].type !== "station") {
+        return false;
+    }
+
+    return true;
 
 }
 
@@ -176,22 +245,78 @@ function* loadPlayerStation(action) {
  * @param {station} station The station we're instested in.
  */
 
-function getStreamArtist(stationName, station) {
-    return `${stationName} - ${station.onAir.show}`;
+function getStreamArtist(station) {
+    return station.nowPlaying.artist;
 }
 
 /**
- * Obtains the stream title for a fiven station.
+ * Obtains the stream title for a given station.
  * @param {station} station The station we're instested in.
  */
 
 function getStreamTitle(station) {
-    return `${station.nowPlaying.artist} - ${station.nowPlaying.title}`;
+    return station.nowPlaying.title;
+}
+
+/**
+ * Obtains the stream album for a given station.
+ * @param {station} station The station we're intested in.
+ */
+
+function getStreamAlbum(stationName, station) {
+    return `${stationName} - ${station.onAir.show}`;
+}
+
+/**
+ * Obtains the artwork for a given station.
+ * @param {station} station The station we're interested in.
+ */
+
+function getStreamArt(station) {
+
+    // Try for now playing
+
+    const nowPlayingArt = station.nowPlaying.artUrl;
+    if (nowPlayingArt) {
+        return nowPlayingArt;
+    }
+
+    // Fall back to the current show
+
+    const onAirArt = station.onAir.image;
+    if (onAirArt) {
+        return onAirArt;
+    }
+
+    // And finally, the station logo
+
+    return station.logo_square;
+
+}
+
+/**
+ * Handles the play/pause toggle request.
+ */
+
+function* handlePlayPause() {
+
+    // Check the state and toggle
+
+    const state = yield select();
+
+    if (state.player.state == PlayerState.PLAYING) {
+        yield TrackPlayer.pause();
+    } else if (state.player.state == PlayerState.PAUSED) {
+        yield TrackPlayer.play();
+    }
+
 }
 
 export function* watchPlayer() {
     yield all([
         takeEvery(INITIAL_LOAD_REQUESTED, playerInitSaga),
-        takeEvery(LOAD_PLAYER_STATION, loadPlayerStation)
+        takeEvery(LOAD_PLAYER_STATION, loadPlayerStation),
+        takeEvery(NOW_PLAYING_UPDATE, handleNowPlaying),
+        takeEvery(AUDIO_PLAYER_PLAYPAUSE, handlePlayPause)
     ]);
 }

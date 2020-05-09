@@ -3,12 +3,13 @@ import { Button, ActivityIndicator } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { PlayerState } from '../audio/player';
+import { togglePlayPause } from '../reducers/actions';
 
 class PlayPauseButton extends Component {
 
     render() {
 
-        const { icon, theme, bigMode, iconSize, showSpinner } = this.props;
+        const { icon, theme, bigMode, iconSize, showSpinner, togglePlayPause } = this.props;
 
         if (showSpinner) {
 
@@ -28,13 +29,13 @@ class PlayPauseButton extends Component {
             if (bigMode) {
                 return(
                     <Button theme={theme}>
-                        <Icon name={icon} size={iconSize} />
+                        <Icon name={icon} size={iconSize} onPress={togglePlayPause} />
                     </Button>
                 );
             } else {
                 return(
                     <Button theme={theme}>
-                        <Icon name={icon} size={16} />
+                        <Icon name={icon} size={16} onPress={togglePlayPause} />
                     </Button>
                 );
             }
@@ -61,6 +62,7 @@ function mapStateToProps(state, ownProps) {
         case PlayerState.UNINITIALISED:
         case PlayerState.IDLE:
         case PlayerState.ERROR:
+        case PlayerState.PAUSED:
             icon = "play-circle";
             break;
         case PlayerState.LOADING:
@@ -81,4 +83,10 @@ function mapStateToProps(state, ownProps) {
 
 }
 
-export default connect(mapStateToProps)(PlayPauseButton);
+const mapDispatchToProps = dispatch => {
+    return {
+        togglePlayPause: () => dispatch(togglePlayPause())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayPauseButton);

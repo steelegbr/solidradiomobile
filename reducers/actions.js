@@ -33,6 +33,12 @@ export const SET_ADMOB_CONSENT = 'SET_ADMOB_CONSENT';
 export const SET_ADMOB_PRIVACY_POLICY = 'SET_ADMOB_PRIVACY_POLICY';
 export const SET_ADMOB_UNIT = 'SET_ADMOB_UNIT';
 export const SET_PLAYER_STATE = 'SET_PLAYER_STATE';
+export const LOG_STATION_SONG_PLAY = 'LOG_STATION_SONG_PLAY';
+export const LOG_STREAM_START = 'LOG_STREAM_START';
+export const LOG_STREAM_END = 'LOG_STREAM_END';
+export const AUDIO_PLAYER_ERROR = 'AUDIO_PLAYER_ERROR';
+export const ADMOB_LOAD_ERROR = 'AD_LOAD_ERROR';
+export const AUDIO_PLAYER_PLAYPAUSE = 'AUDIO_PLAYER_PLAYPAUSE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -481,5 +487,90 @@ export function setPlayerState(state) {
     return {
         type: SET_PLAYER_STATE,
         state: state
+    };
+}
+
+
+/**
+ * Logs a stream start.
+ * @param {string} station The station to log the stream start for.
+ * @param {bool} highBitrate Indicates if the stream is high bitrate.
+ */
+
+export function logStreamStart(station, highBitrate) {
+    return {
+        type: LOG_STREAM_START,
+        station: station,
+        highBitrate: highBitrate
+    };
+}
+
+/**
+ * Logs a stream stop.
+ * @param {string} station The station to log the stream stop for.
+ * @param {bool} isError Indicates if the stop was an error.
+ * @param {string} error The error logged.
+ * @param {string} artist The current artist.
+ * @param {string} title The current title.
+ */
+
+export function logStreamEnd(station, isError, error, artist, title) {
+    return {
+        type: LOG_STREAM_END,
+        station: station,
+        isError: isError,
+        error: error
+    };
+}
+
+/**
+ * Logs a song play while listening to a stream.
+ * @param {string} station The station this is for.
+ * @param {*} artist The current artist.
+ * @param {*} title The current title.
+ */
+
+export function logStreamSongPlay(station, artist, title) {
+    return {
+        type: LOG_STATION_SONG_PLAY,
+        station: station,
+        artist: artist,
+        title: title
+    };
+}
+
+/**
+ * Flags when an audio player error is encountered.
+ * @param {error} error The audio player error encountered.
+ */
+
+export function audioPlayerError(error) {
+    return {
+        type: AUDIO_PLAYER_ERROR,
+        error: error
+    };
+}
+
+/**
+ * Indicates an error occurred loading an advert.
+ * @param {error} error The loading error.
+ * @param {string} unitId The ad unit that failed to load.
+ */
+
+export function adLoadError(error, unitId) {
+    return {
+        type: ADMOB_LOAD_ERROR,
+        error: error,
+        unitId: unitId
+    };
+}
+
+/**
+ * Toggles the play/pause on the audio player.
+ */
+
+export function togglePlayPause() {
+    return {
+        type: AUDIO_PLAYER_PLAYPAUSE
     };
 }

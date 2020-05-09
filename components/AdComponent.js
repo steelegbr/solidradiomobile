@@ -43,7 +43,10 @@ class AdComponent extends Component {
  */
 
 function adFailedToLoad(error) {
-    console.log(error);
+    
+    const { adLoadError, unitId } = self.props;
+    adLoadError(error, unitId);
+
 }
 
 function mapStateToProps(state, ownProps) {
@@ -53,4 +56,10 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(AdComponent);
+const mapDispatchToProps = dispatch => {
+    return {
+        adLoadError: (error, unitId) => dispatch(adLoadError(error, unitId))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdComponent);

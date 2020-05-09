@@ -3,7 +3,7 @@
  */
 
 import { all, takeEvery, put, takeLatest } from 'redux-saga/effects';
-import { SET_DARK_MODE, SET_HIGH_BITRATE, SET_CURRENT_STATION } from '../reducers/actions';
+import { SET_DARK_MODE, SET_HIGH_BITRATE, SET_CURRENT_STATION, LOG_STREAM_END, LOG_STREAM_START, LOG_STATION_SONG_PLAY } from '../reducers/actions';
 import { KEY_DARK_MODE, KEY_HIGH_BITRATE } from './settings-saga';
 import analytics from '@react-native-firebase/analytics';
 
@@ -43,6 +43,33 @@ function* logStationChange(action) {
 }
 
 /**
+ * Logs a stream starting.
+ * @param {action} action The stream start event.
+ */
+
+function* logStreamStart(action) {
+    yield analytics().logEvent('stream_start', action);
+}
+
+/**
+ * Logs a stream ending.
+ * @param {action} action The stream end event.
+ */
+
+function* logStreamEnd(action) {
+    yield analytics().logEvent('stream_end', action);
+}
+
+/**
+ * Logs every song we listen to on a stream.
+ * @param {action} action The streaming song play event.
+ */
+
+function* logStreamSongPlay(action) {
+    yield analytics().logEvent('stream_song_play', action);
+}
+
+/**
  * Provides the analytics watchdog.
  */
 
@@ -50,6 +77,9 @@ export function* watchAnalytics() {
     yield all([
         takeEvery(SET_DARK_MODE, logDarkMode),
         takeEvery(SET_HIGH_BITRATE, logHighBitrate),
-        takeEvery(SET_CURRENT_STATION, logStationChange)
+        takeEvery(SET_CURRENT_STATION, logStationChange),
+        takeEvery(LOG_STREAM_START, logStreamStart),
+        takeEvery(LOG_STREAM_END, logStreamEnd),
+        takeEvery(LOG_STATION_SONG_PLAY, logStreamSongPlay)
     ]);
 }

@@ -11,6 +11,7 @@ import { watchSettings } from './settings-saga';
 import { watchAnalytics } from './analytics-saga';
 import { watchAdmob } from './admob-saga';
 import { watchPlayer } from './player-saga';
+import { handleErrors } from './error-saga';
 
 /**
  * The root saga that triggers all the others.
@@ -25,6 +26,7 @@ export function* rootSaga() {
         watchSettings(),
         watchAnalytics(),
         watchAdmob(),
-        watchPlayer()
+        watchPlayer(),
+        handleErrors()
     ]);
 }

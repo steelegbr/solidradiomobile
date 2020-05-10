@@ -11,15 +11,11 @@ class CastButton extends Component {
 
         if (bigMode) {
             return(
-                <Button theme={theme}>
-                    <Icon name={icon} size={iconSize} />
-                </Button>
+                <Icon.Button name={icon} size={iconSize} />
             );
         } else {
             return(
-                <Button theme={theme}>
-                    <Icon name={icon} size={16} />
-                </Button>
+                <Icon.Button name={icon} size={16} />
             );
         }
 

@@ -17,9 +17,7 @@ class PlayPauseButton extends Component {
 
             var size = bigMode ? iconSize : 16;
             return(
-                <Button theme={theme}>
-                    <ActivityIndicator size={size} />
-                </Button>
+                <ActivityIndicator size={size} />
             );
 
         } else {
@@ -28,15 +26,11 @@ class PlayPauseButton extends Component {
 
             if (bigMode) {
                 return(
-                    <Button theme={theme}>
-                        <Icon name={icon} size={iconSize} onPress={togglePlayPause} />
-                    </Button>
+                    <Icon.Button name={icon} size={iconSize} onPress={togglePlayPause} />
                 );
             } else {
                 return(
-                    <Button theme={theme}>
-                        <Icon name={icon} size={16} onPress={togglePlayPause} />
-                    </Button>
+                    <Icon.Button name={icon} size={16} onPress={togglePlayPause} />
                 );
             }
 

@@ -11,6 +11,7 @@ import { eventChannel } from 'redux-saga';
 const EVENT_PLAYER_STATE = 'EVENT_PLAYER_STATE';
 const EVENT_PLAYER_ERROR = 'EVENT_PLAYER_ERROR';
 const EVENT_PLAYER_PLAYPAUSE = 'EVENT_PLAYER_PLAYPAUSE';
+const EVENT_PLAYER_STOP = 'EVENT_PLAYER_STOP';
 
 /**
  * Handles initialisation of the player.
@@ -46,10 +47,29 @@ function* playerInitSaga() {
                 case EVENT_PLAYER_PLAYPAUSE:
                     yield call(handlePlayPause);
                     break;
+                case EVENT_PLAYER_STOP:
+                    yield call(handleStopEvent);
             }
 
         }
 
+    }
+
+}
+
+/**
+ * Handles stopping the player.
+ */
+
+function* handleStopEvent() {
+
+    // Sanity check
+
+    const state = yield select();
+
+    if (state !== PlayerState.IDLE) {
+        TrackPlayer.destroy();
+        yield put(setPlayerState(PlayerState.IDLE));
     }
 
 }
@@ -137,6 +157,12 @@ function createPlayerChannel() {
             });
         });
 
+        TrackPlayer.addEventListener('remote-stop', () => {
+            emit({
+                type: EVENT_PLAYER_STOP
+            });
+        })
+
         // Unsubscribe (required)
 
         const unsubscribe = () => {};
@@ -170,7 +196,8 @@ function* loadPlayerStation(action) {
         ],
         compactCapabilities: [
             TrackPlayer.CAPABILITY_PLAY,
-            TrackPlayer.CAPABILITY_PAUSE
+            TrackPlayer.CAPABILITY_PAUSE,
+            TrackPlayer.CAPABILITY_STOP
         ]
     });
 

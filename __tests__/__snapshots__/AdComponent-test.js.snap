@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders-correctly 1`] = `
+<BannerAd
+  requestOptions={
+    Object {
+      "requestNonPersonalizedAdsOnly": false,
+    }
+  }
+  size="SMART_BANNER"
+  unitId="bannerTestId"
+/>
+`;

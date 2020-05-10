@@ -7,15 +7,15 @@ class CastButton extends Component {
 
     render() {
 
-        const { icon, theme, bigMode, iconSize } = this.props;
+        const { icon, fgColour, bgColour, bigMode, iconSize } = this.props;
 
         if (bigMode) {
             return(
-                <Icon.Button name={icon} size={iconSize} />
+                <Icon.Button color={fgColour} backgroundColor={bgColour} name={icon} size={iconSize} />
             );
         } else {
             return(
-                <Icon.Button name={icon} size={16} />
+                <Icon.Button color={fgColour} backgroundColor={bgColour} name={icon} size={16} />
             );
         }
 
@@ -30,7 +30,8 @@ function mapStateToProps(state, ownProps) {
 
     return {
         icon: "cast",
-        theme: state.theme,
+        fgColour: state.theme.colors.primary,
+        bgColour: state.theme.colors.background,
         bigMode: bigMode,
         iconSize: iconSize
     };

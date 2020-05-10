@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const DIRECTION_FORWARDS = 0;
 export const DIRECTION_BACKWARDS = 1;
@@ -10,19 +9,15 @@ class SkipButton extends Component {
 
     render() {
 
-        const { icon, theme, bigMode, iconSize, canSkip } = this.props;
+        const { icon, fgColour, bgColour, bigMode, iconSize, canSkip } = this.props;
 
         if (bigMode) {
             return(
-                <Button theme={theme} disabled={!canSkip}>
-                    <Icon name={icon} size={iconSize} />
-                </Button>
+                <Icon.Button color={fgColour} backgroundColor={bgColour} disabled={!canSkip} name={icon} size={iconSize} />
             );
         } else {
             return(
-                <Button theme={theme} disabled={!canSkip}>
-                    <Icon name={icon} size={16} />
-                </Button>
+                <Icon.Button color={fgColour} backgroundColor={bgColour} name={icon} size={16} disabled={!canSkip} />
             );
         }
 
@@ -58,7 +53,8 @@ function mapStateToProps(state, ownProps) {
 
     return {
         icon: icon,
-        theme: state.theme,
+        fgColour: state.theme.colors.primary,
+        bgColour: state.theme.colors.background,
         bigMode: bigMode,
         iconSize: iconSize,
         canSkip: canSkip(ownProps.direction, state.player.playlist.length, state.player.currentItem)

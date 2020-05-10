@@ -10,22 +10,42 @@ class SkipButton extends Component {
 
     render() {
 
-        const { icon, theme, bigMode, iconSize } = this.props;
+        const { icon, theme, bigMode, iconSize, canSkip } = this.props;
 
         if (bigMode) {
             return(
-                <Button theme={theme}>
+                <Button theme={theme} disabled={!canSkip}>
                     <Icon name={icon} size={iconSize} />
                 </Button>
             );
         } else {
             return(
-                <Button theme={theme}>
+                <Button theme={theme} disabled={!canSkip}>
                     <Icon name={icon} size={16} />
                 </Button>
             );
         }
 
+    }
+
+}
+
+/**
+ * Indicates if we can skip in the requested direction.
+ * @param {int} direction The direction we want to skip.
+ * @param {int} playlistLength The length of the playlist.
+ * @param {int} currentItem The item number we're on in the playlist.
+ */
+
+function canSkip(direction, playlistLength, currentItem) {
+
+    switch(direction) {
+        case DIRECTION_FORWARDS:
+            return currentItem < (playlistLength - 1);
+        case DIRECTION_BACKWARDS:
+            return currentItem > 0;
+        default:
+            false;
     }
 
 }
@@ -40,7 +60,8 @@ function mapStateToProps(state, ownProps) {
         icon: icon,
         theme: state.theme,
         bigMode: bigMode,
-        iconSize: iconSize
+        iconSize: iconSize,
+        canSkip: canSkip(ownProps.direction, state.player.playlist.length, state.player.currentItem)
     };
 
 }

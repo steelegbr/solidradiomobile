@@ -10,6 +10,7 @@ import { eventChannel } from 'redux-saga';
 
 const EVENT_PLAYER_STATE = 'EVENT_PLAYER_STATE';
 const EVENT_PLAYER_ERROR = 'EVENT_PLAYER_ERROR';
+const EVENT_PLAYER_PLAYPAUSE = 'EVENT_PLAYER_PLAYPAUSE';
 
 /**
  * Handles initialisation of the player.
@@ -41,6 +42,9 @@ function* playerInitSaga() {
                     break;
                 case EVENT_PLAYER_ERROR:
                     yield call(handleErrorEvent, event.error);
+                    break;
+                case EVENT_PLAYER_PLAYPAUSE:
+                    yield call(handlePlayPause);
                     break;
             }
 
@@ -120,6 +124,18 @@ function createPlayerChannel() {
                 error: error
             });
         })
+
+        TrackPlayer.addEventListener('remote-play', () => {
+            emit({
+                type: EVENT_PLAYER_PLAYPAUSE
+            });
+        });
+
+        TrackPlayer.addEventListener('remote-pause', () => {
+            emit({
+                type: EVENT_PLAYER_PLAYPAUSE
+            });
+        });
 
         // Unsubscribe (required)
 
@@ -306,8 +322,10 @@ function* handlePlayPause() {
 
     if (state.player.state == PlayerState.PLAYING) {
         yield TrackPlayer.pause();
+        yield put(setPlayerState(PlayerState.PAUSED));
     } else if (state.player.state == PlayerState.PAUSED) {
         yield TrackPlayer.play();
+        yield put(setPlayerState(PlayerState.PLAYING));
     }
 
 }

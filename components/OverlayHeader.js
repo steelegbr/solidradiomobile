@@ -111,8 +111,9 @@ function mapStateToProps(state, ownProps) {
             },
             headerButton: {
                 alignSelf: 'center',
-                alignItems: 'flex-end',
-                flexDirection: 'row'
+                alignItems: 'center',
+                flexDirection: 'row',
+                padding: 10
             }
         }
     };

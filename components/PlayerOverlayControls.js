@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     buttons: {
         padding: 5,
         flexDirection: "row",
-        justifyContent: "center"
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
 

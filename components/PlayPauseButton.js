@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { PlayerState } from '../audio/player';
@@ -9,7 +10,7 @@ class PlayPauseButton extends Component {
 
     render() {
 
-        const { icon, theme, bigMode, iconSize, showSpinner, togglePlayPause } = this.props;
+        const { icon, fgColour, bgColour, bigMode, iconSize, showSpinner, togglePlayPause } = this.props;
 
         if (showSpinner) {
 
@@ -26,11 +27,11 @@ class PlayPauseButton extends Component {
 
             if (bigMode) {
                 return(
-                    <Icon.Button name={icon} size={iconSize} onPress={togglePlayPause} />
+                    <Icon name={icon} size={iconSize} color={fgColour} backgroundColor={bgColour} onPress={togglePlayPause} />
                 );
             } else {
                 return(
-                    <Icon.Button name={icon} size={16} onPress={togglePlayPause} />
+                    <Icon name={icon} size={16} color={fgColour} backgroundColor={bgColour} onPress={togglePlayPause} />
                 );
             }
 
@@ -69,7 +70,8 @@ function mapStateToProps(state, ownProps) {
 
     return {
         icon: icon,
-        theme: state.theme,
+        fgColour: state.theme.colors.primary,
+        bgColour: state.theme.colors.background,
         bigMode: bigMode,
         iconSize: iconSize,
         showSpinner: showSpinner

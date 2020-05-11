@@ -1,13 +1,13 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Dimensions, Image } from 'react-native';
+import { View, Dimensions, Platform } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
-import PlayerCarousel from './PlayerCarousel';
 import AdComponent from './AdComponent';
 import OverlayHeader from './OverlayHeader';
 import PlayerOverlayControls from './PlayerOverlayControls';
+import PlayerList from './PlayerList';
 
 class PlayerOverlay extends Component {
 
@@ -19,7 +19,7 @@ class PlayerOverlay extends Component {
 
         return(
             <View style={styles.contentContainer}>
-                <PlayerCarousel style={styles.carousel} />
+                <PlayerList />
                 <PlayerOverlayControls />
                 <AdComponent style={styles.admob} unitId="playerOverlay" />
             </View>
@@ -84,10 +84,17 @@ const mapStateToProps = state => {
         imageSize = Dimensions.get('window').width * 0.6;
     }
 
+    // Calculate OS specific offsets
+
+    const snapZeroOffset = Platform.OS === 'android' ? 40 : 0;
+    const snapOneOffset = Platform.OS === 'android' ? headerHeight : 95;
+
+    // Send it all out
+
     return {
         showOnscreen: showOnscreen,
         theme: state.theme,
-        snapPoints: [headerHeight + 40, Dimensions.get("window").height - headerHeight * 2],
+        snapPoints: [headerHeight + snapZeroOffset, Dimensions.get("window").height - headerHeight - snapOneOffset],
         styles: {
             contentContainer: {
                 height: Dimensions.get("window").height - headerHeight - 165,

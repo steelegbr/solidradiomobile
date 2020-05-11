@@ -32,9 +32,6 @@ class PlayerOverlayControls extends TrackPlayer.ProgressComponent {
                     <PlayPauseButton bigMode={true} iconSize={largeIconSize} />
                     <SkipButton direction={DIRECTION_FORWARDS} />
                 </View>
-                <View style={styles.buttons}>
-                    <CastButton bigMode={true} iconSize={largeIconSize} />
-                </View>
             </View>
         );
     }

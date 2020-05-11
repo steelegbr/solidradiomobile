@@ -1,4 +1,4 @@
-package uk.co.solidradio;
+package uk.co.solidradio.solid_radio;
 
 import android.app.Application;
 import android.content.Context;

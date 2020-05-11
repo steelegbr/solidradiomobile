@@ -1,7 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "io.fabric"
 
-// Crashylitics
+/* Crashylitics */
 
 crashlytics {
   enableNdk true
@@ -135,7 +135,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "uk.co.solidradio"
+        applicationId "uk.co.solidradio.solid_radio"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

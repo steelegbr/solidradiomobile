@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="uk.co.solidradio">
+  package="uk.co.solidradio.solid_radio">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

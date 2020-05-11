@@ -43,8 +43,8 @@ class OverlayHeader extends Component {
                         />
                     </TouchableWithoutFeedback>
                     <View style={styles.headerText}>
-                        <Text theme={theme}>{header.title}</Text>
-                        <Caption theme={theme}>
+                        <Text theme={theme} numberOfLines={1}>{header.title}</Text>
+                        <Caption theme={theme} numberOfLines={1}>
                             {header.subtitle}
                         </Caption>
                     </View>

@@ -1,4 +1,4 @@
-package uk.co.solidradio;
+package uk.co.solidradio.solid_radio;
 
 import com.facebook.react.ReactActivity;
 

@@ -17,7 +17,7 @@ exports[`renders-bigmode 1`] = `
         "overflow": "hidden",
       },
       Object {
-        "backgroundColor": "#f6f6f6",
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
         "borderRadius": 5,
       },
     ]
@@ -33,10 +33,15 @@ exports[`renders-bigmode 1`] = `
           "padding": 8,
         },
         Object {
-          "backgroundColor": "#f6f6f6",
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
           "borderRadius": 5,
         },
-        undefined,
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "color": "#6200ee",
+          "margin": 5,
+          "padding": 10,
+        },
       ]
     }
   >
@@ -83,7 +88,7 @@ exports[`renders-default 1`] = `
         "overflow": "hidden",
       },
       Object {
-        "backgroundColor": "#f6f6f6",
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
         "borderRadius": 5,
       },
     ]
@@ -99,10 +104,15 @@ exports[`renders-default 1`] = `
           "padding": 8,
         },
         Object {
-          "backgroundColor": "#f6f6f6",
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
           "borderRadius": 5,
         },
-        undefined,
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "color": "#6200ee",
+          "margin": 5,
+          "padding": 10,
+        },
       ]
     }
   >

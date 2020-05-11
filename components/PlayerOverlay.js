@@ -1,8 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Dimensions, Image } from 'react-native'
-import { Caption, Button, Text } from 'react-native-paper';
+import { View, Dimensions, Image } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import PlayerCarousel from './PlayerCarousel';
@@ -29,6 +28,7 @@ class PlayerOverlay extends Component {
     }
 
     onHeaderPress = () => {
+
         const currentRef = this.bottomSheetRef.current;
         if (currentRef != null) {
             currentRef.snapTo(1);
@@ -87,7 +87,7 @@ const mapStateToProps = state => {
     return {
         showOnscreen: showOnscreen,
         theme: state.theme,
-        snapPoints: [headerHeight, Dimensions.get("window").height - headerHeight - 95],
+        snapPoints: [headerHeight + 40, Dimensions.get("window").height - headerHeight * 2],
         styles: {
             contentContainer: {
                 height: Dimensions.get("window").height - headerHeight - 165,

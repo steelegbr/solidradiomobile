@@ -12,6 +12,8 @@ const EVENT_PLAYER_STATE = 'EVENT_PLAYER_STATE';
 const EVENT_PLAYER_ERROR = 'EVENT_PLAYER_ERROR';
 const EVENT_PLAYER_PLAYPAUSE = 'EVENT_PLAYER_PLAYPAUSE';
 const EVENT_PLAYER_STOP = 'EVENT_PLAYER_STOP';
+const EVENT_PLAYER_PAUSE = 'EVENT_PLAYER_PAUSE';
+const EVENT_PLAYER_PLAY = 'EVENT_PLAYER_PLAY';
 
 /**
  * Handles initialisation of the player.
@@ -37,6 +39,7 @@ function* playerInitSaga() {
         while (true) {
 
             let event = yield take(channel);
+            
             switch (event.type) {
                 case EVENT_PLAYER_STATE:
                     yield call(handleStateEvent, event.data);
@@ -47,6 +50,11 @@ function* playerInitSaga() {
                 case EVENT_PLAYER_PLAYPAUSE:
                     yield call(handlePlayPause);
                     break;
+                case EVENT_PLAYER_PLAY:
+                    yield call(handlePlay);
+                    break;
+                case EVENT_PLAYER_PAUSE:
+                    yield call(handlePause);
                 case EVENT_PLAYER_STOP:
                     yield call(handleStopEvent);
             }
@@ -147,13 +155,13 @@ function createPlayerChannel() {
 
         TrackPlayer.addEventListener('remote-play', () => {
             emit({
-                type: EVENT_PLAYER_PLAYPAUSE
+                type: EVENT_PLAYER_PLAY
             });
         });
 
         TrackPlayer.addEventListener('remote-pause', () => {
             emit({
-                type: EVENT_PLAYER_PLAYPAUSE
+                type: EVENT_PLAYER_PAUSE
             });
         });
 
@@ -190,11 +198,6 @@ function* loadPlayerStation(action) {
 
     TrackPlayer.updateOptions({
         capabilities: [
-            TrackPlayer.CAPABILITY_PLAY,
-            TrackPlayer.CAPABILITY_PAUSE,
-            TrackPlayer.CAPABILITY_STOP
-        ],
-        compactCapabilities: [
             TrackPlayer.CAPABILITY_PLAY,
             TrackPlayer.CAPABILITY_PAUSE,
             TrackPlayer.CAPABILITY_STOP
@@ -351,6 +354,38 @@ function* handlePlayPause() {
         yield TrackPlayer.pause();
         yield put(setPlayerState(PlayerState.PAUSED));
     } else if (state.player.state == PlayerState.PAUSED) {
+        yield TrackPlayer.play();
+        yield put(setPlayerState(PlayerState.PLAYING));
+    }
+
+}
+
+/**
+ * Handles a pause request.
+ */
+
+function* handlePause() {
+
+    // Check the state and pause
+
+    const state = yield select();
+    if (state.player.state == PlayerState.PLAYING) {
+        yield TrackPlayer.pause();
+        yield put(setPlayerState(PlayerState.PAUSED));
+    }
+
+}
+
+/**
+ * Handles a play request.
+ */
+
+function* handlePlay() {
+
+    // Check the state and play
+
+    const state = yield select();
+    if (state.player.state == PlayerState.PAUSED) {
         yield TrackPlayer.play();
         yield put(setPlayerState(PlayerState.PLAYING));
     }

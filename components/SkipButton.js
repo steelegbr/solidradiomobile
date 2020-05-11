@@ -9,15 +9,15 @@ class SkipButton extends Component {
 
     render() {
 
-        const { icon, fgColour, bgColour, bigMode, iconSize, canSkip } = this.props;
+        const { icon, style, bigMode, iconSize, canSkip } = this.props;
 
         if (bigMode) {
             return(
-                <Icon.Button color={fgColour} backgroundColor={bgColour} disabled={!canSkip} name={icon} size={iconSize} />
+                <Icon.Button color={style.color} backgroundColor={style.backgroundColor} disabled={!canSkip} name={icon} size={iconSize} />
             );
         } else {
             return(
-                <Icon.Button color={fgColour} backgroundColor={bgColour} name={icon} size={16} disabled={!canSkip} />
+                <Icon.Button color={style.color} backgroundColor={style.backgroundColor} name={icon} size={16} disabled={!canSkip} />
             );
         }
 
@@ -53,8 +53,12 @@ function mapStateToProps(state, ownProps) {
 
     return {
         icon: icon,
-        fgColour: state.theme.colors.primary,
-        bgColour: state.theme.colors.background,
+        style: {
+            color: state.theme.colors.primary,
+            backgroundColor: 'rgba(0, 0, 0, 0.0)',
+            padding: 10,
+            margin: 5
+        },
         bigMode: bigMode,
         iconSize: iconSize,
         canSkip: canSkip(ownProps.direction, state.player.playlist.length, state.player.currentItem)

@@ -10,7 +10,7 @@ class PlayPauseButton extends Component {
 
     render() {
 
-        const { icon, fgColour, bgColour, bigMode, iconSize, showSpinner, togglePlayPause } = this.props;
+        const { icon, style, bigMode, iconSize, showSpinner, togglePlayPause } = this.props;
 
         if (showSpinner) {
 
@@ -27,11 +27,11 @@ class PlayPauseButton extends Component {
 
             if (bigMode) {
                 return(
-                    <Icon name={icon} size={iconSize} color={fgColour} backgroundColor={bgColour} onPress={togglePlayPause} />
+                    <Icon.Button name={icon} size={iconSize} color={style.color} backgroundColor={style.backgroundColor} onPress={togglePlayPause} />
                 );
             } else {
                 return(
-                    <Icon name={icon} size={16} color={fgColour} backgroundColor={bgColour} onPress={togglePlayPause} />
+                    <Icon.Button name={icon} size={16} style={style} color={style.color} backgroundColor={style.backgroundColor} onPress={togglePlayPause} />
                 );
             }
 
@@ -70,8 +70,12 @@ function mapStateToProps(state, ownProps) {
 
     return {
         icon: icon,
-        fgColour: state.theme.colors.primary,
-        bgColour: state.theme.colors.background,
+        style: {
+            color: state.theme.colors.primary,
+            backgroundColor: 'rgba(0, 0, 0, 0.0)',
+            padding: 10,
+            margin: 5
+        },
         bigMode: bigMode,
         iconSize: iconSize,
         showSpinner: showSpinner

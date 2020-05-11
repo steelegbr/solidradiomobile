@@ -17,12 +17,11 @@ class StationCarousel extends Component {
     }
 
     render() {
-        const { stations, setCurrentStation } = this.props;
+        const { stations } = this.props;
         const sliderWidth = Dimensions.get("window").width;
         const itemWidth = sliderWidth * 0.8;
         return(
             <View style={carouselStyles.parent}>
-                <PlayerOverlay />
                 <Carousel
                     ref={(c) => { this._carousel = c; }}
                     data={stations}
@@ -32,6 +31,7 @@ class StationCarousel extends Component {
                     windowSize={1}
                     loop={true}
                 />
+                <PlayerOverlay />
             </View>
         );
     }

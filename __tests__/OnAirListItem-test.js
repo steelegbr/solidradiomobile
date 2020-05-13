@@ -1,5 +1,5 @@
 /**
- * Tests the on air carousel card.
+ * Tests the on air list item.
  */
 
 import React from 'react';

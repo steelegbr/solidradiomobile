@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { List } from 'react-native-paper';
 import OnAirListItem from './OnAirListItem';
 import NowPlayingListItem from './NowPlayingListItem';
 

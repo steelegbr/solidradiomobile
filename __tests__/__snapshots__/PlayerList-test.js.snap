@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        false,
+        Array [
+          Object {
+            "padding": 8,
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        pointerEvents="box-none"
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 8,
+              "width": 40,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          accessibilityElementsHidden={true}
+          importantForAccessibility="no-hide-descendants"
+          source={
+            Object {
+              "uri": "art.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "transform": Array [
+                  Object {
+                    "scaleX": 1,
+                  },
+                ],
+              },
+              Object {
+                "height": 24,
+                "resizeMode": "contain",
+                "tintColor": undefined,
+                "width": 24,
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "marginVertical": 6,
+              "paddingLeft": 8,
+            },
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "rgba(0, 0, 0, 0.87)",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          Now On Air - Test Show
+        </Text>
+        <Text
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                },
+                Object {
+                  "color": "rgba(0, 0, 0, 0.54)",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          A really good test description.
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        false,
+        Array [
+          Object {
+            "padding": 8,
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        pointerEvents="box-none"
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "height": 40,
+              "justifyContent": "center",
+              "margin": 8,
+              "width": 40,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "marginVertical": 6,
+              "paddingLeft": 8,
+            },
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "rgba(0, 0, 0, 0.87)",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          Now Playing
+        </Text>
+        <Text
+          numberOfLines={2}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                },
+                Object {
+                  "color": "rgba(0, 0, 0, 0.54)",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          Test Artist - Test Title
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -25,6 +25,7 @@ class PlayerOverlayControls extends TrackPlayer.ProgressComponent {
                         totalDuration={this.state.bufferedPosition}
                         trackColor={theme.colors.primary}
                         scrubbedColor={theme.colors.accent}
+                        onSlidingComplete={() => {}}
                     />
                 </View>
                 <View style={styles.buttons}>

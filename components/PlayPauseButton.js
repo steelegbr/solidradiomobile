@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native-paper';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { PlayerState } from '../audio/player';

@@ -484,12 +484,14 @@ export function setAdmobUnitId(name, id) {
 /**
  * Sets the current state of the audio player.
  * @param {int} state The current state of the audio player.
+ * @param {int} unmappedState The state from the original library, before we mapped it.
  */
 
-export function setPlayerState(state) {
+export function setPlayerState(state, unmappedState) {
     return {
         type: SET_PLAYER_STATE,
-        state: state
+        state: state,
+        unmappedState: unmappedState
     };
 }
 

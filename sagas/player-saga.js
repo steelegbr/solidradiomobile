@@ -32,7 +32,7 @@ function* playerInitSaga() {
         // As per the documentation
 
         yield TrackPlayer.setupPlayer();
-        yield put(setPlayerState(PlayerState.IDLE));
+        yield put(setPlayerState(PlayerState.IDLE, null));
 
         // Callbacks
 
@@ -78,7 +78,7 @@ function* handleStop() {
 
     if (state !== PlayerState.IDLE) {
         TrackPlayer.destroy();
-        yield put(setPlayerState(PlayerState.IDLE));
+        yield put(setPlayerState(PlayerState.IDLE, null));
     }
 
 }
@@ -92,7 +92,7 @@ function* handleErrorEvent(error) {
 
     // Throw our application state
 
-    yield put(setPlayerState(PlayerState.ERROR));
+    yield put(setPlayerState(PlayerState.ERROR, null));
 
     // Handle the error
 
@@ -123,11 +123,12 @@ function* handleStateEvent(data) {
             break;
         case TrackPlayer.STATE_BUFFERING:
         case TrackPlayer.STATE_CONNECTING:
+        case "buffering":
             translatedState = PlayerState.LOADING;
             break;
     };
 
-    yield put(setPlayerState(translatedState));
+    yield put(setPlayerState(translatedState, data.state));
 
 }
 
@@ -219,10 +220,7 @@ function* loadPlayerStation(action) {
         album: getStreamAlbum(action.stationName, station)
     };
 
-    // Call play twice for iOS
-
     yield TrackPlayer.add([stationTrack]);
-    yield TrackPlayer.play();
     yield TrackPlayer.play();
 
     // Log the start
@@ -356,10 +354,10 @@ function* handlePlayPause() {
 
     if (state.player.state == PlayerState.PLAYING) {
         yield TrackPlayer.pause();
-        yield put(setPlayerState(PlayerState.PAUSED));
+        yield put(setPlayerState(PlayerState.PAUSED, null));
     } else if (state.player.state == PlayerState.PAUSED) {
         yield TrackPlayer.play();
-        yield put(setPlayerState(PlayerState.PLAYING));
+        yield put(setPlayerState(PlayerState.PLAYING, null));
     }
 
 }
@@ -375,7 +373,7 @@ function* handlePause() {
     const state = yield select();
     if (state.player.state == PlayerState.PLAYING) {
         yield TrackPlayer.pause();
-        yield put(setPlayerState(PlayerState.PAUSED));
+        yield put(setPlayerState(PlayerState.PAUSED, null));
     }
 
 }
@@ -391,7 +389,7 @@ function* handlePlay() {
     const state = yield select();
     if (state.player.state == PlayerState.PAUSED) {
         yield TrackPlayer.play();
-        yield put(setPlayerState(PlayerState.PLAYING));
+        yield put(setPlayerState(PlayerState.PLAYING, null));
     }
 
 }

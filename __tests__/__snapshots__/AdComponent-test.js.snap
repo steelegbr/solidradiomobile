@@ -11,3 +11,16 @@ exports[`renders-correctly 1`] = `
   unitId="bannerTestId"
 />
 `;
+
+exports[`renders-correctly-production 1`] = `
+<BannerAd
+  onAdFailedToLoad={[Function]}
+  requestOptions={
+    Object {
+      "requestNonPersonalizedAdsOnly": false,
+    }
+  }
+  size="SMART_BANNER"
+  unitId="testUnitId"
+/>
+`;

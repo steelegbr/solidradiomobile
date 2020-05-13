@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from "react";
 import { connect } from "react-redux";
 import { BannerAd, BannerAdSize, TestIds, AdsConsentStatus } from "@react-native-firebase/admob";
+import { adLoadError } from "../reducers/actions";
 
 class AdComponent extends Component {
 
@@ -42,9 +43,9 @@ class AdComponent extends Component {
  * @param {error} error The error loading the advert.
  */
 
-function adFailedToLoad(error) {
+export function adFailedToLoad(error) {
     
-    const { adLoadError, unitId } = self.props;
+    const { unitId } = self.props;
     adLoadError(error, unitId);
 
 }

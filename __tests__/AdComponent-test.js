@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import AdComponent from '../components/AdComponent';
+import AdComponent, { adFailedToLoad } from '../components/AdComponent';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -47,11 +47,36 @@ beforeEach(() => {
 
 it('renders-correctly', () => {
 
+    // Arrange & Act
+
     const ad = renderer.create(
         <Provider store={store}>
             <AdComponent unitId="testUnitName" />
         </Provider>
     ).toJSON();
+
+    // Assert
+
+    expect(ad).toMatchSnapshot();
+
+});
+
+it('renders-correctly-production', () => {
+
+    // Arrange
+
+    global.__DEV__ = false;
+
+    // Act
+
+    const ad = renderer.create(
+        <Provider store={store}>
+            <AdComponent unitId="testUnitName" />
+        </Provider>
+    ).toJSON();
+
+    // Assert
+
     expect(ad).toMatchSnapshot();
 
 });

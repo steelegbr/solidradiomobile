@@ -39,6 +39,9 @@ export const LOG_STREAM_END = 'LOG_STREAM_END';
 export const AUDIO_PLAYER_ERROR = 'AUDIO_PLAYER_ERROR';
 export const ADMOB_LOAD_ERROR = 'AD_LOAD_ERROR';
 export const AUDIO_PLAYER_PLAYPAUSE = 'AUDIO_PLAYER_PLAYPAUSE';
+export const AUDIO_PLAYER_PLAY = 'AUDIO_PLAYER_PLAY';
+export const AUDIO_PLAYER_PAUSE = 'AUDIO_PLAYER_PAUSE';
+export const AUDIO_PLAYER_STOP = 'AUDIO_PLAYER_STOP';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -567,10 +570,48 @@ export function adLoadError(error, unitId) {
 
 /**
  * Toggles the play/pause on the audio player.
+ * @param {string} source The source of the request.
  */
 
-export function togglePlayPause() {
+export function togglePlayPause(source) {
     return {
-        type: AUDIO_PLAYER_PLAYPAUSE
+        type: AUDIO_PLAYER_PLAYPAUSE,
+        source: source
+    };
+}
+
+/**
+ * Plays the audio player.
+ * @param {string} source The source of the request.
+ */
+
+export function audioPlayerPlay(source) {
+    return {
+        type: AUDIO_PLAYER_PLAY,
+        source: source
+    };
+}
+
+/**
+ * Pauses the audio player.
+ * @param {string} source The source of the request.
+ */
+
+export function audioPlayerPause(source) {
+    return {
+        type: AUDIO_PLAYER_PAUSE,
+        source: source
+    };
+}
+
+/**
+ * Stops the audio player.
+ * @param {string} source The source of the request.
+ */
+
+export function audioPlayerStop(source) {
+    return {
+        type: AUDIO_PLAYER_STOP,
+        source: source
     };
 }

@@ -3,7 +3,7 @@
  */
 
 import TrackPlayer from 'react-native-track-player';
-import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE } from '../reducers/actions';
+import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, audioPlayerPause, audioPlayerStop, AUDIO_PLAYER_PAUSE, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_STOP } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { put, all, call, select, takeEvery, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
@@ -14,6 +14,7 @@ const EVENT_PLAYER_PLAYPAUSE = 'EVENT_PLAYER_PLAYPAUSE';
 const EVENT_PLAYER_STOP = 'EVENT_PLAYER_STOP';
 const EVENT_PLAYER_PAUSE = 'EVENT_PLAYER_PAUSE';
 const EVENT_PLAYER_PLAY = 'EVENT_PLAYER_PLAY';
+const SOURCE = 'remote_control';
 
 /**
  * Handles initialisation of the player.
@@ -48,15 +49,15 @@ function* playerInitSaga() {
                     yield call(handleErrorEvent, event.error);
                     break;
                 case EVENT_PLAYER_PLAYPAUSE:
-                    yield call(handlePlayPause);
+                    yield put(togglePlayPause(SOURCE))
                     break;
                 case EVENT_PLAYER_PLAY:
-                    yield call(handlePlay);
+                    yield put(audioPlayerPlay(SOURCE))
                     break;
                 case EVENT_PLAYER_PAUSE:
-                    yield call(handlePause);
+                    yield call(audioPlayerPause(SOURCE));
                 case EVENT_PLAYER_STOP:
-                    yield call(handleStopEvent);
+                    yield call(audioPlayerStop(SOURCE));
             }
 
         }
@@ -69,7 +70,7 @@ function* playerInitSaga() {
  * Handles stopping the player.
  */
 
-function* handleStopEvent() {
+function* handleStop() {
 
     // Sanity check
 
@@ -218,7 +219,10 @@ function* loadPlayerStation(action) {
         album: getStreamAlbum(action.stationName, station)
     };
 
+    // Call play twice for iOS
+
     yield TrackPlayer.add([stationTrack]);
+    yield TrackPlayer.play();
     yield TrackPlayer.play();
 
     // Log the start
@@ -397,6 +401,9 @@ export function* watchPlayer() {
         takeEvery(INITIAL_LOAD_REQUESTED, playerInitSaga),
         takeEvery(LOAD_PLAYER_STATION, loadPlayerStation),
         takeEvery(NOW_PLAYING_UPDATE, handleNowPlaying),
-        takeEvery(AUDIO_PLAYER_PLAYPAUSE, handlePlayPause)
+        takeEvery(AUDIO_PLAYER_PLAYPAUSE, handlePlayPause),
+        takeEvery(AUDIO_PLAYER_PAUSE, handlePause),
+        takeEvery(AUDIO_PLAYER_PLAY, handlePlay),
+        takeEvery(AUDIO_PLAYER_STOP, handleStop)
     ]);
 }

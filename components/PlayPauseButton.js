@@ -85,7 +85,7 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        togglePlayPause: () => dispatch(togglePlayPause())
+        togglePlayPause: () => dispatch(togglePlayPause('play_pause_button'))
     }
 };
 

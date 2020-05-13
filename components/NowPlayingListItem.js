@@ -2,7 +2,6 @@ import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { List } from "react-native-paper";
-import { generateStationTheme } from "../branding/branding";
 
 /**
  * List item for displaying the currently on air show.

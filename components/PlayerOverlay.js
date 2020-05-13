@@ -6,6 +6,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import AdComponent from './AdComponent';
 import OverlayHeader from './OverlayHeader';
+import PlayerCarousel from './PlayerCarousel';
 import PlayerOverlayControls from './PlayerOverlayControls';
 import PlayerList from './PlayerList';
 
@@ -17,13 +18,23 @@ class PlayerOverlay extends Component {
 
         const { styles } = this.props;
 
-        return(
-            <View style={styles.contentContainer}>
-                <PlayerList />
-                <PlayerOverlayControls />
-                <AdComponent style={styles.admob} unitId="playerOverlay" />
-            </View>
-        );
+        if (Platform.OS === 'ios') {
+            return(
+                <View style={styles.contentContainer}>
+                    <PlayerCarousel />
+                    <PlayerOverlayControls />
+                    <AdComponent style={styles.admob} unitId="playerOverlay" />
+                </View>
+            );
+        } else {
+            return(
+                <View style={styles.contentContainer}>
+                    <PlayerList />
+                    <PlayerOverlayControls />
+                    <AdComponent style={styles.admob} unitId="playerOverlay" />
+                </View>
+            );
+        }
         
     }
 

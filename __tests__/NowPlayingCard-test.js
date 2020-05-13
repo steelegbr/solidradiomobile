@@ -6,8 +6,9 @@ import React from 'react';
 import NowPlayingCard from '../components/NowPlayingCard';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import { generateTheme } from '../branding/branding';
 import { Provider } from 'react-redux';
+
+// Redux
 
 const mockStore = configureStore([]);
 let store;
@@ -19,6 +20,8 @@ beforeEach(() => {
         }
     });
 });
+
+// Tests
 
 it('renders-with-art', () => {
 
@@ -32,12 +35,12 @@ it('renders-with-art', () => {
         logo_square: "logo.png"
     };
 
-    const castButton = renderer.create(
+    const nowPlayingCard = renderer.create(
         <Provider store={store}>
             <NowPlayingCard nowPlaying={nowPlaying} station={station} />
         </Provider>
     ).toJSON();
-    expect(castButton).toMatchSnapshot();
+    expect(nowPlayingCard).toMatchSnapshot();
 
 });
 
@@ -54,12 +57,12 @@ it('renders-fallback-art', () => {
         primary_colour: "#ff0000"
     };
 
-    const castButton = renderer.create(
+    const nowPlayingCard = renderer.create(
         <Provider store={store}>
             <NowPlayingCard nowPlaying={nowPlaying} station={station} />
         </Provider>
     ).toJSON();
 
-    expect(castButton).toMatchSnapshot();
+    expect(nowPlayingCard).toMatchSnapshot();
 
 });

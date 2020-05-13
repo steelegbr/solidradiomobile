@@ -3,7 +3,7 @@
  */
 
 import { all, takeEvery, put, takeLatest } from 'redux-saga/effects';
-import { SET_DARK_MODE, SET_HIGH_BITRATE, SET_CURRENT_STATION, LOG_STREAM_END, LOG_STREAM_START, LOG_STATION_SONG_PLAY } from '../reducers/actions';
+import { SET_DARK_MODE, SET_HIGH_BITRATE, SET_CURRENT_STATION, LOG_STREAM_END, LOG_STREAM_START, LOG_STATION_SONG_PLAY, AUDIO_PLAYER_PLAYPAUSE, AUDIO_PLAYER_PAUSE, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_STOP } from '../reducers/actions';
 import { KEY_DARK_MODE, KEY_HIGH_BITRATE } from './settings-saga';
 import analytics from '@react-native-firebase/analytics';
 
@@ -70,6 +70,54 @@ function* logStreamSongPlay(action) {
 }
 
 /**
+ * Logs a play/pause request for the audio player.
+ * @param {action} action The action to trigger the player.
+ */
+
+function* logPlayPause(action) {
+    yield analytics().logEvent('player', {
+        action: 'play_pause',
+        source: action.source
+    });
+}
+
+/**
+ * Logs a play request for the audio player.
+ * @param {action} action The action to trigger the player.
+ */
+
+function* logPlay(action) {
+    yield analytics().logEvent('player', {
+        action: 'play',
+        source: action.source
+    });
+}
+
+/**
+ * Logs a pause request for the audio player.
+ * @param {action} action The action to trigger the player.
+ */
+
+function* logPause(action) {
+    yield analytics().logEvent('player', {
+        action: 'pause',
+        source: action.source
+    });
+}
+
+/**
+ * Logs a stop request for the audio player.
+ * @param {action} action The action to trigger the player.
+ */
+
+function* logStop(action) {
+    yield analytics().logEvent('player', {
+        action: 'stop',
+        source: action.source
+    });
+}
+
+/**
  * Provides the analytics watchdog.
  */
 
@@ -80,6 +128,10 @@ export function* watchAnalytics() {
         takeEvery(SET_CURRENT_STATION, logStationChange),
         takeEvery(LOG_STREAM_START, logStreamStart),
         takeEvery(LOG_STREAM_END, logStreamEnd),
-        takeEvery(LOG_STATION_SONG_PLAY, logStreamSongPlay)
+        takeEvery(LOG_STATION_SONG_PLAY, logStreamSongPlay),
+        takeEvery(AUDIO_PLAYER_PLAYPAUSE, logPlayPause),
+        takeEvery(AUDIO_PLAYER_PAUSE, logPause),
+        takeEvery(AUDIO_PLAYER_PLAY, logPlay),
+        takeEvery(AUDIO_PLAYER_STOP, logStop)
     ]);
 }

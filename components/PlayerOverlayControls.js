@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native'
 import Scrubber from 'react-native-scrubber';
 import PlayPauseButton from './PlayPauseButton';
-import CastButton from './CastButton';
 import SkipButton, { DIRECTION_FORWARDS, DIRECTION_BACKWARDS } from './SkipButton';
-import TrackPlayer from 'react-native-track-player';
 
 /**
  * Controls for managing the player in the full overlay view.

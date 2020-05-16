@@ -148,6 +148,12 @@ exports[`renders-loading 1`] = `
 />
 `;
 
+exports[`renders-loading-big-mode 1`] = `
+<ActivityIndicator
+  size={40}
+/>
+`;
+
 exports[`renders-paused 1`] = `
 <View
   accessible={true}
@@ -271,6 +277,72 @@ exports[`renders-playing 1`] = `
           Object {
             "color": "#ff0000",
             "fontSize": 16,
+          },
+          Object {
+            "marginRight": 10,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders-playing-big-mode 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
+        "borderRadius": 5,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "padding": 8,
+        },
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "borderRadius": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#ff0000",
+            "fontSize": 40,
           },
           Object {
             "marginRight": 10,

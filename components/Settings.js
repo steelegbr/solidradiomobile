@@ -16,11 +16,11 @@ class Settings extends Component {
                 <Title style={styles.header}>Settings</Title>
                 <View style={styles.row}>
                     <Paragraph>Dark Mode</Paragraph>
-                    <Switch value={darkMode} onValueChange={() => setDarkMode(!darkMode)} />
+                    <Switch value={darkMode} onValueChange={() => setDarkMode(!darkMode)} testID="darkModeToggle" />
                 </View>
                 <View style={styles.row}>
                     <Paragraph>Stream High Bitrate</Paragraph>
-                    <Switch value={highBitrate} onValueChange={() => setHighBitrate(!highBitrate)} />
+                    <Switch value={highBitrate} onValueChange={() => setHighBitrate(!highBitrate)} testID="highBitrateToggle" />
                 </View>
             </View>
         );

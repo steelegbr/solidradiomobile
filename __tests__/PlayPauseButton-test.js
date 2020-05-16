@@ -8,6 +8,8 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import PlayPauseButton from '../components/PlayPauseButton';
 import { PlayerState } from '../audio/player';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { mount } from 'enzyme';
 
 // Mocks
 
@@ -18,23 +20,6 @@ jest.mock("react-native-paper", () => ({
             
         }
     }
-}));
-
-// Firebase
-
-jest.mock("@react-native-firebase/admob", () => ({
-    AdsConsentStatus: {
-        UNKNOWN: 0,
-        NON_PERSONALIZED: 1,
-        PERSONALISED: 2
-    },
-    TestIds: {
-        BANNER: "bannerTestId"
-    },
-    BannerAdSize: {
-        SMART_BANNER: "SMART_BANNER"
-    },
-    BannerAd: "BannerAd"
 }));
 
 // Redux
@@ -158,6 +143,29 @@ it('renders-playing', () => {
 
 });
 
+it('renders-playing-big-mode', () => {
+
+    const store = mockStore({
+        theme: {
+            colors: {
+                primary: "#ff0000"
+            }
+        },
+        player: {
+            state: PlayerState.PLAYING
+        }
+    });
+
+    const playPauseButton = renderer.create(
+        <Provider store={store}>
+            <PlayPauseButton bigMode={true} iconSize={40} />
+        </Provider>
+    ).toJSON();
+    
+    expect(playPauseButton).toMatchSnapshot();
+
+});
+
 it('renders-loading', () => {
 
     const store = mockStore({
@@ -181,3 +189,89 @@ it('renders-loading', () => {
 
 });
 
+it('renders-loading-big-mode', () => {
+
+    const store = mockStore({
+        theme: {
+            colors: {
+                primary: "#ff0000"
+            }
+        },
+        player: {
+            state: PlayerState.LOADING
+        }
+    });
+
+    const playPauseButton = renderer.create(
+        <Provider store={store}>
+            <PlayPauseButton bigMode={true} iconSize={40} />
+        </Provider>
+    ).toJSON();
+    
+    expect(playPauseButton).toMatchSnapshot();
+
+});
+
+it('play-pause-pressed', () => {
+
+    // Arrange
+
+    const store = mockStore({
+        theme: {
+            colors: {
+                primary: "#ff0000"
+            }
+        },
+        player: {
+            state: PlayerState.PLAYING
+        }
+    });
+
+    const playPauseButton = mount(
+        <Provider store={store}>
+            <PlayPauseButton />
+        </Provider>
+    );
+
+    // Act
+
+    playPauseButton.find(Icon.Button).first().props().onPress();
+
+    // Assert
+
+    const expectedActions = [ { "type": "AUDIO_PLAYER_PLAYPAUSE", "source": "play_pause_button" } ];
+    expect(store.getActions()).toStrictEqual(expectedActions);
+
+});
+
+it('play-pause-presse-big-mode', () => {
+
+    // Arrange
+
+    const store = mockStore({
+        theme: {
+            colors: {
+                primary: "#ff0000"
+            }
+        },
+        player: {
+            state: PlayerState.PLAYING
+        }
+    });
+
+    const playPauseButton = mount(
+        <Provider store={store}>
+            <PlayPauseButton bigMode={true} iconSize={40} />
+        </Provider>
+    );
+
+    // Act
+
+    playPauseButton.find(Icon.Button).first().props().onPress();
+
+    // Assert
+
+    const expectedActions = [ { "type": "AUDIO_PLAYER_PLAYPAUSE", "source": "play_pause_button" } ];
+    expect(store.getActions()).toStrictEqual(expectedActions);
+
+});

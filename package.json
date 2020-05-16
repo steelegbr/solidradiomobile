@@ -59,7 +59,8 @@
     "preset": "react-native",
     "collectCoverage": true,
     "setupFilesAfterEnv": [
-      "<rootDir>/jest/enzyme.js"
+      "<rootDir>/jest/enzyme.js",
+      "<rootDir>/jest/setup.js"
     ]
   }
 }

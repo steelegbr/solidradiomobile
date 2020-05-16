@@ -8,25 +8,9 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { generateTheme } from '../branding/branding';
+import { mount } from 'enzyme';
 
-// Firebase
-
-jest.mock("@react-native-firebase/admob", () => ({
-    AdsConsentStatus: {
-        UNKNOWN: 0,
-        NON_PERSONALIZED: 1,
-        PERSONALISED: 2
-    },
-    TestIds: {
-        BANNER: "bannerTestId"
-    },
-    BannerAdSize: {
-        SMART_BANNER: "SMART_BANNER"
-    },
-    BannerAd: "BannerAd"
-}));
-
-// Store
+// Redux
 
 const mockStore = configureStore([]);
 let store;
@@ -78,5 +62,26 @@ it('renders-correctly-production', () => {
     // Assert
 
     expect(ad).toMatchSnapshot();
+
+});
+
+it('load-failure', () => {
+
+    // Arrange
+
+    const ad = mount(
+        <Provider store={store}>
+            <AdComponent unitId="testUnitName" />
+        </Provider>
+    )
+
+    // Act
+
+    ad.find('[unitId="testUnitId"]').first().props().adLoadError();
+
+    // Assert
+
+    const expectedActions = [ { "error": undefined, "type": "AD_LOAD_ERROR", "unitId": undefined, } ];
+    expect(store.getActions()).toStrictEqual(expectedActions);
 
 });

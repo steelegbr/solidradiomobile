@@ -32,7 +32,6 @@ class StationCard extends Component {
                 borderTopRightRadius: borderRadius
             },
             logo : {
-                backgroundColor: station.primaryColour,
                 height: 50,
                 borderTopLeftRadius: borderRadius,
                 borderTopRightRadius: borderRadius,

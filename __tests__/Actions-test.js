@@ -70,13 +70,14 @@ describe('reducer', () => {
     
     });
 
-    it('api-params', () => {
+    it.each`
+        server | key
+        ${'example.com'} | ${'super-duper-key'}
+        ${null} | ${null}
+    `('api-params', ({server, key}) => {
 
         // Arrange
 
-        const server = 'server.example.com';
-        const key = 'test-api-key';
-    
         // Act
     
         const newState = reducer(state, setApiParams(server, key));
@@ -88,11 +89,14 @@ describe('reducer', () => {
     
     });
 
-    it('load-station-request', () => {
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('load-station-request', (stationName) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
     
         // Act
     
@@ -105,11 +109,12 @@ describe('reducer', () => {
     
     });
 
-    it('onair-load-request', () => {
-
-        // Arrange
-
-        const stationName = 'Test Station';
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('onair-load-request', (stationName) => {
     
         // Act
     
@@ -122,11 +127,14 @@ describe('reducer', () => {
     
     });
 
-    it('initial-load-fail', () => {
+    it.each`
+        error
+        ${'Some really bad error!'}
+        ${null}
+        ${''}
+    `('initial-load-fail', (error) => {
 
         // Arrange
-
-        const error = 'Some really bad error!';
     
         // Act
     
@@ -139,11 +147,14 @@ describe('reducer', () => {
     
     });
 
-    it('now-playing-success', () => {
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('now-playing-success', ({ stationName }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
     
         // Act
     
@@ -156,12 +167,14 @@ describe('reducer', () => {
     
     });
 
-    it('now-playing-fail', () => {
+    it.each`
+        stationName | error
+        ${'Test Station'} | ${'Some really bad error'}
+        ${null} | ${null}
+        ${''} | ${''}
+    `('now-playing-fail', ({ stationName, error }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
-        const error = 'Some really bad error.';
     
         // Act
     
@@ -174,14 +187,14 @@ describe('reducer', () => {
     
     });
 
-    it('now-playing-update', () => {
+    it.each`
+        stationName | artist | title | artUrl
+        ${'Test Station'} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
+        ${null} | ${null} | ${null} | ${null}
+        ${''} | ${''} | ${''} | ${''}
+    `('now-playing-update', ({ stationName, artist ,title, artUrl }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
-        const artist = 'Test Artist';
-        const title = 'Test Title';
-        const artUrl = 'art.png';
 
         let miniState = {
             stations: {}
@@ -204,6 +217,26 @@ describe('reducer', () => {
     
     });
 
+    it.each`
+        stationName | artist | title | artUrl
+        ${'Other Station'} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
+        ${null} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
+        ${''} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
+    `('now-playing-bad-station', ({ stationName, artist, title, artUrl }) => {
+
+        // Arrange
+    
+        // Act
+    
+        const newState = reducer(state, nowPlayingUpdate(stationName, artist, title, artUrl));
+    
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
     it('change-orientation', () => {
 
         // Arrange
@@ -220,11 +253,13 @@ describe('reducer', () => {
     
     });
 
-    it('is-tablet', () => {
+    it.each`
+        tablet
+        ${true}
+        ${false}
+    `('is-tablet', ({ tablet }) => {
 
         // Arrange
-
-        const tablet = true;
     
         // Act
     
@@ -236,11 +271,13 @@ describe('reducer', () => {
     
     });
 
-    it('set-dark-mode-no-station', () => {
+    it.each`
+        darkMode
+        ${true}
+        ${false}
+    `('set-dark-mode-no-station', ({ darkMode }) => {
 
         // Arrange
-
-        const darkMode = true;
     
         // Act
     
@@ -253,20 +290,23 @@ describe('reducer', () => {
     
     });
 
-    it('set-dark-mode-with-station', () => {
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${'Another_Station!'}
+        ${''}
+    `('set-dark-mode-with-station', ({ stationName }) => {
 
         // Arrange
 
         const darkMode = true;
         const miniState = {
-            currentStation: 'Test Station',
-            stations: {
-                'Test Station': {
-
-                }
-            },
+            currentStation: stationName,
+            stations: {},
             settings: {}
         };
+
+        miniState.stations[stationName] = {}
     
         // Act
     

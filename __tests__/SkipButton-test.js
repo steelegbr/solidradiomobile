@@ -38,7 +38,7 @@ describe('mid-playlist', () => {
 
         const skipButton = renderer.create(
             <Provider store={store}>
-                <SkipButton direction={0} />
+                <SkipButton direction={0} iconSize={12} />
             </Provider>
         ).toJSON();
 
@@ -92,7 +92,7 @@ describe('mid-playlist', () => {
 
         const skipButton = renderer.create(
             <Provider store={store}>
-                <SkipButton direction={1} bigMode={true} />
+                <SkipButton direction={1} bigMode={true} iconSize={40} />
             </Provider>
         ).toJSON();
 
@@ -121,6 +121,52 @@ describe('mid-playlist', () => {
         expect(skipButton).toMatchSnapshot();
     
     });
+
+    /*
+
+    it('skip-pressed-forward', () => {
+
+        // Arrange
+    
+        const skipButton = mount(
+            <Provider store={store}>
+                <SkipButton direction={0} />
+            </Provider>
+        );
+    
+        // Act
+    
+        skipButton.find(Icon.Button).first().props().onPress();
+    
+        // Assert
+    
+        const expectedActions = [ { "type": "AUDIO_PLAYER_PLAYPAUSE", "source": "play_pause_button" } ];
+        expect(store.getActions()).toStrictEqual(expectedActions);
+    
+    });
+
+    it('skip-pressed-backward', () => {
+
+        // Arrange
+    
+        const skipButton = renderer.create(
+            <Provider store={store}>
+                <SkipButton direction={1} />
+            </Provider>
+        ).toJSON();
+    
+        // Act
+    
+        skipButton.find(Icon.Button).first().props().onPress();
+    
+        // Assert
+    
+        const expectedActions = [ { "type": "AUDIO_PLAYER_PLAYPAUSE", "source": "play_pause_button" } ];
+        expect(store.getActions()).toStrictEqual(expectedActions);
+    
+    });
+
+    */
 
 });
 

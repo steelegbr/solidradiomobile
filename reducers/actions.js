@@ -113,10 +113,12 @@ export function reducer(baseState=defaultState, action) {
                 draftState.initialLoad = 'success';
                 break;
             case NOW_PLAYING_UPDATE:
-                draftState.stations[action.stationName].nowPlaying = {
-                    artist: action.artist,
-                    title: action.title,
-                    artUrl: action.artUrl
+                if (action.stationName in draftState.stations) {
+                    draftState.stations[action.stationName].nowPlaying = {
+                        artist: action.artist,
+                        title: action.title,
+                        artUrl: action.artUrl
+                    }
                 }
                 break;
             case ORIENTATION_UPDATE:

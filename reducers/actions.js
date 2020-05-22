@@ -153,8 +153,10 @@ export function reducer(baseState=defaultState, action) {
                 draftState.settings.highBitrate = action.mode;
                 break;
             case SET_CURRENT_STATION:
-                draftState.currentStation = action.station;
-                draftState.theme = generateStationTheme(draftState.settings.darkMode, draftState.stations[action.station]);
+                if (draftState.stationNames.includes(action.station)) {
+                    draftState.currentStation = action.station;
+                    draftState.theme = generateStationTheme(draftState.settings.darkMode, draftState.stations[action.station]);
+                }
                 break;
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;

@@ -175,11 +175,13 @@ export function reducer(baseState=defaultState, action) {
                 draftState.admob.units[action.name] = action.id;
                 break;
             case LOAD_PLAYER_STATION:
-                draftState.player.playlist = [{
-                    type: 'station',
-                    name: action.stationName
-                }];
-                draftState.player.currentItem = 0;
+                if (action.stationName) {
+                    draftState.player.playlist = [{
+                        type: 'station',
+                        name: action.stationName
+                    }];
+                    draftState.player.currentItem = 0;
+                }
                 break;
             case SET_PLAYER_STATE:
                 draftState.player.state = action.state;
@@ -397,18 +399,6 @@ export function setCurrentStation(stationName) {
         type: SET_CURRENT_STATION,
         station: stationName
     }
-}
-
-/**
- * Sets the branding colour for the app.
- * @param {hex string} colour The branding colour.
- */
-
-export function setBrandingColour(colour) {
-    return {
-        type: SET_BRANDING_COLOUR,
-        colour: colour
-    };
 }
 
 /**

@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 
@@ -390,6 +390,76 @@ describe('reducer', () => {
 
     });
 
+    it.each`
+        list | listLength
+        ${[]} |${0}
+        ${['Test Station']} | ${1}
+        ${['Test Station 1', 'Test Station 2']} | ${2}
+    `('set-station-name-list', ({ list, listLength }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setStationNameList(list));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState.stationNames).toStrictEqual(list);
+        expect(newState.stationNames).toHaveLength(listLength);
+
+        if (listLength > 0) {
+            expect(newState.currentStation).toBe(list[0]);
+        }
+
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${'Station Name with f@nny characters!'}
+    `('load-player-station-valid', ({ stationName }) => {
+
+        // Arrange
+
+        const expectedPlaylist = [
+            {
+                type: 'station',
+                name: stationName
+            }
+        ];
+
+        // Act
+
+        const newState = reducer(state, loadPlayerStation(stationName));
+
+        // Assert
+
+        expect(newState.player.playlist).toStrictEqual(expectedPlaylist);
+        expect(newState.player.currentItem).toBe(0);
+
+    });
+
+    it.each`
+        stationName
+        ${''}
+        ${null}
+    `('load-player-station-invalid', ({ stationName }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, loadPlayerStation(stationName));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
 });
 
 // Tests the pure action calls
@@ -399,16 +469,16 @@ describe('actions', () => {
     it('initial-load', () => {
 
         // Arrange
+
+        const expected = {
+            type: INITIAL_LOAD_REQUESTED
+        }
     
         // Act
     
         const action = initialLoad();
     
         // Assert
-    
-        const expected = {
-            type: INITIAL_LOAD_REQUESTED
-        }
     
         expect(action).toStrictEqual(expected);
     
@@ -417,16 +487,16 @@ describe('actions', () => {
     it('initial-load-started', () => {
 
         // Arrange
+
+        const expected = {
+            type: INITIAL_LOAD_START
+        }
     
         // Act
     
         const action = initialLoadStarted();
     
         // Assert
-    
-        const expected = {
-            type: INITIAL_LOAD_START
-        }
     
         expect(action).toStrictEqual(expected);
     
@@ -439,18 +509,18 @@ describe('actions', () => {
     `('api-params', ({ server, key }) => {
 
         // Arrange
-    
-        // Act
-    
-        const action = setApiParams(server, key);
-    
-        // Assert
 
         const expected = {
             type: INITIAL_LOAD_API,
             server: server,
             key: key
         };
+    
+        // Act
+    
+        const action = setApiParams(server, key);
+    
+        // Assert
 
         expect(action).toStrictEqual(expected);
     
@@ -464,12 +534,6 @@ describe('actions', () => {
     `('load-station-request', ({ stationName }) => {
 
         // Arrange
-    
-        // Act
-    
-        const action = loadStation(stationName);
-    
-        // Assert
 
         const expected = {
             type: STATION_LOAD_START,
@@ -480,6 +544,12 @@ describe('actions', () => {
                 }
             }
         };
+    
+        // Act
+    
+        const action = loadStation(stationName);
+    
+        // Assert
 
         expect(action).toStrictEqual(expected);
     
@@ -493,12 +563,6 @@ describe('actions', () => {
     `('onair-load-request', ({ stationName }) => {
 
         // Arrange
-    
-        // Act
-    
-        const action = loadOnAir(stationName);
-    
-        // Assert
 
         const expected = {
             type: ONAIR_LOAD_START,
@@ -508,6 +572,12 @@ describe('actions', () => {
                 }
             }
         };
+    
+        // Act
+    
+        const action = loadOnAir(stationName);
+    
+        // Assert
 
         expect(action).toStrictEqual(expected);
     
@@ -521,17 +591,17 @@ describe('actions', () => {
     `('initial-load-fail', ({ error }) => {
 
         // Arrange
+
+        const expected = {
+            type: INITIAL_LOAD_FAIL,
+            error: error
+        };
     
         // Act
     
         const action = initialLoadFailure(error);
     
         // Assert
-
-        const expected = {
-            type: INITIAL_LOAD_FAIL,
-            error: error
-        };
 
         expect(action).toStrictEqual(expected);
     
@@ -545,17 +615,17 @@ describe('actions', () => {
     `('now-playing-success', ({ stationName }) => {
 
         // Arrange
+
+        const expected = {
+            type: NOW_PLAYING_SUCCESS,
+            station: stationName
+        };
     
         // Act
     
         const action = nowPlayingSuccess(stationName);
     
         // Assert
-
-        const expected = {
-            type: NOW_PLAYING_SUCCESS,
-            station: stationName
-        };
 
         expect(action).toStrictEqual(expected);
     
@@ -569,18 +639,18 @@ describe('actions', () => {
     `('now-playing-fail', ({ stationName, error }) => {
 
         // Arrange
-    
-        // Act
-    
-        const action = nowPlayingFailure(stationName, error);
-    
-        // Assert
 
         const expected = {
             type: NOW_PLAYING_FAIL,
             station: stationName,
             error: error
         };
+    
+        // Act
+    
+        const action = nowPlayingFailure(stationName, error);
+    
+        // Assert
 
         expect(action).toStrictEqual(expected);
     
@@ -594,12 +664,6 @@ describe('actions', () => {
     `('now-playing-update', ({ stationName, artist ,title, artUrl }) => {
 
         // Arrange
-    
-        // Act
-    
-        const action = nowPlayingUpdate(stationName, artist, title, artUrl);
-    
-        // Assert
 
         const expected = {
             type: NOW_PLAYING_UPDATE,
@@ -608,6 +672,12 @@ describe('actions', () => {
             title: title,
             artUrl: artUrl
         };
+    
+        // Act
+    
+        const action = nowPlayingUpdate(stationName, artist, title, artUrl);
+    
+        // Assert
 
         expect(action).toStrictEqual(expected);
     
@@ -620,17 +690,17 @@ describe('actions', () => {
     `('change-orientation', ({ vertical }) => {
 
         // Arrange
+
+        const expected = {
+            type: ORIENTATION_UPDATE,
+            vertical: vertical
+        };
     
         // Act
     
         const action = changeOrientation(vertical);
     
         // Assert
-
-        const expected = {
-            type: ORIENTATION_UPDATE,
-            vertical: vertical
-        };
 
         expect(action).toStrictEqual(expected);
 
@@ -643,17 +713,17 @@ describe('actions', () => {
     `('is-tablet', ({ tablet }) => {
 
         // Arrange
+
+        const expected = {
+            type: TABLET_UPDATE,
+            tablet: tablet
+        };
     
         // Act
     
         const action = setTablet(tablet);
     
         // Assert
-
-        const expected = {
-            type: TABLET_UPDATE,
-            tablet: tablet
-        };
 
         expect(action).toStrictEqual(expected);
 
@@ -667,16 +737,16 @@ describe('actions', () => {
 
         // Arrange
 
+        const expected = {
+            type: SET_DARK_MODE,
+            mode: darkMode
+        };
+
         // Act
     
         const action = setDarkMode(darkMode);
     
         // Assert
-
-        const expected = {
-            type: SET_DARK_MODE,
-            mode: darkMode
-        };
 
         expect(action).toStrictEqual(expected);
 
@@ -690,16 +760,16 @@ describe('actions', () => {
 
         // Arrange
 
+        const expected = {
+            type: SET_HIGH_BITRATE,
+            mode: highBitrate
+        };
+
         // Act
     
         const action = setHighBitrate(highBitrate);
     
         // Assert
-
-        const expected = {
-            type: SET_HIGH_BITRATE,
-            mode: highBitrate
-        };
 
         expect(action).toStrictEqual(expected);
 
@@ -714,16 +784,65 @@ describe('actions', () => {
 
         // Arrange
 
+        const expected = {
+            type: SET_CURRENT_STATION,
+            station: stationName
+        };
+
         // Act
 
         const action = setCurrentStation(stationName);
 
         // Assert
 
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        list | listLength
+        ${[]} |${0}
+        ${['Test Station']} | ${1}
+        ${['Test Station 1', 'Test Station 2']} | ${2}
+    `('set-station-name-list', ({ list, listLength }) => {
+
+        // Arrange
+
         const expected = {
-            type: SET_CURRENT_STATION,
-            station: stationName
+            type: SET_STATION_NAME_LIST,
+            stations: list
         };
+
+        // Act
+
+        const action = setStationNameList(list);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+        expect(action.stations).toHaveLength(listLength);
+
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('load-player-station', ({ stationName }) => {
+
+        // Arrange
+
+        const expected = {
+            type: LOAD_PLAYER_STATION,
+            stationName: stationName
+        };
+
+        // Act
+
+        const action = loadPlayerStation(stationName);
+
+        // Assert
 
         expect(action).toStrictEqual(expected);
 

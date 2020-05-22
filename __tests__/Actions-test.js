@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 
@@ -74,7 +74,7 @@ describe('reducer', () => {
         server | key
         ${'example.com'} | ${'super-duper-key'}
         ${null} | ${null}
-    `('api-params', ({server, key}) => {
+    `('api-params', ({ server, key }) => {
 
         // Arrange
 
@@ -94,7 +94,7 @@ describe('reducer', () => {
         ${'Test Station'}
         ${null}
         ${''}
-    `('load-station-request', (stationName) => {
+    `('load-station-request', ({ stationName }) => {
 
         // Arrange
     
@@ -114,7 +114,7 @@ describe('reducer', () => {
         ${'Test Station'}
         ${null}
         ${''}
-    `('onair-load-request', (stationName) => {
+    `('onair-load-request', ({ stationName }) => {
     
         // Act
     
@@ -237,11 +237,13 @@ describe('reducer', () => {
 
     });
 
-    it('change-orientation', () => {
+    it.each`
+        vertical
+        ${true}
+        ${false}
+    `('change-orientation', ({ vertical }) => {
 
         // Arrange
-
-        const vertical = true;
     
         // Act
     
@@ -319,6 +321,75 @@ describe('reducer', () => {
     
     });
 
+    it.each`
+        highBitrate
+        ${true}
+        ${false}
+    `('set-high-bitrate', ({ highBitrate }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setHighBitrate(highBitrate));
+
+        // Assert
+
+        expect(newState.settings.highBitrate).toBe(highBitrate);
+
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${'Another station with ! and @'}
+        ${''}
+        ${null}
+    `('set-current-station-valid', ({ stationName }) => {
+
+        // Arrange
+
+        const miniState = {
+            currentStation: null,
+            stations: {},
+            settings: {},
+            stationNames: [ stationName ]
+        };
+
+        miniState.stations[stationName] = {
+            primary_colour: '#ff0000'
+        };
+
+        // Act
+
+        const newState = reducer(miniState, setCurrentStation(stationName));
+
+        // Assert
+
+        expect(newState.currentStation).toBe(stationName);
+
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('set-current-station-invalid', ({ stationName }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setCurrentStation(stationName));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
 });
 
 // Tests the pure action calls
@@ -361,12 +432,13 @@ describe('actions', () => {
     
     });
 
-    it('api-params', () => {
+    it.each`
+        server | key
+        ${'example.com'} | ${'super-duper-key'}
+        ${null} | ${null}
+    `('api-params', ({ server, key }) => {
 
         // Arrange
-
-        const server = 'server.example.com';
-        const key = 'test-api-key';
     
         // Act
     
@@ -384,11 +456,14 @@ describe('actions', () => {
     
     });
 
-    it('load-station-request', () => {
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('load-station-request', ({ stationName }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
     
         // Act
     
@@ -401,7 +476,7 @@ describe('actions', () => {
             stationName: stationName,
             payload: {
                 request: {
-                    url: '/api/station/Test%20Station/'
+                    url: `/api/station/${encodeURI(stationName)}/`
                 }
             }
         };
@@ -410,11 +485,14 @@ describe('actions', () => {
     
     });
 
-    it('onair-load-request', () => {
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('onair-load-request', ({ stationName }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
     
         // Act
     
@@ -426,7 +504,7 @@ describe('actions', () => {
             type: ONAIR_LOAD_START,
             payload: {
                 request: {
-                    url: '/api/epg/Test%20Station/current/'
+                    url: `/api/epg/${encodeURI(stationName)}/current/`
                 }
             }
         };
@@ -435,11 +513,14 @@ describe('actions', () => {
     
     });
 
-    it('initial-load-fail', () => {
+    it.each`
+        error
+        ${'Some really bad error!'}
+        ${null}
+        ${''}
+    `('initial-load-fail', ({ error }) => {
 
         // Arrange
-
-        const error = 'Some really bad error!';
     
         // Act
     
@@ -456,11 +537,14 @@ describe('actions', () => {
     
     });
 
-    it('now-playing-success', () => {
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('now-playing-success', ({ stationName }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
     
         // Act
     
@@ -477,12 +561,14 @@ describe('actions', () => {
     
     });
 
-    it('now-playing-fail', () => {
+    it.each`
+        stationName | error
+        ${'Test Station'} | ${'Some really bad error'}
+        ${null} | ${null}
+        ${''} | ${''}
+    `('now-playing-fail', ({ stationName, error }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
-        const error = 'Something went wrong!';
     
         // Act
     
@@ -500,14 +586,14 @@ describe('actions', () => {
     
     });
 
-    it('now-playing-update', () => {
+    it.each`
+        stationName | artist | title | artUrl
+        ${'Test Station'} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
+        ${null} | ${null} | ${null} | ${null}
+        ${''} | ${''} | ${''} | ${''}
+    `('now-playing-update', ({ stationName, artist ,title, artUrl }) => {
 
         // Arrange
-
-        const stationName = 'Test Station';
-        const artist = 'Test Artist';
-        const title = 'Test Title';
-        const artUrl = 'art.png';
     
         // Act
     
@@ -528,14 +614,12 @@ describe('actions', () => {
     });
 
     it.each`
-        orientation
+        vertical
         ${true}
         ${false}
-    `('change-orientation', (orientation) => {
+    `('change-orientation', ({ vertical }) => {
 
         // Arrange
-
-        const vertical = true;
     
         // Act
     
@@ -556,7 +640,7 @@ describe('actions', () => {
         tablet
         ${true}
         ${false}
-    `('is-tablet', (tablet) => {
+    `('is-tablet', ({ tablet }) => {
 
         // Arrange
     
@@ -579,7 +663,7 @@ describe('actions', () => {
         darkMode
         ${true}
         ${false}
-    `('set-dark-mode-specific', (darkMode) => {
+    `('set-dark-mode', ({ darkMode }) => {
 
         // Arrange
 
@@ -596,7 +680,54 @@ describe('actions', () => {
 
         expect(action).toStrictEqual(expected);
 
-        });
+    });
+
+    it.each`
+        highBitrate
+        ${true}
+        ${false}
+    `('set-high-bitrate', ({ highBitrate }) => {
+
+        // Arrange
+
+        // Act
+    
+        const action = setHighBitrate(highBitrate);
+    
+        // Assert
+
+        const expected = {
+            type: SET_HIGH_BITRATE,
+            mode: highBitrate
+        };
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('set-current-station', ({ stationName }) => {
+
+        // Arrange
+
+        // Act
+
+        const action = setCurrentStation(stationName);
+
+        // Assert
+
+        const expected = {
+            type: SET_CURRENT_STATION,
+            station: stationName
+        };
+
+        expect(action).toStrictEqual(expected);
+
+    });
 
 });
 

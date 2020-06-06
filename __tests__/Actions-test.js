@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 
@@ -460,6 +460,128 @@ describe('reducer', () => {
 
     });
 
+    it.each`
+        publisherId
+        ${'SUPER-LONG-PUBLISHER-1234'}
+        ${null}
+        ${''}
+    `('set-admob-publisher', ({ publisherId }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setAdMobPublisher(publisherId));
+
+        // Assert
+    
+        expect(newState.admob.publisher).toBe(publisherId);
+
+    });
+
+    it.each`
+        consent
+        ${0}
+        ${1}
+        ${2}
+    `('set-admob-consent', ({ consent }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setAdMobConsent(consent));
+
+        // Assert
+    
+        expect(newState.admob.consent).toBe(consent);
+
+    });
+
+    it.each`
+        uri
+        ${'https://www.example.com/'}
+        ${null}
+        ${''}
+    `('set-admob-privacy', ({ uri }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setAdmobPrivacyPolicy(uri));
+
+        // Assert
+    
+        expect(newState.admob.privacyPolicy).toBe(uri);
+
+    });
+
+    it.each`
+        units
+        ${[ {name: 'name1', id: 'id1'} ]}
+        ${[ {name: 'name1', id: 'id1'}, {name: 'name2', id: 'id2'} ]}
+    `('set-admob-unit-id', ({ units }) => {
+
+        // Arrange
+
+        // Act
+
+        let newState = state;
+
+        units.forEach(unit => {
+            newState = reducer(newState, setAdmobUnitId(unit.name, unit.id));
+        });
+
+        // Assert
+
+        units.forEach(unit => {
+            expect(newState.admob.units[unit.name]).toBe(unit.id)
+        });
+
+    });
+
+    it.each`
+        playerState
+        ${PlayerState.UNINITIALISED}
+        ${PlayerState.IDLE}
+        ${PlayerState.LOADING}
+        ${PlayerState.PLAYING}
+        ${PlayerState.PAUSED}
+        ${PlayerState.ERROR}
+    `('set-player-state', ({ playerState }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setPlayerState(playerState, null));
+
+        // Assert
+    
+        expect(newState.player.state).toBe(playerState);
+
+    });
+
+    it.each`
+        station | highBitrate
+        ${'Foo FM'} | ${true}
+        ${'Bar AM'} | ${false}
+    `('log-stream-start', ({ station, highBitrate }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, logStreamStart(station, highBitrate));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
 });
 
 // Tests the pure action calls
@@ -841,6 +963,155 @@ describe('actions', () => {
         // Act
 
         const action = loadPlayerStation(stationName);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        publisherId
+        ${'SUPER-LONG-PUBLISHER-1234'}
+        ${null}
+        ${''}
+    `('set-admob-publisher', ({ publisherId }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_ADMOB_PUBLISHER,
+            publisherId: publisherId
+        };
+
+        // Act
+
+        const action = setAdMobPublisher(publisherId);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        consent
+        ${0}
+        ${1}
+        ${2}
+    `('set-admob-consent', ({ consent }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_ADMOB_CONSENT,
+            consent: consent
+        };
+
+        // Act
+
+        const action = setAdMobConsent(consent);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        uri
+        ${'https://www.example.com/'}
+        ${null}
+        ${''}
+    `('set-admob-privacy', ({ uri }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_ADMOB_PRIVACY_POLICY,
+            uri: uri
+        };
+
+        // Act
+
+        const action = setAdmobPrivacyPolicy(uri);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        name | id
+        ${'name'} | ${'id'}
+        ${null} | ${null}
+        ${''} | ${''}
+    `('set-admob-unit-id', ({ name, id }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_ADMOB_UNIT,
+            name: name,
+            id: id
+        };
+
+        // Act
+
+        const action = setAdmobUnitId(name, id);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        state
+        ${PlayerState.UNINITIALISED}
+        ${PlayerState.IDLE}
+        ${PlayerState.LOADING}
+        ${PlayerState.PLAYING}
+        ${PlayerState.PAUSED}
+        ${PlayerState.ERROR}
+    `('set-player-state', ({ state }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_PLAYER_STATE,
+            state: state,
+            unmappedState: null
+        };
+
+        // Act
+
+        const action = setPlayerState(state, null);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        station | highBitrate
+        ${'Foo FM'} | ${true}
+        ${'Bar AM'} | ${false}
+    `('log-stream-start', ({ station, highBitrate }) => {
+
+        // Arrange
+
+        const expected = {
+            type: LOG_STREAM_START,
+            station: station,
+            highBitrate: highBitrate
+        };
+
+        // Act
+
+        const action = logStreamStart(station, highBitrate);
 
         // Assert
 

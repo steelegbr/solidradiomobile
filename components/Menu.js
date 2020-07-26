@@ -28,7 +28,7 @@ class Menu extends Component {
       {
         key: 'podcasts',
         title: 'Podcasts',
-        icon: 'library-music'
+        icon: 'music-box-multiple'
       },
       {
         key: 'presenters',
@@ -38,7 +38,7 @@ class Menu extends Component {
       {
         key: 'settings',
         title: 'Settings',
-        icon: 'settings'
+        icon: 'cog'
       }
     ]
   }

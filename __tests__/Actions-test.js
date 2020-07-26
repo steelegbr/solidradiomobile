@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 import { Title } from 'react-native-paper';
@@ -623,6 +623,122 @@ describe('reducer', () => {
 
     });
 
+    it.each`
+        error
+        ${null}
+        ${'Something went horribly wrong!'}
+    `('audio-player-error', ({ error }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, audioPlayerError(error));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
+    it.each`
+        error
+        ${null} | ${null}
+        ${'Something went horribly wrong!'} | ${null}
+        ${null} | 'ADS01'
+        ${'Something went horribly wrong!'} | 'ADS01'
+    `('ad-load-error', ({ error, unitId }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, adLoadError(error, unitId));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('toggle-play-pause', ({ source }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, togglePlayPause(source));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('audio-player-play', ({ source }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, audioPlayerPlay(source));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('audio-player-pause', ({ source }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, audioPlayerPause(source));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('audio-player-stop', ({ source }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, audioPlayerStop(source));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
 });
 
 // Tests the pure action calls
@@ -1207,6 +1323,147 @@ describe('actions', () => {
         // Act
 
         const action = logStreamSongPlay(station, artist, title);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        error
+        ${null}
+        ${'Something went horribly wrong!'}
+    `('audio-player-error', ({ error }) => {
+
+        // Arrange
+
+        const expected = {
+            type: AUDIO_PLAYER_ERROR,
+            error: error
+        };
+
+        // Act
+
+        const action = audioPlayerError(error);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        error
+        ${null} | ${null}
+        ${'Something went horribly wrong!'} | ${null}
+        ${null} | 'ADS01'
+        ${'Something went horribly wrong!'} | 'ADS01'
+    `('ad-load-error', ({ error, unitId }) => {
+
+        // Arrange
+
+        const expected = {
+            type: ADMOB_LOAD_ERROR,
+            error: error,
+            unitId: unitId
+        };
+
+        // Act
+
+        const action = adLoadError(error, unitId);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('toggle-play-pause', ({ source }) => {
+
+        // Arrange
+
+        const expected = {
+            type: AUDIO_PLAYER_PLAYPAUSE,
+            source: source
+        };
+
+        // Act
+
+        const action = togglePlayPause(source);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('audio-player-play', ({ source }) => {
+
+        // Arrange
+
+        const expected = {
+            type: AUDIO_PLAYER_PLAY,
+            source: source
+        };
+
+        // Act
+
+        const action = audioPlayerPlay(source);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('audio-player-pause', ({ source }) => {
+
+        // Arrange
+
+        const expected = {
+            type: AUDIO_PLAYER_PAUSE,
+            source: source
+        };
+
+        // Act
+
+        const action = audioPlayerPause(source);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        source
+        ${null}
+        ${'test_rig'}
+    `('audio-player-stop', ({ source }) => {
+
+        // Arrange
+
+        const expected = {
+            type: AUDIO_PLAYER_STOP,
+            source: source
+        };
+
+        // Act
+
+        const action = audioPlayerStop(source);
 
         // Assert
 

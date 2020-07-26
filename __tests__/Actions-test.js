@@ -2,9 +2,10 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
+import { Title } from 'react-native-paper';
 
 // Tests
 
@@ -582,6 +583,46 @@ describe('reducer', () => {
 
     });
 
+    it.each`
+        station | isError | error | aritst | title
+        ${'Foo FM'} | ${true} | ${null} | ${null} | ${null}
+        ${'Bar AM'} | ${false} | ${'Something went wrong...'} | ${null} | ${null}
+        ${'Foo FM'} | ${true} | ${null} | ${'Artist'} | ${'Title'}
+        ${'Bar AM'} | ${false} | ${'Something went wrong...'} | ${'Artist'} | ${'Title'}
+    `('log-stream-end', ({ station, isError, error, artist, title }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, logStreamEnd(station, isError, error, artist, title));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
+    it.each`
+        station |  aritst | title
+        ${'Foo FM'} | ${null} | ${null}
+        ${'Bar AM'} |  ${'Artist'} | ${'Title'}
+    `('log-stream-songplay', ({ station, artist, title }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, logStreamSongPlay(station, artist, title));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState).toStrictEqual(state);
+
+    });
+
 });
 
 // Tests the pure action calls
@@ -1112,6 +1153,60 @@ describe('actions', () => {
         // Act
 
         const action = logStreamStart(station, highBitrate);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        station | isError | error | aritst | title
+        ${'Foo FM'} | ${true} | ${null} | ${null} | ${null}
+        ${'Bar AM'} | ${false} | ${'Something went wrong...'} | ${null} | ${null}
+        ${'Foo FM'} | ${true} | ${null} | ${'Artist'} | ${'Title'}
+        ${'Bar AM'} | ${false} | ${'Something went wrong...'} | ${'Artist'} | ${'Title'}
+    `('log-stream-end', ({ station, isError, error, artist, title }) => {
+
+        // Arrange
+
+        const expected = {
+            type: LOG_STREAM_END,
+            station: station,
+            isError: isError,
+            error: error,
+            artist: artist,
+            title: title
+        };
+
+        // Act
+
+        const action = logStreamEnd(station, isError, error, artist, title);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        station |  aritst | title
+        ${'Foo FM'} | ${null} | ${null}
+        ${'Bar AM'} |  ${'Artist'} | ${'Title'}
+    `('log-stream-songplay', ({ station, artist, title }) => {
+
+        // Arrange
+
+        const expected = {
+            type: LOG_STATION_SONG_PLAY,
+            station: station,
+            artist: artist,
+            title: title
+        };
+
+        // Act
+
+        const action = logStreamSongPlay(station, artist, title);
 
         // Assert
 

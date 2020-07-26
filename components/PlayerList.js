@@ -5,7 +5,7 @@ import OnAirListItem from './OnAirListItem';
 import NowPlayingListItem from './NowPlayingListItem';
 
 const MODE_STREAM = 'MODE_STREAM';
-const MODE_PODCAST = 'MODE_MODE_PODCAST';
+const MODE_PODCAST = 'MODE_PODCAST';
 
 class PlayerList extends Component {
 
@@ -50,7 +50,7 @@ const mapStateToProps = state => {
 
     } else {
         return {
-            renderMethod: MODE_PODCAST
+            mode: MODE_PODCAST
         }
     }
     

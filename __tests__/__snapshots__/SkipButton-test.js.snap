@@ -1,305 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders-error 1`] = `
+exports[`mid-playlist renders-backward-large 1`] = `
 <View
   accessible={true}
-  focusable={true}
-  onClick={[Function]}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "overflow": "hidden",
-      },
-      Object {
-        "backgroundColor": "rgba(0, 0, 0, 0.0)",
-        "borderRadius": 5,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "flex-start",
-          "padding": 8,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "borderRadius": 5,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "color": "#ff0000",
-          "margin": 5,
-          "padding": 10,
-        },
-      ]
-    }
-  >
-    <Text
-      allowFontScaling={false}
-      style={
-        Array [
-          Object {
-            "color": "#ff0000",
-            "fontSize": 16,
-          },
-          Object {
-            "marginRight": 10,
-          },
-          Object {
-            "fontFamily": "Material Design Icons",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
-        ]
-      }
-    >
-      󰐌
-    </Text>
-  </View>
-</View>
-`;
-
-exports[`renders-idle 1`] = `
-<View
-  accessible={true}
-  focusable={true}
-  onClick={[Function]}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "overflow": "hidden",
-      },
-      Object {
-        "backgroundColor": "rgba(0, 0, 0, 0.0)",
-        "borderRadius": 5,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "flex-start",
-          "padding": 8,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "borderRadius": 5,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "color": "#ff0000",
-          "margin": 5,
-          "padding": 10,
-        },
-      ]
-    }
-  >
-    <Text
-      allowFontScaling={false}
-      style={
-        Array [
-          Object {
-            "color": "#ff0000",
-            "fontSize": 16,
-          },
-          Object {
-            "marginRight": 10,
-          },
-          Object {
-            "fontFamily": "Material Design Icons",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
-        ]
-      }
-    >
-      󰐌
-    </Text>
-  </View>
-</View>
-`;
-
-exports[`renders-loading 1`] = `
-<ActivityIndicator
-  size={16}
-/>
-`;
-
-exports[`renders-loading-big-mode 1`] = `
-<ActivityIndicator
-  size={40}
-/>
-`;
-
-exports[`renders-paused 1`] = `
-<View
-  accessible={true}
-  focusable={true}
-  onClick={[Function]}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "overflow": "hidden",
-      },
-      Object {
-        "backgroundColor": "rgba(0, 0, 0, 0.0)",
-        "borderRadius": 5,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "flex-start",
-          "padding": 8,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "borderRadius": 5,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "color": "#ff0000",
-          "margin": 5,
-          "padding": 10,
-        },
-      ]
-    }
-  >
-    <Text
-      allowFontScaling={false}
-      style={
-        Array [
-          Object {
-            "color": "#ff0000",
-            "fontSize": 16,
-          },
-          Object {
-            "marginRight": 10,
-          },
-          Object {
-            "fontFamily": "Material Design Icons",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
-        ]
-      }
-    >
-      󰐌
-    </Text>
-  </View>
-</View>
-`;
-
-exports[`renders-playing 1`] = `
-<View
-  accessible={true}
-  focusable={true}
-  onClick={[Function]}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "overflow": "hidden",
-      },
-      Object {
-        "backgroundColor": "rgba(0, 0, 0, 0.0)",
-        "borderRadius": 5,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "flex-start",
-          "padding": 8,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "borderRadius": 5,
-        },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "color": "#ff0000",
-          "margin": 5,
-          "padding": 10,
-        },
-      ]
-    }
-  >
-    <Text
-      allowFontScaling={false}
-      style={
-        Array [
-          Object {
-            "color": "#ff0000",
-            "fontSize": 16,
-          },
-          Object {
-            "marginRight": 10,
-          },
-          Object {
-            "fontFamily": "Material Design Icons",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
-        ]
-      }
-    >
-      󰏥
-    </Text>
-  </View>
-</View>
-`;
-
-exports[`renders-playing-big-mode 1`] = `
-<View
-  accessible={true}
-  focusable={true}
+  focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -341,7 +45,7 @@ exports[`renders-playing-big-mode 1`] = `
       style={
         Array [
           Object {
-            "color": "#ff0000",
+            "color": "#6200ee",
             "fontSize": 40,
           },
           Object {
@@ -356,16 +60,16 @@ exports[`renders-playing-big-mode 1`] = `
         ]
       }
     >
-      󰏥
+      󰒮
     </Text>
   </View>
 </View>
 `;
 
-exports[`renders-unitialised 1`] = `
+exports[`mid-playlist renders-backward-small 1`] = `
 <View
   accessible={true}
-  focusable={true}
+  focusable={false}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -398,12 +102,7 @@ exports[`renders-unitialised 1`] = `
           "backgroundColor": "rgba(0, 0, 0, 0.0)",
           "borderRadius": 5,
         },
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0.0)",
-          "color": "#ff0000",
-          "margin": 5,
-          "padding": 10,
-        },
+        undefined,
       ]
     }
   >
@@ -412,7 +111,7 @@ exports[`renders-unitialised 1`] = `
       style={
         Array [
           Object {
-            "color": "#ff0000",
+            "color": "#6200ee",
             "fontSize": 16,
           },
           Object {
@@ -427,7 +126,337 @@ exports[`renders-unitialised 1`] = `
         ]
       }
     >
-      󰐌
+      󰒮
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`mid-playlist renders-forward-large 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
+        "borderRadius": 5,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "padding": 8,
+        },
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "borderRadius": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#6200ee",
+            "fontSize": 0,
+          },
+          Object {
+            "marginRight": 10,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      󰒭
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`mid-playlist renders-forward-small 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
+        "borderRadius": 5,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "padding": 8,
+        },
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "borderRadius": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#6200ee",
+            "fontSize": 16,
+          },
+          Object {
+            "marginRight": 10,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      󰒭
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`mid-playlist renders-unexpected-direction 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
+        "borderRadius": 5,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "padding": 8,
+        },
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "borderRadius": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#6200ee",
+            "fontSize": 16,
+          },
+          Object {
+            "marginRight": 10,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      󰒮
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders-backward-disable 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
+        "borderRadius": 5,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "padding": 8,
+        },
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "borderRadius": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#6200ee",
+            "fontSize": 16,
+          },
+          Object {
+            "marginRight": 10,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      󰒮
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`renders-forward-disable 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "overflow": "hidden",
+      },
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.0)",
+        "borderRadius": 5,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "padding": 8,
+        },
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.0)",
+          "borderRadius": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "#6200ee",
+            "fontSize": 16,
+          },
+          Object {
+            "marginRight": 10,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      󰒭
     </Text>
   </View>
 </View>

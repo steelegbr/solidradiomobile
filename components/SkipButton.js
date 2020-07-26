@@ -40,7 +40,7 @@ function canSkip(direction, playlistLength, currentItem) {
         case DIRECTION_BACKWARDS:
             return currentItem > 0;
         default:
-            false;
+            return false;
     }
 
 }

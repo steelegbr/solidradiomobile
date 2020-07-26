@@ -8,23 +8,7 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { generateTheme } from '../branding/branding';
 import { Provider } from 'react-redux';
-
-// Firebase
-
-jest.mock("@react-native-firebase/admob", () => ({
-    AdsConsentStatus: {
-        UNKNOWN: 0,
-        NON_PERSONALIZED: 1,
-        PERSONALISED: 2
-    },
-    TestIds: {
-        BANNER: "bannerTestId"
-    },
-    BannerAdSize: {
-        SMART_BANNER: "SMART_BANNER"
-    },
-    BannerAd: "BannerAd"
-}));
+import { mount } from 'enzyme';
 
 // Redux
 
@@ -109,5 +93,67 @@ it('renders-on-on', () => {
     ).toJSON();
 
     expect(settings).toMatchSnapshot();
+
+});
+
+it('dark-mode-change', () => {
+
+    // Arrange
+
+    const originalDarkMode = true;
+
+    let store = mockStore({
+        theme: generateTheme(originalDarkMode),
+        settings: {
+            darkMode: originalDarkMode,
+            highBitrate: false
+        }
+    });
+
+    const settings = mount(
+        <Provider store={store}>
+            <Settings />
+        </Provider>
+    );
+
+    // Act
+
+    settings.find('[testID="darkModeToggle"]').first().props().onValueChange();
+
+    // Assert
+
+    const expectedActions = [ { type: 'SET_DARK_MODE', mode: !originalDarkMode } ];
+    expect(store.getActions()).toStrictEqual(expectedActions);
+
+});
+
+it('high-bitrate-change', () => {
+
+    // Arrange
+
+    const originalHighBitrate = true;
+
+    let store = mockStore({
+        theme: generateTheme(false),
+        settings: {
+            darkMode: false,
+            highBitrate: originalHighBitrate
+        }
+    });
+
+    const settings = mount(
+        <Provider store={store}>
+            <Settings />
+        </Provider>
+    );
+
+    // Act
+
+    settings.find('[testID="highBitrateToggle"]').first().props().onValueChange();
+
+    // Assert
+
+    const expectedActions = [ { type: 'SET_HIGH_BITRATE', mode: !originalHighBitrate } ];
+    expect(store.getActions()).toStrictEqual(expectedActions);
 
 });

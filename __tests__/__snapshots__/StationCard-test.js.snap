@@ -351,7 +351,6 @@ exports[`render-horizontal-mobile 1`] = `
                 Object {
                   "marginLeft": 12,
                   "marginRight": -4,
-                  "width": 16,
                 }
               }
             >
@@ -387,7 +386,7 @@ exports[`render-horizontal-mobile 1`] = `
                   ]
                 }
               >
-                
+                󰐊
               </Text>
             </View>
             <Text
@@ -803,7 +802,6 @@ exports[`render-horizontal-tablet 1`] = `
                 Object {
                   "marginLeft": 12,
                   "marginRight": -4,
-                  "width": 16,
                 }
               }
             >
@@ -839,7 +837,7 @@ exports[`render-horizontal-tablet 1`] = `
                   ]
                 }
               >
-                
+                󰐊
               </Text>
             </View>
             <Text
@@ -1219,7 +1217,6 @@ exports[`render-image-fallback 1`] = `
                 Object {
                   "marginLeft": 12,
                   "marginRight": -4,
-                  "width": 16,
                 }
               }
             >
@@ -1255,7 +1252,7 @@ exports[`render-image-fallback 1`] = `
                   ]
                 }
               >
-                
+                󰐊
               </Text>
             </View>
             <Text
@@ -1635,7 +1632,6 @@ exports[`render-show-fallback 1`] = `
                 Object {
                   "marginLeft": 12,
                   "marginRight": -4,
-                  "width": 16,
                 }
               }
             >
@@ -1671,7 +1667,7 @@ exports[`render-show-fallback 1`] = `
                   ]
                 }
               >
-                
+                󰐊
               </Text>
             </View>
             <Text
@@ -2051,7 +2047,6 @@ exports[`render-vertical-mobile 1`] = `
                 Object {
                   "marginLeft": 12,
                   "marginRight": -4,
-                  "width": 16,
                 }
               }
             >
@@ -2087,7 +2082,7 @@ exports[`render-vertical-mobile 1`] = `
                   ]
                 }
               >
-                
+                󰐊
               </Text>
             </View>
             <Text
@@ -2467,7 +2462,6 @@ exports[`render-vertical-tablet 1`] = `
                 Object {
                   "marginLeft": 12,
                   "marginRight": -4,
-                  "width": 16,
                 }
               }
             >
@@ -2503,7 +2497,7 @@ exports[`render-vertical-tablet 1`] = `
                   ]
                 }
               >
-                
+                󰐊
               </Text>
             </View>
             <Text

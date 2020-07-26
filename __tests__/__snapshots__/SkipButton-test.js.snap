@@ -60,7 +60,7 @@ exports[`mid-playlist renders-backward-large 1`] = `
         ]
       }
     >
-      
+      󰒮
     </Text>
   </View>
 </View>
@@ -126,7 +126,7 @@ exports[`mid-playlist renders-backward-small 1`] = `
         ]
       }
     >
-      
+      󰒮
     </Text>
   </View>
 </View>
@@ -192,7 +192,7 @@ exports[`mid-playlist renders-forward-large 1`] = `
         ]
       }
     >
-      
+      󰒭
     </Text>
   </View>
 </View>
@@ -258,7 +258,7 @@ exports[`mid-playlist renders-forward-small 1`] = `
         ]
       }
     >
-      
+      󰒭
     </Text>
   </View>
 </View>
@@ -324,7 +324,7 @@ exports[`mid-playlist renders-unexpected-direction 1`] = `
         ]
       }
     >
-      
+      󰒮
     </Text>
   </View>
 </View>
@@ -390,7 +390,7 @@ exports[`renders-backward-disable 1`] = `
         ]
       }
     >
-      
+      󰒮
     </Text>
   </View>
 </View>
@@ -456,7 +456,7 @@ exports[`renders-forward-disable 1`] = `
         ]
       }
     >
-      
+      󰒭
     </Text>
   </View>
 </View>

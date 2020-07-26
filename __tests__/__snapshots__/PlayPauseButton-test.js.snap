@@ -65,7 +65,7 @@ exports[`renders-error 1`] = `
         ]
       }
     >
-      
+      󰐌
     </Text>
   </View>
 </View>
@@ -136,7 +136,7 @@ exports[`renders-idle 1`] = `
         ]
       }
     >
-      
+      󰐌
     </Text>
   </View>
 </View>
@@ -219,7 +219,7 @@ exports[`renders-paused 1`] = `
         ]
       }
     >
-      
+      󰐌
     </Text>
   </View>
 </View>
@@ -290,7 +290,7 @@ exports[`renders-playing 1`] = `
         ]
       }
     >
-      
+      󰏥
     </Text>
   </View>
 </View>
@@ -356,7 +356,7 @@ exports[`renders-playing-big-mode 1`] = `
         ]
       }
     >
-      
+      󰏥
     </Text>
   </View>
 </View>
@@ -427,7 +427,7 @@ exports[`renders-unitialised 1`] = `
         ]
       }
     >
-      
+      󰐌
     </Text>
   </View>
 </View>

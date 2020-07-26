@@ -113,10 +113,12 @@ export function reducer(baseState=defaultState, action) {
                 draftState.initialLoad = 'success';
                 break;
             case NOW_PLAYING_UPDATE:
-                draftState.stations[action.stationName].nowPlaying = {
-                    artist: action.artist,
-                    title: action.title,
-                    artUrl: action.artUrl
+                if (action.stationName in draftState.stations) {
+                    draftState.stations[action.stationName].nowPlaying = {
+                        artist: action.artist,
+                        title: action.title,
+                        artUrl: action.artUrl
+                    }
                 }
                 break;
             case ORIENTATION_UPDATE:
@@ -151,8 +153,10 @@ export function reducer(baseState=defaultState, action) {
                 draftState.settings.highBitrate = action.mode;
                 break;
             case SET_CURRENT_STATION:
-                draftState.currentStation = action.station;
-                draftState.theme = generateStationTheme(draftState.settings.darkMode, draftState.stations[action.station]);
+                if (draftState.stationNames.includes(action.station)) {
+                    draftState.currentStation = action.station;
+                    draftState.theme = generateStationTheme(draftState.settings.darkMode, draftState.stations[action.station]);
+                }
                 break;
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;
@@ -171,11 +175,13 @@ export function reducer(baseState=defaultState, action) {
                 draftState.admob.units[action.name] = action.id;
                 break;
             case LOAD_PLAYER_STATION:
-                draftState.player.playlist = [{
-                    type: 'station',
-                    name: action.stationName
-                }];
-                draftState.player.currentItem = 0;
+                if (action.stationName) {
+                    draftState.player.playlist = [{
+                        type: 'station',
+                        name: action.stationName
+                    }];
+                    draftState.player.currentItem = 0;
+                }
                 break;
             case SET_PLAYER_STATE:
                 draftState.player.state = action.state;
@@ -396,18 +402,6 @@ export function setCurrentStation(stationName) {
 }
 
 /**
- * Sets the branding colour for the app.
- * @param {hex string} colour The branding colour.
- */
-
-export function setBrandingColour(colour) {
-    return {
-        type: SET_BRANDING_COLOUR,
-        colour: colour
-    };
-}
-
-/**
  * Sets the names of the stations in order.
  * @param {array of string} stations Station names.
  */
@@ -524,7 +518,9 @@ export function logStreamEnd(station, isError, error, artist, title) {
         type: LOG_STREAM_END,
         station: station,
         isError: isError,
-        error: error
+        error: error,
+        artist: artist,
+        title: title
     };
 }
 

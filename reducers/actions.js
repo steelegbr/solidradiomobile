@@ -518,7 +518,9 @@ export function logStreamEnd(station, isError, error, artist, title) {
         type: LOG_STREAM_END,
         station: station,
         isError: isError,
-        error: error
+        error: error,
+        artist: artist,
+        title: title
     };
 }
 

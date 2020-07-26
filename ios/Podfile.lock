@@ -334,9 +334,9 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
     - ReactCommon/callinvoker (= 0.62.2)
-  - RNDefaultPreference (1.4.2):
+  - RNDefaultPreference (1.4.3):
     - React
-  - RNDeviceInfo (5.5.6):
+  - RNDeviceInfo (5.6.3):
     - React
   - RNFBAdMob (6.7.1):
     - Firebase/AdMob (~> 6.13.0)
@@ -345,7 +345,7 @@ PODS:
     - PersonalizedAdConsent (~> 1.0.4)
     - React
     - RNFBApp
-  - RNFBAnalytics (6.7.1):
+  - RNFBAnalytics (6.7.2):
     - Firebase/Analytics (~> 6.13.0)
     - Firebase/Core (~> 6.13.0)
     - React
@@ -364,11 +364,13 @@ PODS:
     - Firebase/RemoteConfig (~> 6.13.0)
     - React
     - RNFBApp
-  - RNGestureHandler (1.6.1):
+  - RNGestureHandler (1.7.0):
     - React
-  - RNReanimated (1.8.0):
+  - RNReanimated (1.10.1):
     - React
-  - RNVectorIcons (6.6.0):
+  - RNVectorIcons (6.7.0):
+    - React
+  - toolbar-android (0.1.0-rc.2):
     - React
   - Yoga (1.14.0)
 
@@ -411,6 +413,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - "toolbar-android (from `../node_modules/@react-native-community/toolbar-android`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -507,6 +510,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  toolbar-android:
+    :path: "../node_modules/@react-native-community/toolbar-android"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -556,16 +561,17 @@ SPEC CHECKSUMS:
   React-RCTText: fae545b10cfdb3d247c36c56f61a94cfd6dba41d
   React-RCTVibration: 4356114dbcba4ce66991096e51a66e61eda51256
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
-  RNDefaultPreference: 56a405ce61033ac77b95004dccd7ac54c2eb50d1
-  RNDeviceInfo: c3ea4a4d4547740c548cdd1e5a78f9b04e524688
+  RNDefaultPreference: 21816c0a6f61a2829ccc0cef034392e9b509ee5f
+  RNDeviceInfo: c5fa705c8914c42800ff36e86d25d277e8eb16ff
   RNFBAdMob: 8e6fd1d00c34ed743ccd11b823ed78a224492d00
-  RNFBAnalytics: 7d56f7af0a1147e649df33e64372aea8923fdd01
+  RNFBAnalytics: 29bc4baf70da8dc04238d2e1c050367264d2f440
   RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645
   RNFBCrashlytics: b34063b906dd0c57a5d286dd743a40c90c8326c7
   RNFBRemoteConfig: 59818c5933149b5a6b7fe5159e3d4df09199e858
-  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
-  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNReanimated: c2bb7438b57a3d987bb2e4e6e4bca94787e30b02
+  RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
+  toolbar-android: 404f4450b203597e7b417f714ff417bed562a1be
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
 PODFILE CHECKSUM: aa4ae06a0b949c7c5d71898d4cce6f1db2711cc2

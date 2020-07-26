@@ -135,8 +135,26 @@ function* nowPlayingSaga(action) {
 
 function* nowPlayingErrorSaga(action) {
 
+    // Record any errors we get
+
     crashlytics().log(`Encountered now playing error for ${action.station}.`);
     crashlytics().recordError(action.error);
+
+    // Assume web sockets we closed need to be re-opened
+
+    if (action.error.message.includes('Web socket closed for')) {
+
+        var dummy_action = {
+            payload: {
+                data: {
+                    name: action.station
+                }
+            }
+        };
+
+        yield call(nowPlayingSaga(dummy_action));
+
+    }
 
 }
 

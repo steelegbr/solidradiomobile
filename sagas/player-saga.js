@@ -228,6 +228,8 @@ function* loadPlayerStation(action) {
     yield put(logStreamStart(action.stationName, state.settings.highBitrate));
     yield put(logStreamSongPlay(action.stationName, stationTrack.artist, stationTrack.title));
 
+    yield TrackPlayer.play();
+
 }
 
 /**

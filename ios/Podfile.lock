@@ -366,6 +366,8 @@ PODS:
     - RNFBApp
   - RNGestureHandler (1.7.0):
     - React
+  - RNLocalize (1.4.0):
+    - React
   - RNReanimated (1.10.1):
     - React
   - RNVectorIcons (6.7.0):
@@ -411,6 +413,7 @@ DEPENDENCIES:
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - "toolbar-android (from `../node_modules/@react-native-community/toolbar-android`)"
@@ -506,6 +509,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/remote-config"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNVectorIcons:
@@ -569,6 +574,7 @@ SPEC CHECKSUMS:
   RNFBCrashlytics: b34063b906dd0c57a5d286dd743a40c90c8326c7
   RNFBRemoteConfig: 59818c5933149b5a6b7fe5159e3d4df09199e858
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNLocalize: fc27ee5878ce5a3af73873fb2d8e866e0d1e6d84
   RNReanimated: c2bb7438b57a3d987bb2e4e6e4bca94787e30b02
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
   toolbar-android: 404f4450b203597e7b417f714ff417bed562a1be

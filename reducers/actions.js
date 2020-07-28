@@ -42,6 +42,7 @@ export const AUDIO_PLAYER_PLAYPAUSE = 'AUDIO_PLAYER_PLAYPAUSE';
 export const AUDIO_PLAYER_PLAY = 'AUDIO_PLAYER_PLAY';
 export const AUDIO_PLAYER_PAUSE = 'AUDIO_PLAYER_PAUSE';
 export const AUDIO_PLAYER_STOP = 'AUDIO_PLAYER_STOP';
+export const SET_TIMEZONE = 'SET_TIMEZONE';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -71,7 +72,8 @@ defaultState = {
         consent: AdsConsentStatus.UNKNOWN,
         privacyPolicy: null,
         units: {}
-    }
+    },
+    timezone: null
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -185,6 +187,9 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_PLAYER_STATE:
                 draftState.player.state = action.state;
+                break;
+            case SET_TIMEZONE:
+                draftState.timezone = action.timezone;
                 break;
         }
     });
@@ -612,4 +617,16 @@ export function audioPlayerStop(source) {
         type: AUDIO_PLAYER_STOP,
         source: source
     };
+}
+
+/**
+ * Sets the device timezone.
+ * @param {timezone} timezone The friendly name of the device timezone.
+ */
+
+export function setTimezone(timezone) {
+    return {
+        type: SET_TIMEZONE,
+        timezone: timezone
+    }
 }

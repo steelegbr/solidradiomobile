@@ -3,7 +3,7 @@
  */
 
 import TrackPlayer from 'react-native-track-player';
-import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, audioPlayerPause, audioPlayerStop, AUDIO_PLAYER_PAUSE, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_STOP } from '../reducers/actions';
+import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, audioPlayerPause, audioPlayerStop, AUDIO_PLAYER_PAUSE, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_STOP, SET_PLAYER_STATE } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { put, all, call, select, takeEvery, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
@@ -111,7 +111,6 @@ function* handleStateEvent(data) {
 
     switch(data.state) {
         case TrackPlayer.STATE_NONE:
-        case TrackPlayer.STATE_READY:
         case TrackPlayer.STATE_STOPPED:
             translatedState = PlayerState.IDLE;
             break;
@@ -119,6 +118,7 @@ function* handleStateEvent(data) {
             translatedState = PlayerState.PLAYING;
             break;
         case TrackPlayer.STATE_PAUSED:
+        case TrackPlayer.STATE_READY:
             translatedState = PlayerState.PAUSED;
             break;
         case TrackPlayer.STATE_BUFFERING:
@@ -221,14 +221,12 @@ function* loadPlayerStation(action) {
     };
 
     yield TrackPlayer.add([stationTrack]);
-    yield TrackPlayer.play();
+    //yield TrackPlayer.play();
 
     // Log the start
 
     yield put(logStreamStart(action.stationName, state.settings.highBitrate));
     yield put(logStreamSongPlay(action.stationName, stationTrack.artist, stationTrack.title));
-
-    yield TrackPlayer.play();
 
 }
 
@@ -267,6 +265,21 @@ function* handleNowPlaying(action) {
     // Log to analytics
 
     yield put(logStreamSongPlay(currentStationName, action.artist, action.title));
+
+}
+
+/**
+ * Handles the load complete action and plays audio.
+ * @param {action} action The player state change action.
+ */
+
+function* handleLoadComplete(action) {
+
+    // Trigger if we're in the ready state
+
+    if (action.unmappedState == "ready") {
+        yield(put(audioPlayerPlay("load_complete_trigger")));
+    }
 
 }
 
@@ -404,6 +417,7 @@ export function* watchPlayer() {
         takeEvery(AUDIO_PLAYER_PLAYPAUSE, handlePlayPause),
         takeEvery(AUDIO_PLAYER_PAUSE, handlePause),
         takeEvery(AUDIO_PLAYER_PLAY, handlePlay),
-        takeEvery(AUDIO_PLAYER_STOP, handleStop)
+        takeEvery(AUDIO_PLAYER_STOP, handleStop),
+        takeEvery(SET_PLAYER_STATE, handleLoadComplete)
     ]);
 }

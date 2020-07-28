@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 import { Title } from 'react-native-paper';
@@ -739,6 +739,25 @@ describe('reducer', () => {
 
     });
 
+    it.each`
+        timezone
+        ${null}
+        ${'Europe/London'}
+    `('audio-player-stop', ({ timezone }) => {
+
+        // Arrange
+
+        // Act
+
+        const newState = reducer(state, setTimezone(timezone));
+
+        // Assert
+        // This is a no side-effects change
+    
+        expect(newState.timezone).toBe(timezone);
+
+    });
+
 });
 
 // Tests the pure action calls
@@ -1464,6 +1483,29 @@ describe('actions', () => {
         // Act
 
         const action = audioPlayerStop(source);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        timezone
+        ${null}
+        ${'Europe/London'}
+    `('audio-player-stop', ({ timezone }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_TIMEZONE,
+            timezone: timezone
+        };
+
+        // Act
+
+        const action = setTimezone(timezone);
 
         // Assert
 

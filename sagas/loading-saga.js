@@ -5,8 +5,9 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 import { put, takeLatest, all, takeEvery, select } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL, setAdMobPublisher, setAdmobPrivacyPolicy, setAdmobUnitId } from '../reducers/actions';
+import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL, setAdMobPublisher, setAdmobPrivacyPolicy, setAdmobUnitId, setTimezone } from '../reducers/actions';
 import { Platform } from 'react-native';
+import * as RNLocalize from 'react-native-localize';
 
 /**
  * The initial load worker saga.
@@ -19,6 +20,10 @@ function* initialLoadSaga() {
         // Let everyone know we've started the process
 
         yield put(initialLoadStarted());
+
+        // Timezone
+
+        yield put(setTimezone(RNLocalize.getTimeZone()));
 
         // Request the settings
 

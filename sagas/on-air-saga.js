@@ -3,9 +3,10 @@
  */
 
 
-import { put, all, takeEvery, delay, select } from 'redux-saga/effects';
-import { loadOnAir, getStationNameFromOnAir, STATION_LOAD_SUCCESS, ONAIR_LOAD_FAIL, ONAIR_LOAD_SUCCESS } from '../reducers/actions';
+import { put, all, takeEvery, call, select } from 'redux-saga/effects';
+import { loadOnAir, getStationNameFromOnAir, STATION_LOAD_SUCCESS, ONAIR_LOAD_FAIL, ONAIR_LOAD_SUCCESS, NOW_PLAYING_UPDATE, updateOnAir } from '../reducers/actions';
 import crashlytics from '@react-native-firebase/crashlytics';
+import { DayTime, getEpgEntry } from '../epg/timezone';
 
 /**
  * Triggers the currently on air information for a specific station.
@@ -53,16 +54,46 @@ function* onAirLoadSuccess(action) {
 
     const stationName = getStationNameFromOnAir(action);
 
-    // Sleep it off until the next hour
+    // Get the EPG and station timezone
 
-    const currentState = yield select();
-    const now = new Date();
-    const sleepMins = 60 - now.getMinutes();
-    const sleepSecs = 61 - now.getSeconds();
-    const sleepTime = 1000 * (60 * sleepMins + sleepSecs + Math.ceil(Math.random() * currentState.backOffTime));
+    const state = yield select();
+    const station_timezone = state.stations[stationName].timezone;
+    const device_timezone = state.timezone;
 
-    yield delay(sleepTime);
-    yield put(loadOnAir(stationName));
+    // Perform the lookup
+    
+    const epg = action.payload.data;
+    const daytime = new DayTime(new Date(), device_timezone, station_timezone);
+    const show = getEpgEntry(daytime, epg);
+
+    // Update the schedule
+
+    yield put(updateOnAir(stationName, show));
+
+}
+
+/**
+ * Loads the current show from the EPG.
+ * @param {action} action A now playing update to trigger.
+ */
+
+function* currentShowFromEpg(action) {
+
+    // Get the EPG and station timezone
+
+    const state = yield select();
+    const station_timezone = state.stations[action.stationName].timezone;
+    const device_timezone = state.timezone;
+
+    // Perform the lookup
+
+    const epg = state.stations[action.stationName].epg;
+    const daytime = new DayTime(new Date(), device_timezone, station_timezone);
+    const show = getEpgEntry(daytime, epg)
+
+    // Update the schedule
+
+    yield put(updateOnAir(action.stationName, show));
 
 }
 
@@ -70,6 +101,7 @@ export function* watchOnAir() {
     yield all([
         takeEvery(STATION_LOAD_SUCCESS, getOnAirFromStationLoad),
         takeEvery(ONAIR_LOAD_FAIL, onAirLoadFailure),
-        takeEvery(ONAIR_LOAD_SUCCESS, onAirLoadSuccess)
+        takeEvery(ONAIR_LOAD_SUCCESS, onAirLoadSuccess),
+        takeEvery(NOW_PLAYING_UPDATE, currentShowFromEpg)
     ]);
 }

@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone, ONAIR_UPDATE, updateOnAir, ONAIR_LOAD_SUCCESS, INTIIAL_LOAD_SUCCESS, STATION_LOAD_SUCCESS } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 import { Title } from 'react-native-paper';
@@ -758,6 +758,136 @@ describe('reducer', () => {
 
     });
 
+    it('initial-load-success', () => {
+
+        // Arrange
+
+        const action = {
+            type: INTIIAL_LOAD_SUCCESS
+        }
+
+        // Act
+
+        const newState = reducer(state, action);
+
+        // Assert
+
+        expect(newState.initialLoad).toBe('success');
+
+    });
+
+    it.each`
+    name
+    ${'Foo FM'}
+    ${'Foo AM'}
+    `('station-load-success', ({ name }) => {
+
+        // Arrange
+
+        const action = {
+            type: STATION_LOAD_SUCCESS,
+            payload: {
+                data: {
+                    name: name
+                }
+            }
+        }
+
+        // Act
+
+        const newState = reducer(state, action);
+
+        // Assert
+
+        expect(newState.stations).toHaveProperty(name);
+        expect(newState.stationCount).toBe(1);
+        expect(newState.initialLoad).toBe('success');
+
+    });
+
+    it.each`
+    name
+    ${'Foo FM'}
+    ${'Foo AM'}
+    `('onair-load-success', ({ name }) => {
+
+        // Arrange
+
+        const epg = require('./Epg-Test.json');
+
+        const station_action = {
+            type: STATION_LOAD_SUCCESS,
+            payload: {
+                data: {
+                    name: name
+                }
+            }
+        }
+
+        const action = {
+            type: ONAIR_LOAD_SUCCESS,
+            payload: {
+                config: {
+                    url: `/api/epg/${encodeURI(name)}/`
+                },
+                data: epg
+            }
+        };
+
+        // Act
+
+        const tempState = reducer(state, station_action);
+        const newState = reducer(tempState, action);
+
+        // Assert
+
+        expect(newState.stations[name].epg).toStrictEqual(epg);
+
+    });
+
+    it.each`
+        station | title | description | image | start
+        ${'Foo FM'} | ${'Foo FM on Friday'} | ${'Banging out that Friday feeling.'} | ${'foo.png'} | ${'10:00:00'}
+    `('onair-update', ({ station, title, description, image, start }) => {
+
+        // Arrange
+
+        const show = {
+            title: title,
+            description: description,
+            image: image,
+            start: start
+        };
+
+        const expected = {
+            type: ONAIR_UPDATE,
+            show: show, 
+            station: station
+        };
+
+        const station_action = {
+            type: STATION_LOAD_SUCCESS,
+            payload: {
+                data: {
+                    name: station
+                }
+            }
+        }
+
+        // Act
+
+        const tempState = reducer(state, station_action);
+        const newState = reducer(tempState, updateOnAir(station, show));
+
+        // Assert
+
+        expect(newState.stations[station].onAir.show).toBe(title);
+        expect(newState.stations[station].onAir.description).toBe(description);
+        expect(newState.stations[station].onAir.image).toBe(image);
+        expect(newState.stations[station].onAir.startTime).toBe(start);
+
+    });
+ 
 });
 
 // Tests the pure action calls
@@ -866,7 +996,7 @@ describe('actions', () => {
             type: ONAIR_LOAD_START,
             payload: {
                 request: {
-                    url: `/api/epg/${encodeURI(stationName)}/current/`
+                    url: `/api/epg/${encodeURI(stationName)}/`
                 }
             }
         };
@@ -1506,6 +1636,36 @@ describe('actions', () => {
         // Act
 
         const action = setTimezone(timezone);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+        station | title | description | image | start
+        ${'Foo FM'} | ${'Foo FM on Friday'} | ${'Banging out that Friday feeling.'} | ${'foo.png'} | ${'10:00:00'}
+    `('onair-update', ({ station, title, description, image, start }) => {
+
+        // Arrange
+
+        const show = {
+            title: title,
+            description: description,
+            image: image,
+            start: start
+        };
+
+        const expected = {
+            type: ONAIR_UPDATE,
+            show: show, 
+            station: station
+        };
+
+        // Act
+
+        const action = updateOnAir(station, show);
 
         // Assert
 

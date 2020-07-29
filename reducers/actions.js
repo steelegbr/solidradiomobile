@@ -23,6 +23,7 @@ export const TABLET_UPDATE = 'TABLET_UPDATE';
 export const ONAIR_LOAD_START = 'ONAIR_LOAD';
 export const ONAIR_LOAD_FAIL = 'ONAIR_LOAD_FAIL';
 export const ONAIR_LOAD_SUCCESS = 'ONAIR_LOAD_SUCCESS';
+export const ONAIR_UPDATE = 'ONAIR_UPDATE';
 export const SET_DARK_MODE = 'SET_DARK_MODE';
 export const SET_HIGH_BITRATE = 'SET_HIGH_BITRATE';
 export const SET_CURRENT_STATION = 'SET_CURRENT_STATION';
@@ -131,12 +132,15 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case ONAIR_LOAD_SUCCESS:
                 const onAirStationName = getStationNameFromOnAir(action);
-                draftState.stations[onAirStationName].onAir = {
-                    show: action.payload.data.title,
-                    description: action.payload.data.description,
-                    image: action.payload.data.image,
-                    startTime: action.payload.data.start
-                }
+                draftState.stations[onAirStationName].epg = action.payload.data;
+                break;
+            case ONAIR_UPDATE:
+                draftState.stations[action.station].onAir = {
+                    show: action.show.title,
+                    description: action.show.description,
+                    image: action.show.image,
+                    startTime: action.show.start
+                };
                 break;
             case SET_DARK_MODE:
 
@@ -264,7 +268,7 @@ export function loadOnAir(name) {
         type: ONAIR_LOAD_START,
         payload: {
             request: {
-                url: `/api/epg/${urlEncodedStationName}/current/`
+                url: `/api/epg/${urlEncodedStationName}/`
             }
         }
     };
@@ -629,4 +633,18 @@ export function setTimezone(timezone) {
         type: SET_TIMEZONE,
         timezone: timezone
     }
+}
+
+/**
+ * Updates the current show on air.
+ * @param {station} station The station the update is for.
+ * @param {show} show The show to update.
+ */
+
+export function updateOnAir(station, show) {
+    return {
+        type: ONAIR_UPDATE,
+        station: station,
+        show: show
+    };
 }

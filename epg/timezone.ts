@@ -1,5 +1,4 @@
 import { DateTime, Duration } from 'luxon';
-import { isNullOrUndefined } from 'util';
 
 /**
  * Helper class for looking up EPG entries by day and time.
@@ -47,7 +46,7 @@ export function getEpgEntry(daytime: DayTime, epg: object) {
 
     // Sanity checks
 
-    if (isNullOrUndefined(daytime) || isNullOrUndefined(epg)) {
+    if (daytime == null || epg == null) {
         throw new Error('You must supply a day/time and EPG to get the entry from.');
     }
 

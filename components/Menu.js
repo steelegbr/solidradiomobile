@@ -6,6 +6,7 @@ import { BottomNavigation } from 'react-native-paper';
 import TestComponent from './TestComponent';
 import StationCarousel from './StationCarousel';
 import Settings from './Settings';
+import EpgScreen from './EpgScreen';
 
 /**
  * The main menu container
@@ -47,7 +48,7 @@ class Menu extends Component {
 
   renderScene = BottomNavigation.SceneMap({
       radio: StationCarousel,
-      schedule: TestComponent,
+      schedule: EpgScreen,
       podcasts: TestComponent,
       presenters: TestComponent,
       settings: Settings

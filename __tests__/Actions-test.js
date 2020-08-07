@@ -2,10 +2,9 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone, ONAIR_UPDATE, updateOnAir, ONAIR_LOAD_SUCCESS, INTIIAL_LOAD_SUCCESS, STATION_LOAD_SUCCESS } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone, ONAIR_UPDATE, updateOnAir, ONAIR_LOAD_SUCCESS, INTIIAL_LOAD_SUCCESS, STATION_LOAD_SUCCESS, SET_EPG_DAY, setEpgDay, SET_EPG_STATION, setEpgStation } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
-import { Title } from 'react-native-paper';
 
 // Tests
 
@@ -39,6 +38,10 @@ describe('reducer', () => {
             consent: 0,
             privacyPolicy: null,
             units: {}
+        },
+        epg: {
+            currentDay: null,
+            currentStation: null
         }
     };
 
@@ -887,6 +890,51 @@ describe('reducer', () => {
         expect(newState.stations[station].onAir.startTime).toBe(start);
 
     });
+
+    it.each`
+    day
+    ${0}
+    ${1}
+    ${2}
+    ${3}
+    ${4}
+    ${5}
+    ${6}
+    `('epg-day', ({ day }) => {
+
+        // Arrange
+
+        const action = setEpgDay(day);
+
+        // Act
+
+        const newState = reducer(state, action);
+
+        // Assert
+
+        expect(newState.epg.currentDay).toBe(day);
+
+    });
+
+    it.each`
+    stationName
+    ${'Foo FM'}
+    ${'FooBar AM'}
+    `('epg-station', ({ stationName }) => {
+
+        // Arrange
+
+        const action = setEpgStation(stationName);
+
+        // Act
+
+        const newState = reducer(state, action);
+
+        // Assert
+
+        expect(newState.epg.currentStation).toBe(stationName);
+
+    });
  
 });
 
@@ -1666,6 +1714,57 @@ describe('actions', () => {
         // Act
 
         const action = updateOnAir(station, show);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+    day
+    ${0}
+    ${1}
+    ${2}
+    ${3}
+    ${4}
+    ${5}
+    ${6}
+    `('epg-day', ({ day }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_EPG_DAY,
+            day: day
+        };
+
+        // Act
+
+        const action = setEpgDay(day);
+
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+
+    });
+
+    it.each`
+    stationName
+    ${'Foo FM'}
+    ${'FooBar AM'}
+    `('epg-station', ({ stationName }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_EPG_STATION,
+            stationName: stationName
+        };
+
+        // Act
+
+        const action = setEpgStation(stationName);
 
         // Assert
 

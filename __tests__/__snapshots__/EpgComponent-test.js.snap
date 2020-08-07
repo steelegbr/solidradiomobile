@@ -1,0 +1,2713 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "description": "We don’t bore you with soppy love songs through the night shift. Instead, enjoy a great mix of songs, all night long.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/31548926930_f1a1103e5f_o.jpg",
+        "start": "00:00:00",
+        "title": "Night Shift",
+      },
+      Object {
+        "description": "Get your fix of great songs in the morning with the news you actually need to know.  No waffle, no nonsense.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg",
+        "start": "06:00:00",
+        "title": "Breakfast Without the Waffle",
+      },
+      Object {
+        "description": "It’s only mid morning and we’re already stopping for a tea break with a difference. Two hours of back to back classics from great British artists.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4545-2.jpg",
+        "start": "10:00:00",
+        "title": "Great British Tea Break",
+      },
+      Object {
+        "description": "Enjoy an hour of the songs that weren’t only acceptable in the 80s but still sound great today.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/wallpapper-778185.png",
+        "start": "12:00:00",
+        "title": "Solid Radio 80s",
+      },
+      Object {
+        "description": "A solid hour of 90s songs on Solid Radio. It’s as simple as that!",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+        "start": "13:00:00",
+        "title": "Solid Radio 90s",
+      },
+      Object {
+        "description": "Here at Solid Radio, we understand just how difficult time travel can be. For one, you’ve got to remember to space as well! So, why not take the easy option and enjoy the songs of the 00s without going to the trouble of actually travelling there.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+        "start": "14:00:00",
+        "title": "Solid Radio 00s",
+      },
+      Object {
+        "description": "Enjoy great songs throughout the afternoon.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+        "start": "15:00:00",
+        "title": "Afternoons",
+      },
+      Object {
+        "description": "Join Marc as he plays the hits and chats about all sorts on Monday afternoons.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/16848719206_3b4cf37585_o.jpg",
+        "start": "17:00:00",
+        "title": "Monday Afternoons",
+      },
+      Object {
+        "description": "Other radio stations might be playing soppy love songs. We’re playing great songs all evening long.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/27768705579_2257a0bb9e_o.jpg",
+        "start": "19:00:00",
+        "title": "Evenings",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/31548926930_f1a1103e5f_o.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Night Shift
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              00:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Breakfast Without the Waffle
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              06:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4545-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Great British Tea Break
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              10:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/wallpapper-778185.png",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Solid Radio 80s
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              12:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Solid Radio 90s
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              13:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Solid Radio 00s
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              14:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Afternoons
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              15:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/16848719206_3b4cf37585_o.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Monday Afternoons
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              17:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/27768705579_2257a0bb9e_o.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Evenings
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              19:00
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`renders 2`] = `
+<RCTScrollView
+  data={
+    Array [
+      Object {
+        "description": "We don’t bore you with soppy love songs through the night shift. Instead, enjoy a great mix of songs, all night long.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/31548926930_f1a1103e5f_o.jpg",
+        "start": "00:00:00",
+        "title": "Night Shift",
+      },
+      Object {
+        "description": "Get your fix of great songs in the morning with the news you actually need to know.  No waffle, no nonsense.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg",
+        "start": "06:00:00",
+        "title": "Breakfast Without the Waffle",
+      },
+      Object {
+        "description": "It’s only mid morning and we’re already stopping for a tea break with a difference. Two hours of back to back classics from great British artists.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4545-2.jpg",
+        "start": "10:00:00",
+        "title": "Great British Tea Break",
+      },
+      Object {
+        "description": "Enjoy an hour of the songs that weren’t only acceptable in the 80s but still sound great today.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/wallpapper-778185.png",
+        "start": "12:00:00",
+        "title": "Solid Radio 80s",
+      },
+      Object {
+        "description": "A solid hour of 90s songs on Solid Radio. It’s as simple as that!",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+        "start": "13:00:00",
+        "title": "Solid Radio 90s",
+      },
+      Object {
+        "description": "Here at Solid Radio, we understand just how difficult time travel can be. For one, you’ve got to remember to space as well! So, why not take the easy option and enjoy the songs of the 00s without going to the trouble of actually travelling there.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+        "start": "14:00:00",
+        "title": "Solid Radio 00s",
+      },
+      Object {
+        "description": "Enjoy great songs throughout the afternoon.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+        "start": "15:00:00",
+        "title": "Afternoons",
+      },
+      Object {
+        "description": "Join Marc as he plays the hits and chats about all sorts on Monday afternoons.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/16848719206_3b4cf37585_o.jpg",
+        "start": "17:00:00",
+        "title": "Monday Afternoons",
+      },
+      Object {
+        "description": "Other radio stations might be playing soppy love songs. We’re playing great songs all evening long.",
+        "image": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/27768705579_2257a0bb9e_o.jpg",
+        "start": "19:00:00",
+        "title": "Evenings",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/31548926930_f1a1103e5f_o.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Night Shift
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              00:00 [Sun 16:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4553.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Breakfast Without the Waffle
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              06:00 [Sun 22:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4545-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Great British Tea Break
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              10:00 [Mon 02:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/wallpapper-778185.png",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Solid Radio 80s
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              12:00 [Mon 04:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Solid Radio 90s
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              13:00 [Mon 05:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Solid Radio 00s
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              14:00 [Mon 06:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/IMG_4543-2.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Afternoons
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              15:00 [Mon 07:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/16848719206_3b4cf37585_o.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Monday Afternoons
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              17:00 [Mon 09:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            false,
+            Array [
+              Object {
+                "padding": 8,
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            pointerEvents="box-none"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "margin": 8,
+                  "width": 40,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Image
+              accessibilityElementsHidden={true}
+              importantForAccessibility="no-hide-descendants"
+              source={
+                Object {
+                  "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/27768705579_2257a0bb9e_o.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "height": 24,
+                    "resizeMode": "contain",
+                    "tintColor": undefined,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "marginVertical": 6,
+                  "paddingLeft": 8,
+                },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.87)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Evenings
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                    "textAlign": "left",
+                  },
+                  Array [
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "color": "rgba(0, 0, 0, 0.54)",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              19:00 [Mon 11:00]
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

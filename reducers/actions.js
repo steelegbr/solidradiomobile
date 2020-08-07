@@ -23,6 +23,7 @@ export const TABLET_UPDATE = 'TABLET_UPDATE';
 export const ONAIR_LOAD_START = 'ONAIR_LOAD';
 export const ONAIR_LOAD_FAIL = 'ONAIR_LOAD_FAIL';
 export const ONAIR_LOAD_SUCCESS = 'ONAIR_LOAD_SUCCESS';
+export const ONAIR_UPDATE = 'ONAIR_UPDATE';
 export const SET_DARK_MODE = 'SET_DARK_MODE';
 export const SET_HIGH_BITRATE = 'SET_HIGH_BITRATE';
 export const SET_CURRENT_STATION = 'SET_CURRENT_STATION';
@@ -42,6 +43,9 @@ export const AUDIO_PLAYER_PLAYPAUSE = 'AUDIO_PLAYER_PLAYPAUSE';
 export const AUDIO_PLAYER_PLAY = 'AUDIO_PLAYER_PLAY';
 export const AUDIO_PLAYER_PAUSE = 'AUDIO_PLAYER_PAUSE';
 export const AUDIO_PLAYER_STOP = 'AUDIO_PLAYER_STOP';
+export const SET_TIMEZONE = 'SET_TIMEZONE';
+export const SET_EPG_STATION = 'SET_EPG_STATION';
+export const SET_EPG_DAY = 'SET_EPG_DAY';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -71,6 +75,11 @@ defaultState = {
         consent: AdsConsentStatus.UNKNOWN,
         privacyPolicy: null,
         units: {}
+    },
+    timezone: null,
+    epg: {
+        currentDay: new Date().getDay(),
+        currentStation: null
     }
 }
 
@@ -129,12 +138,15 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case ONAIR_LOAD_SUCCESS:
                 const onAirStationName = getStationNameFromOnAir(action);
-                draftState.stations[onAirStationName].onAir = {
-                    show: action.payload.data.title,
-                    description: action.payload.data.description,
-                    image: action.payload.data.image,
-                    startTime: action.payload.data.start
-                }
+                draftState.stations[onAirStationName].epg = action.payload.data;
+                break;
+            case ONAIR_UPDATE:
+                draftState.stations[action.station].onAir = {
+                    show: action.show.title,
+                    description: action.show.description,
+                    image: action.show.image,
+                    startTime: action.show.start
+                };
                 break;
             case SET_DARK_MODE:
 
@@ -161,6 +173,7 @@ export function reducer(baseState=defaultState, action) {
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;
                 draftState.currentStation = draftState.stationNames[0];
+                draftState.epg.currentStation = draftState.stationNames[0];
                 break;
             case SET_ADMOB_PUBLISHER:
                 draftState.admob.publisher = action.publisherId;
@@ -185,6 +198,15 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_PLAYER_STATE:
                 draftState.player.state = action.state;
+                break;
+            case SET_TIMEZONE:
+                draftState.timezone = action.timezone;
+                break;
+            case SET_EPG_DAY:
+                draftState.epg.currentDay = action.day;
+                break;
+            case SET_EPG_STATION:
+                draftState.epg.currentStation = action.stationName;
                 break;
         }
     });
@@ -259,7 +281,7 @@ export function loadOnAir(name) {
         type: ONAIR_LOAD_START,
         payload: {
             request: {
-                url: `/api/epg/${urlEncodedStationName}/current/`
+                url: `/api/epg/${urlEncodedStationName}/`
             }
         }
     };
@@ -611,5 +633,56 @@ export function audioPlayerStop(source) {
     return {
         type: AUDIO_PLAYER_STOP,
         source: source
+    };
+}
+
+/**
+ * Sets the device timezone.
+ * @param {timezone} timezone The friendly name of the device timezone.
+ */
+
+export function setTimezone(timezone) {
+    return {
+        type: SET_TIMEZONE,
+        timezone: timezone
+    }
+}
+
+/**
+ * Updates the current show on air.
+ * @param {station} station The station the update is for.
+ * @param {show} show The show to update.
+ */
+
+export function updateOnAir(station, show) {
+    return {
+        type: ONAIR_UPDATE,
+        station: station,
+        show: show
+    };
+}
+
+/**
+ * Changes the day the EPG is showing.
+ * @param {day} day The day number (0-6)
+ */
+
+export function setEpgDay(day) {
+    return {
+        type: SET_EPG_DAY,
+        day: day
+    };
+}
+
+
+/**
+ * Changes the station the EPG is showing.
+ * @param {stationName} stationName The name of the station we want the EPG to show.
+ */
+
+export function setEpgStation(stationName) {
+    return {
+        type: SET_EPG_STATION,
+        stationName: stationName
     };
 }

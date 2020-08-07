@@ -4,41 +4,68 @@
 
 import React from 'react';
 import { Component } from 'react';
-import { View } from 'react-native'
-import { Button, Menu } from 'react-native-paper';
+import { View, Dimensions, StyleSheet } from 'react-native'
+import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
+import Carousel from 'react-native-snap-carousel';
 import PlayerOverlay from './PlayerOverlay';
+import EpgList from './EpgList';
+import { setEpgDay, setEpgStation } from '../reducers/actions';
 
 class EpgScreen extends Component {
 
-    visible = false;
-
-    setVisible(state) {
-        this.visible = state;
-    };
-    
+    renderItem({ item, index }) {
+        return(
+            <Button>{item}</Button>
+        );
+    }
 
     render() {
 
-        const { days, stationNames } = this.props;
+        const { days, stationNames, currentDay, currentStation, setEpgDay, setEpgStation } = this.props;
+        const currentStationIndex = stationNames.indexOf(currentStation);
+        const sliderWidth = Dimensions.get("window").width;
+        const itemWidth = sliderWidth * 0.5;
 
         return(
             <View>
-                <Menu
-                    visible={this.visible}
-                    onDismiss={this.setVisible(false)}
-                    anchor={<Button onPress={this.setVisible(true)}>{this.currentStation}</Button>}
-                >
-                    {stationNames.map((day, index) => {
-                        return <Menu.Item>{day}</Menu.Item>
-                    })}
-                </Menu>
+                <Carousel
+                    ref={(c) => { this._carousel = c; }}
+                    data={stationNames}
+                    renderItem={this.renderItem}
+                    sliderWidth={sliderWidth}
+                    itemWidth={itemWidth}
+                    loop={true}
+                    firstItem={currentStationIndex}
+                    onSnapToItem={(index) => {
+                        setEpgStation(stationNames[index]);
+                    }}
+                />
+                <Carousel
+                    ref={(c) => { this._carousel = c; }}
+                    data={days}
+                    renderItem={this.renderItem}
+                    sliderWidth={sliderWidth}
+                    itemWidth={itemWidth}
+                    loop={true}
+                    firstItem={currentDay}
+                    onSnapToItem={setEpgDay}
+                />
+                <View style={styles.list}>
+                    <EpgList />
+                </View>
                 <PlayerOverlay />
             </View>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+    list: {
+        height: Dimensions.get("window").height - 250
+    }
+});
 
 const mapStateToProps = state => {
     return {
@@ -51,13 +78,16 @@ const mapStateToProps = state => {
             "Saturday",
             "Sunday"
         ],
-        stationNames: state.stationNames
+        stationNames: state.stationNames,
+        currentDay: state.epg.currentDay,
+        currentStation: state.epg.currentStation
     };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-
+        setEpgDay: (index) => dispatch(setEpgDay(index)),
+        setEpgStation: (stationName) => dispatch(setEpgStation(stationName))
     };
 }
 

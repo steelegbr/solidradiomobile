@@ -86,8 +86,13 @@ function* currentShowFromEpg(action) {
     const device_timezone = state.timezone;
 
     // Perform the lookup
+    // With sanity check
 
     const epg = state.stations[action.stationName].epg;
+    if (epg == null) {
+        return;
+    }
+
     const daytime = new DayTime(new Date(), device_timezone, station_timezone);
     const show = getEpgEntry(daytime, epg)
 

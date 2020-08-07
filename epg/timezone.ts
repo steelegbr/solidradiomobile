@@ -25,7 +25,7 @@ export class DayTime {
 
         // Work out the interval
 
-        this.day = converted_time.weekday;
+        this.day = converted_time.weekday - 1;
         this.time = Duration.fromObject({
             hours: converted_time.hour,
             minutes: converted_time.minute
@@ -78,5 +78,61 @@ export function getEpgEntry(daytime: DayTime, epg: object) {
     });
 
     return entry;
+
+}
+
+/**
+ * Converts an EPG time to a human friendly time.
+ * @param epgTime The time from the EPG.
+ */
+
+export function epgTimeToFriendly(epgTime: string) {
+
+    // Sanity checks
+
+    if (!epgTime) {
+        return "";
+    }
+
+    // Make the conversion
+
+    const time_regex = /([0-9]{2}):([0-9]{2}):([0-9]{2})/;
+    let time_groups = epgTime.match(time_regex);
+
+    return `${time_groups[1]}:${time_groups[2]}`;
+
+
+}
+
+/**
+ * Converts an EPG time to a local, human friendly time.
+ * @param epgTime The time fron the EPG.
+ * @param day The day the EPG entry is for.
+ */
+
+export function epgTimeToLocal(epgTime: string, day: number, localTimezone: string, epgTimezone: string) {
+
+    // Work out when the show will air in the station timezone
+
+    const time_regex = /([0-9]{2}):([0-9]{2}):([0-9]{2})/;
+    let time_groups = epgTime.match(time_regex);
+
+    let epgTimeConverted = DateTime.fromJSDate(
+        new Date(),
+        {
+            zone: epgTimezone
+        }
+    );
+
+    epgTimeConverted = epgTimeConverted.set({
+        weekday: day + 1,
+        hour: Number.parseInt(time_groups[1]),
+        minute: Number.parseInt(time_groups[2])
+    });
+
+    // Force a conversion to local time and print it
+
+    epgTimeConverted = epgTimeConverted.setZone(localTimezone);
+    return epgTimeConverted.toFormat('EEE HH:mm');
 
 }

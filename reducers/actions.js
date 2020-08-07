@@ -44,6 +44,8 @@ export const AUDIO_PLAYER_PLAY = 'AUDIO_PLAYER_PLAY';
 export const AUDIO_PLAYER_PAUSE = 'AUDIO_PLAYER_PAUSE';
 export const AUDIO_PLAYER_STOP = 'AUDIO_PLAYER_STOP';
 export const SET_TIMEZONE = 'SET_TIMEZONE';
+export const SET_EPG_STATION = 'SET_EPG_STATION';
+export const SET_EPG_DAY = 'SET_EPG_DAY';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -74,7 +76,11 @@ defaultState = {
         privacyPolicy: null,
         units: {}
     },
-    timezone: null
+    timezone: null,
+    epg: {
+        currentDay: new Date().getDay(),
+        currentStation: null
+    }
 }
 
 export function reducer(baseState=defaultState, action) {
@@ -167,6 +173,7 @@ export function reducer(baseState=defaultState, action) {
             case SET_STATION_NAME_LIST:
                 draftState.stationNames = action.stations;
                 draftState.currentStation = draftState.stationNames[0];
+                draftState.epg.currentStation = draftState.stationNames[0];
                 break;
             case SET_ADMOB_PUBLISHER:
                 draftState.admob.publisher = action.publisherId;
@@ -194,6 +201,12 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_TIMEZONE:
                 draftState.timezone = action.timezone;
+                break;
+            case SET_EPG_DAY:
+                draftState.epg.currentDay = action.day;
+                break;
+            case SET_EPG_STATION:
+                draftState.epg.currentStation = action.stationName;
                 break;
         }
     });
@@ -646,5 +659,30 @@ export function updateOnAir(station, show) {
         type: ONAIR_UPDATE,
         station: station,
         show: show
+    };
+}
+
+/**
+ * Changes the day the EPG is showing.
+ * @param {day} day The day number (0-6)
+ */
+
+export function setEpgDay(day) {
+    return {
+        type: SET_EPG_DAY,
+        day: day
+    };
+}
+
+
+/**
+ * Changes the station the EPG is showing.
+ * @param {stationName} stationName The name of the station we want the EPG to show.
+ */
+
+export function setEpgStation(stationName) {
+    return {
+        type: SET_EPG_STATION,
+        stationName: stationName
     };
 }

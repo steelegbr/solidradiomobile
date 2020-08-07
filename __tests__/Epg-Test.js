@@ -2,15 +2,15 @@
  * Tests the EPG utilities.
  */
 
-import { DayTime, getEpgEntry } from '../epg/timezone';
+import { DayTime, getEpgEntry, epgTimeToFriendly, epgTimeToLocal } from '../epg/timezone';
 import { Duration } from 'luxon';
 
 describe('day-time', () => {
 
     it.each`
     unix | src_timezone | tgt_timezone | day | hour | minute
-    ${1595950245000} | ${'America/Los_Angeles'} | ${'Europe/London'} | ${2} | ${16} | ${30}
-    ${1596025713000} | ${'Europe/London'} | ${'America/New_York'} | ${3} | ${8} | ${28}
+    ${1595950245000} | ${'America/Los_Angeles'} | ${'Europe/London'} | ${1} | ${16} | ${30}
+    ${1596025713000} | ${'Europe/London'} | ${'America/New_York'} | ${2} | ${8} | ${28}
     `('day-time-convert-successful', ({ unix, src_timezone, tgt_timezone, day, hour, minute }) => {
 
         // Arrange
@@ -103,6 +103,60 @@ describe('epg-lookup', () => {
 
         expect(show).not.toBeNull();
         expect(show.title).toBe(expected_show);
+
+    });
+
+});
+
+describe('friendly-time-conversion', () => {
+
+    it.each`
+    epgTime | friendlyTime
+    ${'08:00:30'} | ${'08:00'}
+    ${'23:59:59'} | ${'23:59'}
+    `('friendly-local', ({ epgTime, friendlyTime }) => {
+
+        // Arrange
+
+        // Act
+
+        const converted = epgTimeToFriendly(epgTime);
+
+        // Assert
+
+        expect(converted).toStrictEqual(friendlyTime);
+
+    });
+
+    it('friendly-local-fail', () => {
+
+        // Arrange 
+
+        // Act
+
+        const converted = epgTimeToFriendly(null);
+
+        // Assert
+
+        expect(converted).toStrictEqual('');
+
+    });
+
+    it.each`
+    epgTime | day | localTimezone | epgTimezone | expected
+    ${"08:00:00"} | ${6} | ${'Europe/London'} | ${'America/Los_Angeles'} | ${'Sun 16:00'}
+    ${"16:00:00"} | ${6} | ${'America/Los_Angeles'} | ${'Europe/London'} | ${'Sun 08:00'}
+    `('friendly-overseas', ({ epgTime, day, localTimezone, epgTimezone, expected }) => {
+
+        // Arrange
+
+        // Act
+
+        const converted = epgTimeToLocal(epgTime, day, localTimezone, epgTimezone);
+
+        // Assert
+
+        expect(converted).toStrictEqual(expected)
 
     });
 

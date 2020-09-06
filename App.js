@@ -29,9 +29,9 @@ reduxMiddleware.push(sagaMiddleware);
 
 // Logging in DEV only
 
-if (__DEV__) {
+//if (__DEV__) {
   reduxMiddleware.push(logger);
-}
+//}
 
 // Create the store
 

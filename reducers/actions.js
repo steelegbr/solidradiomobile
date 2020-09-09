@@ -46,6 +46,7 @@ export const AUDIO_PLAYER_STOP = 'AUDIO_PLAYER_STOP';
 export const SET_TIMEZONE = 'SET_TIMEZONE';
 export const SET_EPG_STATION = 'SET_EPG_STATION';
 export const SET_EPG_DAY = 'SET_EPG_DAY';
+export const ENABLE_LOGSTASH = 'ENABLE_LOGSTASH';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -78,7 +79,7 @@ defaultState = {
     },
     timezone: null,
     epg: {
-        currentDay: new Date().getDay(),
+        currentDay: (new Date().getDay() + 6) % 7, // JS weeks start on a Sunday!
         currentStation: null
     }
 }
@@ -207,6 +208,9 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case SET_EPG_STATION:
                 draftState.epg.currentStation = action.stationName;
+                break;
+            case ENABLE_LOGSTASH:
+                draftState.logstash = action.settings;
                 break;
         }
     });
@@ -684,5 +688,17 @@ export function setEpgStation(stationName) {
     return {
         type: SET_EPG_STATION,
         stationName: stationName
+    };
+}
+
+/**
+ * Enables logstash logging for this application.
+ * @param {settings} settings The settings to enable logstash logging with.
+ */
+
+export function enableLogstash(settings) {
+    return {
+        type: ENABLE_LOGSTASH,
+        settings: settings
     };
 }

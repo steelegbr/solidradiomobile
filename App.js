@@ -10,6 +10,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import Wrapper from './components/Wrapper';
 import { axiosConfig } from './middleware/auth-token';
 import logger from 'redux-logger';
+import logstashLogger from './middleware/logstash';
 import TrackPlayer from 'react-native-track-player';
 
 let reduxMiddleware = [];
@@ -29,9 +30,13 @@ reduxMiddleware.push(sagaMiddleware);
 
 // Logging in DEV only
 
-//if (__DEV__) {
+if (__DEV__) {
   reduxMiddleware.push(logger);
-//}
+}
+
+// Log to Logstash
+
+reduxMiddleware.push(logstashLogger);
 
 // Create the store
 

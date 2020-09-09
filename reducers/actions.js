@@ -79,7 +79,7 @@ defaultState = {
     },
     timezone: null,
     epg: {
-        currentDay: new Date().getDay(),
+        currentDay: (new Date().getDay() + 6) % 7, // JS weeks start on a Sunday!
         currentStation: null
     }
 }

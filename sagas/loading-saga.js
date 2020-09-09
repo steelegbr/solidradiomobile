@@ -5,7 +5,7 @@
 import remoteConfig from '@react-native-firebase/remote-config';
 import { put, takeLatest, all, takeEvery, select } from 'redux-saga/effects';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL, setAdMobPublisher, setAdmobPrivacyPolicy, setAdmobUnitId, setTimezone } from '../reducers/actions';
+import { initialLoadStarted, setApiParams, loadStation, initialLoadFailure, setStationNameList, INITIAL_LOAD_REQUESTED, STATION_LOAD_FAIL, setAdMobPublisher, setAdmobPrivacyPolicy, setAdmobUnitId, setTimezone, enableLogstash } from '../reducers/actions';
 import { Platform } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
 
@@ -33,6 +33,13 @@ function* initialLoadSaga() {
 
         yield remoteConfig().fetchAndActivate();
         const settings = yield remoteConfig().getAll();
+
+        // Check for logstash
+
+        if ('logstash' in settings) {
+            const logstash_settings = JSON.parse(settings['logstash'].value);
+            yield put(enableLogstash(logstash_settings));
+        }
 
         // Extract the API settings
 

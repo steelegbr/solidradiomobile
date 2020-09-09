@@ -8,7 +8,6 @@ import { View, Dimensions, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
-import PlayerOverlay from './PlayerOverlay';
 import EpgList from './EpgList';
 import { setEpgDay, setEpgStation } from '../reducers/actions';
 
@@ -54,7 +53,6 @@ class EpgScreen extends Component {
                 <View style={styles.list}>
                     <EpgList />
                 </View>
-                <PlayerOverlay />
             </View>
         );
     }

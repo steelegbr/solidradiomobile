@@ -957,7 +957,7 @@ exports[`render-image-fallback 1`] = `
         }
         style={
           Object {
-            "height": 784,
+            "height": 734,
             "resizeMode": "cover",
             "width": "100%",
           }
@@ -1372,7 +1372,7 @@ exports[`render-show-fallback 1`] = `
         }
         style={
           Object {
-            "height": 784,
+            "height": 734,
             "resizeMode": "cover",
             "width": "100%",
           }
@@ -1787,7 +1787,7 @@ exports[`render-vertical-mobile 1`] = `
         }
         style={
           Object {
-            "height": 784,
+            "height": 734,
             "resizeMode": "cover",
             "width": "100%",
           }
@@ -2202,7 +2202,7 @@ exports[`render-vertical-tablet 1`] = `
         }
         style={
           Object {
-            "height": 784,
+            "height": 734,
             "resizeMode": "cover",
             "width": "100%",
           }

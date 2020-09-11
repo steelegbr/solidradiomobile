@@ -39,7 +39,7 @@ class StationCard extends Component {
             },
             showImageVertical: {
                 width: "100%",
-                height: Dimensions.get('window').height - 550,
+                height: Dimensions.get('window').height - 600,
                 resizeMode: "cover"
             },
             showImageHorizontal: {

@@ -38,7 +38,10 @@ function* initialLoadSaga() {
 
         if ('logstash' in settings) {
             const logstash_settings = JSON.parse(settings['logstash'].value);
+            console.log(`Logstash config enabled. Sending to ${logstash_settings.url}`);
             yield put(enableLogstash(logstash_settings));
+        } else {
+            console.log('No logstash config detected.');
         }
 
         // Extract the API settings

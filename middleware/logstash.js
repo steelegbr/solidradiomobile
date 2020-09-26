@@ -1,4 +1,5 @@
 import axios from 'axios';
+import crashlytics from '@react-native-firebase/analytics';
 
 const logstashLogger = (store) => (next) => (action) => {
 
@@ -19,9 +20,9 @@ const logstashLogger = (store) => (next) => (action) => {
     if ('logstash' in current) {
 
         const combined = {
-            current: current,
-            action: action,
-            new: new_state
+            current: JSON.stringify(current),
+            action: JSON.stringify(action),
+            new: JSON.stringify(new_state)
         };
 
         const url = `${current.logstash.url}${current.logstash.index}`;
@@ -40,6 +41,7 @@ const logstashLogger = (store) => (next) => (action) => {
             //console.log(`Axios Logstash Response: ${response.data}`);
         }).catch(function (error) {
             console.log(`Axios Logstash Error: ${error}`);
+            crashlytics().recordError(error);
         });
 
 

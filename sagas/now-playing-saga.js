@@ -4,8 +4,10 @@
 
 import crashlytics from '@react-native-firebase/crashlytics';
 import { eventChannel, END } from 'redux-saga';
-import { select, call, cancelled, takeEvery, all, put, take } from 'redux-saga/effects';
-import { nowPlayingFailure, nowPlayingSuccess, nowPlayingUpdate, NOW_PLAYING_FAIL, STATION_LOAD_SUCCESS } from '../reducers/actions';
+import { select, call, cancelled, takeEvery, all, put, take, delay } from 'redux-saga/effects';
+import { nowPlayingFailure, nowPlayingSuccess, nowPlayingUpdate, NOW_PLAYING_FAIL, STATION_LOAD_SUCCESS, webSocketPing, webSocketPingTrigger, WEBSOCKET_PING, WEBSOCKET_PING_TRIGGER } from '../reducers/actions';
+
+let sockets = {}
 
 /**
  * Creates a web socket connection to a station.
@@ -81,6 +83,11 @@ function* nowPlayingSaga(action) {
         socket = yield call(connectToStationSocket, server, stationName);
         channel = yield call(createStationSocketChannel, socket);
 
+        // Setup the ping/pong
+
+        sockets[stationName] = socket;
+        yield put(webSocketPingTrigger(stationName));
+
         // Let everyone know we're up and running
 
         yield put(nowPlayingSuccess(stationName));
@@ -152,8 +159,41 @@ function* nowPlayingErrorSaga(action) {
             }
         };
 
-        yield call(nowPlayingSaga(dummy_action));
+        yield call(nowPlayingSaga, dummy_action);
 
+    }
+
+}
+
+/**
+ * Triggers regular ping/pong events on the websocket.
+ * @param {action} action The action to setup the websocket ping / pong.
+ */
+
+function* webSocketPingTriggerSaga(action) {
+
+    const stationName = action.stationName;
+    const socket = sockets[stationName];
+
+    while (socket != null && socket.readyState == 1) {
+        yield put(webSocketPing(stationName));
+        yield delay(60000);
+    }
+
+}
+
+/**
+ * Performs the websocket ping/pong.
+ * @param {action} action The action to perform the websocket ping / pong.
+ */
+
+function* webSocketPingSaga(action) {
+
+    const stationName = action.stationName;
+    const socket = sockets[stationName];
+
+    if (socket !== null) {
+        socket.send('PING');
     }
 
 }
@@ -165,6 +205,8 @@ function* nowPlayingErrorSaga(action) {
 export function* watchNowPlaying() {
     yield all([
         takeEvery(STATION_LOAD_SUCCESS, nowPlayingSaga),
-        takeEvery(NOW_PLAYING_FAIL, nowPlayingErrorSaga)
+        takeEvery(NOW_PLAYING_FAIL, nowPlayingErrorSaga),
+        takeEvery(WEBSOCKET_PING, webSocketPingSaga),
+        takeEvery(WEBSOCKET_PING_TRIGGER, webSocketPingTriggerSaga)
     ]);
 }

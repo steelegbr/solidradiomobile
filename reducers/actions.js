@@ -47,6 +47,8 @@ export const SET_TIMEZONE = 'SET_TIMEZONE';
 export const SET_EPG_STATION = 'SET_EPG_STATION';
 export const SET_EPG_DAY = 'SET_EPG_DAY';
 export const ENABLE_LOGSTASH = 'ENABLE_LOGSTASH';
+export const WEBSOCKET_PING = 'WEBSOCKET_PING';
+export const WEBSOCKET_PING_TRIGGER = 'WEBSOCKET_PING_TRIGGER';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -700,5 +702,29 @@ export function enableLogstash(settings) {
     return {
         type: ENABLE_LOGSTASH,
         settings: settings
+    };
+}
+
+/**
+ * Generates a websocket ping.
+ * @param {string} stationName The name of the station the socket is for.
+ */
+
+export function webSocketPing(stationName) {
+    return {
+        type: WEBSOCKET_PING,
+        stationName: stationName
+    };
+}
+
+/**
+ * Sets up the websocket ping / pong trigger.
+ * @param {string} stationName The name of the station the socket is for.
+ */
+
+export function webSocketPingTrigger(stationName) {
+    return {
+        type: WEBSOCKET_PING_TRIGGER,
+        stationName: stationName
     };
 }

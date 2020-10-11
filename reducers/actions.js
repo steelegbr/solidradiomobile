@@ -43,6 +43,7 @@ export const AUDIO_PLAYER_PLAYPAUSE = 'AUDIO_PLAYER_PLAYPAUSE';
 export const AUDIO_PLAYER_PLAY = 'AUDIO_PLAYER_PLAY';
 export const AUDIO_PLAYER_PAUSE = 'AUDIO_PLAYER_PAUSE';
 export const AUDIO_PLAYER_STOP = 'AUDIO_PLAYER_STOP';
+export const AUDIO_PLAYER_EXPECTED_STATE = 'AUDIO_PLAYER_EXPECTED_STATE';
 export const SET_TIMEZONE = 'SET_TIMEZONE';
 export const SET_EPG_STATION = 'SET_EPG_STATION';
 export const SET_EPG_DAY = 'SET_EPG_DAY';
@@ -71,7 +72,8 @@ defaultState = {
     player: {
         playlist: [],
         currentItem: 0,
-        state: PlayerState.UNINITIALISED
+        state: PlayerState.UNINITIALISED,
+        expectedState: PlayerState.UNINITIALISED
     },
     admob: {
         publisher: null,
@@ -213,6 +215,9 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case ENABLE_LOGSTASH:
                 draftState.logstash = action.settings;
+                break;
+            case AUDIO_PLAYER_EXPECTED_STATE:
+                draftState.player.expectedState = action.state;
                 break;
         }
     });
@@ -726,5 +731,17 @@ export function webSocketPingTrigger(stationName) {
     return {
         type: WEBSOCKET_PING_TRIGGER,
         stationName: stationName
+    };
+}
+
+/**
+ * Sets the expected state of the audio player.
+ * @param {int} state The expected state of the player.
+ */
+
+export function setPlayerExpectedState(state) {
+    return {
+        type: AUDIO_PLAYER_EXPECTED_STATE,
+        state: state
     };
 }

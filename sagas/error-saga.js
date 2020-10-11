@@ -4,7 +4,7 @@
 
 import { ADMOB_LOAD_ERROR, AUDIO_PLAYER_ERROR } from '../reducers/actions';
 import { all, takeEvery } from 'redux-saga/effects';
-import crashlytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 /**
  * Handles an audio player error.
@@ -12,7 +12,17 @@ import crashlytics from '@react-native-firebase/analytics';
  */
 
 function* handleAudioPlayerError(action) {
-    yield crashlytics().recordError(action.error);
+
+    // Convert the error to an error as needed
+
+    let error = action.error;
+
+    if (!(error instanceof Error)) {
+        error = new Error(error);
+    }
+
+    yield crashlytics().recordError(error);
+
 }
 
 /**

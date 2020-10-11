@@ -55,8 +55,6 @@ class EpgList extends Component {
 
 }
 
-
-
 const mapStateToProps = (state) => {
 
     // Locate the station and date in the EPG

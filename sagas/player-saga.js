@@ -3,9 +3,9 @@
  */
 
 import TrackPlayer from 'react-native-track-player';
-import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, audioPlayerPause, audioPlayerStop, AUDIO_PLAYER_PAUSE, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_STOP, SET_PLAYER_STATE } from '../reducers/actions';
+import { setPlayerState, INITIAL_LOAD_REQUESTED, LOAD_PLAYER_STATION, logStreamStart, logStreamSongPlay, NOW_PLAYING_UPDATE, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, audioPlayerPause, audioPlayerStop, AUDIO_PLAYER_PAUSE, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_STOP, SET_PLAYER_STATE, setPlayerExpectedState, audioPlayerError } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
-import { put, all, call, select, takeEvery, take } from 'redux-saga/effects';
+import { put, all, call, select, takeEvery, take, delay, takeLatest } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
 const EVENT_PLAYER_STATE = 'EVENT_PLAYER_STATE';
@@ -221,10 +221,10 @@ function* loadPlayerStation(action) {
     };
 
     yield TrackPlayer.add([stationTrack]);
-    //yield TrackPlayer.play();
 
     // Log the start
 
+    yield put(setPlayerExpectedState(PlayerState.PLAYING));
     yield put(logStreamStart(action.stationName, state.settings.highBitrate));
     yield put(logStreamSongPlay(action.stationName, stationTrack.artist, stationTrack.title));
 
@@ -255,12 +255,18 @@ function* handleNowPlaying(action) {
 
     const station = state.stations[currentStationName];
 
-    yield TrackPlayer.updateMetadataForTrack(currentStationName, {
-        artist: getStreamArtist(station),
-        title: getStreamTitle(station),
-        artwork: getStreamArt(station),
-        album: getStreamAlbum(action.stationName, station)
-    });
+    try {
+
+        yield TrackPlayer.updateMetadataForTrack(currentStationName, {
+            artist: getStreamArtist(station),
+            title: getStreamTitle(station),
+            artwork: getStreamArt(station),
+            album: getStreamAlbum(action.stationName, station)
+        });
+
+    } catch (error) {
+        console.log("Failed to update now playing as the track is not in the player!");
+    }
 
     // Log to analytics
 
@@ -269,16 +275,44 @@ function* handleNowPlaying(action) {
 }
 
 /**
- * Handles the load complete action and plays audio.
+ * Handles player state changes
  * @param {action} action The player state change action.
  */
 
-function* handleLoadComplete(action) {
+function* playerStateChange(action) {
 
-    // Trigger if we're in the ready state
+    // Check what state we're in
 
     if (action.unmappedState == "ready") {
-        yield(put(audioPlayerPlay("load_complete_trigger")));
+
+        // Initial load complete - trigger a play
+
+        yield put(audioPlayerPlay("load_complete_trigger"));
+
+    } else if (action.state == PlayerState.PAUSED || action.state == PlayerState.ERROR) {
+
+        // Check if we triggerd a pause (or it was a failure)
+
+        const initState = yield select();
+
+        if (initState.player.expectedState == PlayerState.PLAYING && isStreaming(initState)) {
+
+            // Sleep it off
+
+            yield put(setPlayerState(PlayerState.LOADING));
+            yield delay(3000);
+
+            // Check the update state
+
+            const newState = yield select();
+
+            if (newState.player.state == PlayerState.LOADING) {
+                yield TrackPlayer.stop();
+                yield call(loadPlayerStation, { stationName: newState.currentStation });
+            }
+
+        }
+
     }
 
 }
@@ -290,7 +324,7 @@ function* handleLoadComplete(action) {
 
 function isStreaming(state) {
 
-    if (state.player.state == PlayerState.ERROR || state.player.state == PlayerState.IDLE || state.player.state == PlayerState.UNINITIALISED) {
+    if (state.player.state == PlayerState.IDLE || state.player.state == PlayerState.UNINITIALISED) {
         return false;
     }
 
@@ -368,9 +402,11 @@ function* handlePlayPause() {
     const state = yield select();
 
     if (state.player.state == PlayerState.PLAYING) {
+        yield put(setPlayerExpectedState(PlayerState.PAUSED));
         yield TrackPlayer.pause();
         yield put(setPlayerState(PlayerState.PAUSED, null));
     } else if (state.player.state == PlayerState.PAUSED) {
+        yield put(setPlayerExpectedState(PlayerState.PLAYING));
         yield TrackPlayer.play();
         yield put(setPlayerState(PlayerState.PLAYING, null));
     }
@@ -387,6 +423,7 @@ function* handlePause() {
 
     const state = yield select();
     if (state.player.state == PlayerState.PLAYING) {
+        yield put(setPlayerExpectedState(PlayerState.PAUSED));
         yield TrackPlayer.pause();
         yield put(setPlayerState(PlayerState.PAUSED, null));
     }
@@ -403,6 +440,7 @@ function* handlePlay() {
 
     const state = yield select();
     if (state.player.state == PlayerState.PAUSED) {
+        yield put(setPlayerExpectedState(PlayerState.PLAYING));
         yield TrackPlayer.play();
         yield put(setPlayerState(PlayerState.PLAYING, null));
     }
@@ -418,6 +456,6 @@ export function* watchPlayer() {
         takeEvery(AUDIO_PLAYER_PAUSE, handlePause),
         takeEvery(AUDIO_PLAYER_PLAY, handlePlay),
         takeEvery(AUDIO_PLAYER_STOP, handleStop),
-        takeEvery(SET_PLAYER_STATE, handleLoadComplete)
+        takeEvery(SET_PLAYER_STATE, playerStateChange)
     ]);
 }

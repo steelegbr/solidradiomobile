@@ -49,7 +49,6 @@ class OverlayHeader extends Component {
                         </Caption>
                     </View>
                     <View style={styles.headerButton}>
-                        <CastButton />
                         <PlayPauseButton />
                     </View>
                 </Animated.View>

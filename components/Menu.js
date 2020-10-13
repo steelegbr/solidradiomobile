@@ -6,7 +6,7 @@ import { BottomNavigation } from 'react-native-paper';
 import TestComponent from './TestComponent';
 import StationCarousel from './StationCarousel';
 import Settings from './Settings';
-import EpgScreen from './EpgScreen';
+import EpgWrapper from './EpgWrapper';
 
 /**
  * The main menu container
@@ -27,11 +27,6 @@ class Menu extends Component {
         icon: 'calendar-today'
       },
       {
-        key: 'podcasts',
-        title: 'Podcasts',
-        icon: 'music-box-multiple'
-      },
-      {
         key: 'presenters',
         title: 'Presenters',
         icon: 'face'
@@ -48,8 +43,7 @@ class Menu extends Component {
 
   renderScene = BottomNavigation.SceneMap({
       radio: StationCarousel,
-      schedule: EpgScreen,
-      podcasts: TestComponent,
+      schedule: EpgWrapper,
       presenters: TestComponent,
       settings: Settings
   });

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import Menu from './Menu';
 import SplashScreen from './SplashScreen';
-import { AdsConsentStatus } from "@react-native-firebase/admob";
+import { AdsConsentStatus } from '@react-native-firebase/admob';
 
 class Wrapper extends Component {
 

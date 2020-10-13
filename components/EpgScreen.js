@@ -21,7 +21,7 @@ class EpgScreen extends Component {
 
     render() {
 
-        const { days, stationNames, currentDay, currentStation, setEpgDay, setEpgStation } = this.props;
+        const { days, stationNames, currentDay, currentStation, setEpgDay, setEpgStation, navigation } = this.props;
         const currentStationIndex = stationNames.indexOf(currentStation);
         const sliderWidth = Dimensions.get("window").width;
         const itemWidth = sliderWidth * 0.5;
@@ -51,7 +51,9 @@ class EpgScreen extends Component {
                     onSnapToItem={setEpgDay}
                 />
                 <View style={styles.list}>
-                    <EpgList />
+                    <EpgList
+                        navigation={navigation}
+                     />
                 </View>
             </View>
         );

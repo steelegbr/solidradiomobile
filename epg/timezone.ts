@@ -105,6 +105,23 @@ export function epgTimeToFriendly(epgTime: string) {
 }
 
 /**
+ * Converts an index to a day of the week.
+ * @param index The index for day of the week.
+ */
+
+function dayFromIndex(index: number) {
+
+    let dateTime = DateTime.local();
+    
+    dateTime.set({
+        weekday: index + 1
+    });
+
+    return dateTime.toFormat('EEE');
+
+}
+
+/**
  * Converts an EPG time to a local, human friendly time.
  * @param epgTime The time fron the EPG.
  * @param day The day the EPG entry is for.
@@ -134,5 +151,44 @@ export function epgTimeToLocal(epgTime: string, day: number, localTimezone: stri
 
     epgTimeConverted = epgTimeConverted.setZone(localTimezone);
     return epgTimeConverted.toFormat('EEE HH:mm');
+
+}
+
+/**
+ * Generates a time slug for the supplied show.
+ * @param show The show to generate the slug for.
+ * @param day The day the show is airing.
+ * @param userTimezone The user's timezone.
+ * @param stationTimezone  The station timezone.
+ * @param includeDay Indicates if the day should be included.
+ */
+
+export function showTimeSlug(show, day, userTimezone, stationTimezone, includeDay) {
+
+    // Work out if we're in different time zones
+
+    let friendlyTime = null;
+            
+    if (userTimezone == stationTimezone) {
+
+        // Show a friendly time slug
+
+        friendlyTime = epgTimeToFriendly(show.start);
+
+    } else {
+
+        // Show both the friendly time slug and a conversion to local
+
+        friendlyTime = `${epgTimeToFriendly(show.start)} [${epgTimeToLocal(show.start, day, userTimezone, stationTimezone)}]`;
+
+    }
+
+    // Pre-pend the day as required
+
+    if (includeDay) {
+        return `${dayFromIndex(day)} ${friendlyTime}`;
+    } else {
+        return friendlyTime;
+    }
 
 }

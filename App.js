@@ -12,6 +12,7 @@ import { axiosConfig } from './middleware/auth-token';
 import logger from 'redux-logger';
 import logstashLogger from './middleware/logstash';
 import TrackPlayer from 'react-native-track-player';
+import { createStackNavigator } from '@react-navigation/stack';
 
 let reduxMiddleware = [];
 
@@ -52,6 +53,10 @@ store.dispatch(initialLoad());
 // Setup the audio player
 
 TrackPlayer.registerPlaybackService(() => require('./audio/callbacks'));
+
+// Navigation stack
+
+const Stack = createStackNavigator();
 
 // The main app component
 

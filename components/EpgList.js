@@ -52,9 +52,6 @@ const mapStateToProps = (state, ownProps) => {
     const currentDay = state.epg.currentDay;
     const currentStation = state.epg.currentStation;
 
-
-    console.log(ownProps);
-
     return {
         listings: state.stations[currentStation].epg[currentDay],
         stationTimezone: state.stations[currentStation].timezone,

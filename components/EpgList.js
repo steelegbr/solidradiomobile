@@ -30,7 +30,7 @@ class EpgList extends Component {
                             onPress={() => {
                                 navigation.push('EpgDetail', {
                                     listing: item,
-                                    day: currentDay 
+                                    day: currentDay
                                 });
                             }}
                         />

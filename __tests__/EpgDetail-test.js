@@ -14,7 +14,6 @@ import { generateTheme } from '../branding/branding';
 // Redux
 
 const mockStore = configureStore([]);
-const testStationName = 'Test Station';
 
 // Tests
 

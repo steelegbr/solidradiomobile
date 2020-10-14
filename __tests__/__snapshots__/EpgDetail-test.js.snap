@@ -182,7 +182,7 @@ exports[`render-show 1`] = `
               ]
             }
           >
-            Wed 00:00 [Mon 00:00]
+            Mon 00:00 [Mon 00:00]
           </Text>
           <Text
             style={
@@ -527,7 +527,7 @@ exports[`render-show 2`] = `
               ]
             }
           >
-            Wed 10:00 [Sun 02:00]
+            Sun 10:00 [Sun 02:00]
           </Text>
           <Text
             style={

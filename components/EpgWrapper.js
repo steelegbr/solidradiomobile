@@ -16,8 +16,12 @@ class EpgWrapper extends Component {
 
     render() {
 
+        const { theme } = this.props;
+
         return (
-            <NavigationContainer>
+            <NavigationContainer
+                theme={theme}
+            >
                 <Stack.Navigator
                     screenOptions={{
                         headerShown: false
@@ -41,7 +45,9 @@ class EpgWrapper extends Component {
 
 const mapStateToProps = (state) => {
 
-    return {}
+    return {
+        theme: state.theme
+    };
 
 }
 

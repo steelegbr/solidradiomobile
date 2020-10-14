@@ -30,7 +30,7 @@ class EpgList extends Component {
                             onPress={() => {
                                 navigation.push('EpgDetail', {
                                     listing: item,
-                                    day: currentDay 
+                                    day: currentDay
                                 });
                             }}
                         />
@@ -51,9 +51,6 @@ const mapStateToProps = (state, ownProps) => {
 
     const currentDay = state.epg.currentDay;
     const currentStation = state.epg.currentStation;
-
-
-    console.log(ownProps);
 
     return {
         listings: state.stations[currentStation].epg[currentDay],

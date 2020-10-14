@@ -2,7 +2,7 @@
  * Tests the EPG utilities.
  */
 
-import { DayTime, getEpgEntry, epgTimeToFriendly, epgTimeToLocal } from '../epg/timezone';
+import { DayTime, getEpgEntry, epgTimeToFriendly, epgTimeToLocal, dayFromIndex } from '../epg/timezone';
 import { Duration } from 'luxon';
 
 describe('day-time', () => {
@@ -157,6 +157,29 @@ describe('friendly-time-conversion', () => {
         // Assert
 
         expect(converted).toStrictEqual(expected)
+
+    });
+
+    it.each`
+    index | day
+    ${0} | ${'Mon'}
+    ${1} | ${'Tue'}
+    ${2} | ${'Wed'}
+    ${3} | ${'Thu'}
+    ${4} | ${'Fri'}
+    ${5} | ${'Sat'}
+    ${6} | ${'Sun'}
+    `('day-from-index', ({ index, day }) => {
+
+        // Arrange
+
+        // Act
+
+        const convertedDay = dayFromIndex(index);
+
+        // Assert
+
+        expect(convertedDay).toBe(day);
 
     });
 

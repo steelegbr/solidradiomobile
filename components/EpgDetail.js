@@ -6,15 +6,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { ScrollView, Dimensions } from 'react-native';
-import { Card, Text, Title, Subheading } from 'react-native-paper';
+import { Card, Text, Title, Subheading, Button } from 'react-native-paper';
 import { showTimeSlug } from '../epg/timezone';
+import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 
 class EpgDetail extends Component {
 
     render() {
 
-        const { listing, stationTimezone, userTimezone, day, styles } = this.props;
+        const { listing, stationTimezone, userTimezone, day, styles, navigation } = this.props;
 
         const timeSlug = showTimeSlug(listing, day, userTimezone, stationTimezone, true);
 
@@ -32,6 +33,16 @@ class EpgDetail extends Component {
                         <Text>{ listing.description }</Text>
                     </Card.Content>
                 </Card>
+                <Button
+                    mode="contained"
+                    icon="arrow-left"
+                    style={styles.button}
+                    onPress={() => {
+                        navigation.pop();
+                    }}
+                >
+                    Back
+                </Button>
             </ScrollView>
         );
 
@@ -42,6 +53,7 @@ class EpgDetail extends Component {
 const mapStateToProps = (state, ownProps) => {
 
     const currentStation = state.currentStation;
+    const uiWidth = Dimensions.get('window').width * 0.9;
 
     return {
         listing: ownProps.route.params.listing,
@@ -50,12 +62,17 @@ const mapStateToProps = (state, ownProps) => {
         day: ownProps.route.params.day,
         styles: {
             card: {
-                width: Dimensions.get('window').width * 0.9,
+                width: uiWidth,
             },
             wrapper: {
                 alignItems: 'center'
+            },
+            button: {
+                marginTop: 10,
+                width: uiWidth
             }
-        }
+        },
+        navigation: ownProps.navigation
     };
 
 }

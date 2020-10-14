@@ -109,11 +109,13 @@ export function epgTimeToFriendly(epgTime: string) {
  * @param index The index for day of the week.
  */
 
-function dayFromIndex(index: number) {
+export function dayFromIndex(index: number) {
 
-    let dateTime = DateTime.local();
+    let dateTime = DateTime.fromJSDate(
+        new Date()
+    );
     
-    dateTime.set({
+    dateTime = dateTime.set({
         weekday: index + 1
     });
 
@@ -169,7 +171,7 @@ export function showTimeSlug(show, day, userTimezone, stationTimezone, includeDa
 
     let friendlyTime = null;
             
-    if (userTimezone == stationTimezone) {
+    if (userTimezone === stationTimezone) {
 
         // Show a friendly time slug
 

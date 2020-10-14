@@ -182,7 +182,7 @@ exports[`render-show 1`] = `
               ]
             }
           >
-            Mon 00:00 [Mon 00:00]
+            Mon 00:00
           </Text>
           <Text
             style={

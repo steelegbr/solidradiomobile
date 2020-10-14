@@ -27,7 +27,7 @@ ${'Europe/London'} | ${'America/Los_Angeles'} | ${"Solid Country"} | ${"https://
     const store = mockStore({
         stations: {
             'Test Station': {
-                timeZone: stationTimezone
+                timezone: stationTimezone
             }
         },
         currentStation: 'Test Station',

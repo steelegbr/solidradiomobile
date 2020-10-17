@@ -50,6 +50,10 @@ export const SET_EPG_DAY = 'SET_EPG_DAY';
 export const ENABLE_LOGSTASH = 'ENABLE_LOGSTASH';
 export const WEBSOCKET_PING = 'WEBSOCKET_PING';
 export const WEBSOCKET_PING_TRIGGER = 'WEBSOCKET_PING_TRIGGER';
+export const PRESENTERS_LOAD_START = 'PRESENTERS_LOAD'
+export const PRESENTERS_LOAD_SUCCESS = 'PRESENTERS_LOAD_SUCCESS';
+export const PRESENTERS_LOAD_FAIL = 'PRESENTERS_LOAD_FAIL';
+export const SET_PRESENTERS_STATION = 'SET_PRESENTERS_STATION';
 
 defaultState = { 
     initialLoad: 'not_started',
@@ -85,6 +89,10 @@ defaultState = {
     epg: {
         currentDay: (new Date().getDay() + 6) % 7, // JS weeks start on a Sunday!
         currentStation: null
+    },
+    presenters: {
+        currentStation: null,
+        stations: {}
     }
 }
 
@@ -179,6 +187,7 @@ export function reducer(baseState=defaultState, action) {
                 draftState.stationNames = action.stations;
                 draftState.currentStation = draftState.stationNames[0];
                 draftState.epg.currentStation = draftState.stationNames[0];
+                draftState.presenters.currentStation = draftState.stationNames[0];
                 break;
             case SET_ADMOB_PUBLISHER:
                 draftState.admob.publisher = action.publisherId;
@@ -218,6 +227,13 @@ export function reducer(baseState=defaultState, action) {
                 break;
             case AUDIO_PLAYER_EXPECTED_STATE:
                 draftState.player.expectedState = action.state;
+                break;
+            case PRESENTERS_LOAD_SUCCESS:
+                const presentersStationName = getStationNameFromPresenters(action);
+                draftState.presenters.stations[presentersStationName] = action.payload.data;
+                break;
+            case SET_PRESENTERS_STATION:
+                draftState.presenters.currentStation = action.stationName;
                 break;
         }
     });
@@ -390,6 +406,25 @@ export function getStationNameFromOnAir(action) {
 
     const url = action.payload.config.url;
     const re = new RegExp('epg\/([^/]+)\/');
+    const urlEncodedStationName = re.exec(url)[1];
+
+    // Decode it for return
+
+    return decodeURI(urlEncodedStationName);
+
+}
+
+/**
+ * Obtains the station name from the PRESENTERS_LOAD_SUCCESS or FAIL action.
+ * @param {action} action The action updating the presenters list.
+ */
+
+export function getStationNameFromPresenters(action) {
+
+    // Pick out the station name
+
+    const url = action.payload.config.url;
+    const re = new RegExp('presenters\/([^/]+)\/');
     const urlEncodedStationName = re.exec(url)[1];
 
     // Decode it for return
@@ -743,5 +778,38 @@ export function setPlayerExpectedState(state) {
     return {
         type: AUDIO_PLAYER_EXPECTED_STATE,
         state: state
+    };
+}
+
+/**
+ * Loads the list of presenters for a given station.
+ * @param {string} name The name of the station to load.
+ */
+
+export function loadStationPresenters(name) {
+
+    let urlEncodedStationName = encodeURI(name);
+
+    return {
+        type: PRESENTERS_LOAD_START,
+        stationName: name,
+        payload: {
+            request: {
+                url: `/api/presenters/${urlEncodedStationName}/`
+            }
+        }
+    };
+
+}
+
+/**
+ * Changes the station the presenters list is showing.
+ * @param {stationName} stationName The name of the station we want the presenters for.
+ */
+
+export function setPresentersStation(stationName) {
+    return {
+        type: SET_PRESENTERS_STATION,
+        stationName: stationName
     };
 }

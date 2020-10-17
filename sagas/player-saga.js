@@ -307,7 +307,6 @@ function* playerStateChange(action) {
             const newState = yield select();
 
             if (newState.player.state == PlayerState.LOADING) {
-                yield TrackPlayer.stop();
                 yield call(loadPlayerStation, { stationName: newState.currentStation });
             }
 

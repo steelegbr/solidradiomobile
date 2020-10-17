@@ -42,6 +42,10 @@ describe('reducer', () => {
         epg: {
             currentDay: null,
             currentStation: null
+        },
+        presenters: {
+            currentStation: null,
+            stations: {}
         }
     };
 

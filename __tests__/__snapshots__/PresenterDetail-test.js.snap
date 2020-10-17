@@ -68,7 +68,7 @@ exports[`render-show 1`] = `
             }
             source={
               Object {
-                "uri": "https://www.solidradio.co.uk/wp-content/uploads/2019/08/31548926930_f1a1103e5f_o.jpg",
+                "uri": "bob_agg.png",
               }
             }
             style={
@@ -141,64 +141,51 @@ exports[`render-show 1`] = `
               ]
             }
           >
-            Night Shift
+            Bob Agg
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#000000",
-                  "fontFamily": "System",
-                  "fontWeight": "400",
-                  "textAlign": "left",
-                },
+          <View
+            style={Object {}}
+          >
+            <Text
+              allowFontScaling={true}
+              selectable={false}
+              style={
                 Array [
                   Object {
-                    "color": "rgba(0, 0, 0, 0.87)",
-                    "fontFamily": "System",
-                    "fontWeight": "400",
-                    "textAlign": "left",
-                    "writingDirection": "ltr",
+                    "color": "#FFFFFF",
+                    "marginTop": 15,
                   },
+                  Object {},
+                  Object {},
+                ]
+              }
+            >
+              <Text
+                allowFontScaling={true}
+                selectable={false}
+                style={
                   Array [
+                    Object {},
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  allowFontScaling={true}
+                  style={
                     Object {
-                      "fontSize": 16,
-                      "letterSpacing": 0.5,
-                      "lineHeight": 24,
-                      "marginVertical": 2,
-                    },
-                    undefined,
-                  ],
-                  Array [
-                    Object {
-                      "fontSize": 16,
-                      "letterSpacing": 0.5,
-                      "lineHeight": 24,
-                      "marginVertical": 2,
-                    },
-                    undefined,
-                  ],
-                ],
-              ]
-            }
-          >
-            Mon 00:00
-          </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#000000",
-                  "fontFamily": "System",
-                  "fontWeight": "400",
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-          >
-            We don’t bore you with soppy love songs through the night shift. Instead, enjoy a great mix of songs, all night long.
-          </Text>
+                      "color": "#FFFFFF",
+                      "fontSize": 14,
+                      "marginBottom": 14,
+                      "marginTop": 15,
+                    }
+                  }
+                >
+                  Dangling in the dark.
+                </Text>
+              </Text>
+            </Text>
+          </View>
         </View>
       </View>
     </View>
@@ -414,7 +401,7 @@ exports[`render-show 2`] = `
             }
             source={
               Object {
-                "uri": "https://www.solidradio.co.uk/wp-content/uploads/2020/04/guitar-839168_1920.jpg",
+                "uri": "tessa_tickle.jpg",
               }
             }
             style={
@@ -487,64 +474,90 @@ exports[`render-show 2`] = `
               ]
             }
           >
-            Solid Country
+            Tessa Tickle
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#000000",
-                  "fontFamily": "System",
-                  "fontWeight": "400",
-                  "textAlign": "left",
-                },
+          <View
+            style={Object {}}
+          >
+            <Text
+              allowFontScaling={true}
+              selectable={false}
+              style={
                 Array [
                   Object {
-                    "color": "rgba(0, 0, 0, 0.87)",
-                    "fontFamily": "System",
-                    "fontWeight": "400",
-                    "textAlign": "left",
-                    "writingDirection": "ltr",
+                    "color": "#000000",
+                    "marginTop": 15,
                   },
+                  Object {},
+                  Object {},
+                ]
+              }
+            >
+              <Text
+                allowFontScaling={true}
+                selectable={false}
+                style={
                   Array [
+                    Object {},
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  allowFontScaling={true}
+                  style={
                     Object {
-                      "fontSize": 16,
-                      "letterSpacing": 0.5,
-                      "lineHeight": 24,
-                      "marginVertical": 2,
-                    },
-                    undefined,
-                  ],
+                      "color": "#000000",
+                      "fontSize": 14,
+                      "marginBottom": 14,
+                      "marginTop": 15,
+                    }
+                  }
+                >
+                  Bringing light down under.
+                </Text>
+              </Text>
+            </Text>
+            <Text
+              allowFontScaling={true}
+              selectable={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "marginTop": 15,
+                  },
+                  Object {},
+                  Object {},
+                ]
+              }
+            >
+              <Text
+                allowFontScaling={true}
+                selectable={false}
+                style={
                   Array [
+                    Object {},
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  allowFontScaling={true}
+                  style={
                     Object {
-                      "fontSize": 16,
-                      "letterSpacing": 0.5,
-                      "lineHeight": 24,
-                      "marginVertical": 2,
-                    },
-                    undefined,
-                  ],
-                ],
-              ]
-            }
-          >
-            Sun 10:00 [Sun 02:00]
-          </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#000000",
-                  "fontFamily": "System",
-                  "fontWeight": "400",
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-          >
-            Join Stephen as he plays a mix of country hits new and old.
-          </Text>
+                      "color": "#000000",
+                      "fontSize": 14,
+                      "marginBottom": 14,
+                      "marginTop": 15,
+                    }
+                  }
+                >
+                  And even with a second paragraph!
+                </Text>
+              </Text>
+            </Text>
+          </View>
         </View>
       </View>
     </View>

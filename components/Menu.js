@@ -3,10 +3,10 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { BottomNavigation } from 'react-native-paper';
-import TestComponent from './TestComponent';
 import StationCarousel from './StationCarousel';
 import Settings from './Settings';
 import EpgWrapper from './EpgWrapper';
+import PresentersWrapper from './PresentersWrapper';
 
 /**
  * The main menu container
@@ -44,7 +44,7 @@ class Menu extends Component {
   renderScene = BottomNavigation.SceneMap({
       radio: StationCarousel,
       schedule: EpgWrapper,
-      presenters: TestComponent,
+      presenters: PresentersWrapper,
       settings: Settings
   });
 

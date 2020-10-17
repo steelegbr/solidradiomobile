@@ -2,7 +2,7 @@
  * Tests the reducer actions.
  */
 
-import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone, ONAIR_UPDATE, updateOnAir, ONAIR_LOAD_SUCCESS, INTIIAL_LOAD_SUCCESS, STATION_LOAD_SUCCESS, SET_EPG_DAY, setEpgDay, SET_EPG_STATION, setEpgStation, ENABLE_LOGSTASH, enableLogstash, WEBSOCKET_PING, webSocketPing, WEBSOCKET_PING_TRIGGER, webSocketPingTrigger, AUDIO_PLAYER_EXPECTED_STATE, setPlayerExpectedState } from '../reducers/actions';
+import { INITIAL_LOAD_REQUESTED, initialLoad, reducer, INITIAL_LOAD_START, initialLoadStarted, setApiParams, INITIAL_LOAD_API, loadStation, STATION_LOAD_START, loadOnAir, ONAIR_LOAD_START, initialLoadFailure, INITIAL_LOAD_FAIL, nowPlayingSuccess, NOW_PLAYING_SUCCESS, nowPlayingFailure, NOW_PLAYING_FAIL, nowPlayingUpdate, NOW_PLAYING_UPDATE, changeOrientation, ORIENTATION_UPDATE, setTablet, TABLET_UPDATE, getStationNameFromOnAir, setDarkMode, SET_DARK_MODE, SET_HIGH_BITRATE, setHighBitrate, setCurrentStation, SET_CURRENT_STATION, setStationNameList, SET_STATION_NAME_LIST, loadPlayerStation, LOAD_PLAYER_STATION, SET_ADMOB_PUBLISHER, setAdMobPublisher, setAdMobConsent, SET_ADMOB_CONSENT, SET_ADMOB_PRIVACY_POLICY, setAdmobPrivacyPolicy, SET_ADMOB_UNIT, setAdmobUnitId, SET_PLAYER_STATE, setPlayerState, LOG_STREAM_START, logStreamStart, LOG_STREAM_END, logStreamEnd, LOG_STATION_SONG_PLAY, logStreamSongPlay, AUDIO_PLAYER_ERROR, audioPlayerError, ADMOB_LOAD_ERROR, adLoadError, AUDIO_PLAYER_PLAYPAUSE, togglePlayPause, audioPlayerPlay, AUDIO_PLAYER_PLAY, AUDIO_PLAYER_PAUSE, audioPlayerPause, AUDIO_PLAYER_STOP, audioPlayerStop, SET_TIMEZONE, setTimezone, ONAIR_UPDATE, updateOnAir, ONAIR_LOAD_SUCCESS, INTIIAL_LOAD_SUCCESS, STATION_LOAD_SUCCESS, SET_EPG_DAY, setEpgDay, SET_EPG_STATION, setEpgStation, ENABLE_LOGSTASH, enableLogstash, WEBSOCKET_PING, webSocketPing, WEBSOCKET_PING_TRIGGER, webSocketPingTrigger, AUDIO_PLAYER_EXPECTED_STATE, setPlayerExpectedState, PRESENTERS_LOAD_START, loadStationPresenters, SET_PRESENTERS_STATION, setPresentersStation, PRESENTERS_LOAD_SUCCESS, getStationNameFromPresenters } from '../reducers/actions';
 import { PlayerState } from '../audio/player';
 import { generateTheme } from '../branding/branding';
 
@@ -1029,6 +1029,56 @@ describe('reducer', () => {
         expect(newState.player.expectedState).toBe(playerState);
 
     });
+
+    it('load-station-presenters', () => {
+
+        // Arrange
+
+        const action = {
+            type: PRESENTERS_LOAD_SUCCESS,
+            payload: {
+                config: {
+                    url: 'https://example.com/api/presenters/Test%20Station/current/'
+                },
+                data: [
+                    {
+                        name: 'Bob Agg',
+                        image: 'bob_agg.png',
+                        biography: 'Dangling around...'
+                    }
+                ]
+            }
+        }
+    
+        // Act
+    
+        const newState = reducer(state, action);
+    
+        // Assert
+
+        expect(newState.presenters.stations).toHaveProperty('Test Station');
+        expect(newState.presenters.stations['Test Station']).toBe(action.payload.data);
+    
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('set-presenters-station', ({ stationName }) => {
+
+        // Arrange
+    
+        // Act
+    
+        const newState = reducer(state, setPresentersStation(stationName));
+    
+        // Assert
+
+        expect(newState.presenters.currentStation).toStrictEqual(stationName);
+    
+    });
  
 });
 
@@ -1969,6 +2019,59 @@ describe('actions', () => {
 
     });
 
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('load-station-presenters', ({ stationName }) => {
+
+        // Arrange
+
+        const expected = {
+            type: PRESENTERS_LOAD_START,
+            stationName: stationName,
+            payload: {
+                request: {
+                    url: `/api/presenters/${encodeURI(stationName)}/`
+                }
+            }
+        };
+    
+        // Act
+    
+        const action = loadStationPresenters(stationName);
+    
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+    
+    });
+
+    it.each`
+        stationName
+        ${'Test Station'}
+        ${null}
+        ${''}
+    `('set-presenters-station', ({ stationName }) => {
+
+        // Arrange
+
+        const expected = {
+            type: SET_PRESENTERS_STATION,
+            stationName: stationName
+        };
+    
+        // Act
+    
+        const action = setPresentersStation(stationName);
+    
+        // Assert
+
+        expect(action).toStrictEqual(expected);
+    
+    });
+
 });
 
 describe('helpers', () => {
@@ -1989,6 +2092,29 @@ describe('helpers', () => {
         // Act
 
         const stationName = getStationNameFromOnAir(action);
+
+        // Assert
+
+        expect(stationName).toBe('Test Station');
+
+    });
+
+    it('station-name-presenters', () => {
+
+        // Arrange
+
+        const action = {
+            type: PRESENTERS_LOAD_SUCCESS,
+            payload: {
+                config: {
+                    url: 'https://example.com/api/presenters/Test%20Station/current/'
+                }
+            }
+        }
+
+        // Act
+
+        const stationName = getStationNameFromPresenters(action);
 
         // Assert
 

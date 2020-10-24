@@ -31,7 +31,9 @@ function* playerInitSaga() {
 
         // As per the documentation
 
-        yield TrackPlayer.setupPlayer();
+        yield TrackPlayer.setupPlayer({
+            waitForBuffer: true
+        });
         yield put(setPlayerState(PlayerState.IDLE, null));
 
         // Callbacks

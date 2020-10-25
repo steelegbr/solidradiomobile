@@ -398,3 +398,42 @@ exports[`renders 1`] = `
   </View>
 </RCTScrollView>
 `;
+
+exports[`renders-loading 1`] = `
+<View>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="large"
+    style={
+      Object {
+        "flex": 1,
+        "margin": 50,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "textAlign": "left",
+        },
+        Object {
+          "flex": 0,
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "padding": 20,
+          "textAlign": "center",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    Loading top talent...
+  </Text>
+</View>
+`;

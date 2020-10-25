@@ -54,3 +54,30 @@ it('renders', () => {
     expect(presentersList).toMatchSnapshot();
 
 });
+
+it('renders-loading', () => {
+
+    // Arrange
+
+    const mockStore = configureStore([]);
+    const store = mockStore({
+        stationNames: ['Foo FM', 'FooBar AM'],
+        presenters: {
+            currentStation: 'Foo FM',
+            stations: { }
+        }
+    });
+
+    // Act 
+
+    const presentersList = renderer.create(
+        <Provider store={store}>
+            <PresentersList />
+        </Provider>
+    ).toJSON();
+
+    // Assert
+
+    expect(presentersList).toMatchSnapshot();
+
+});

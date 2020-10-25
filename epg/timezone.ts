@@ -127,9 +127,10 @@ export function dayFromIndex(index: number) {
  * Converts an EPG time to a local, human friendly time.
  * @param epgTime The time fron the EPG.
  * @param day The day the EPG entry is for.
+ * @param referenceDate An optional setting for the date we reference on the conversion.
  */
 
-export function epgTimeToLocal(epgTime: string, day: number, localTimezone: string, epgTimezone: string) {
+export function epgTimeToLocal(epgTime: string, day: number, localTimezone: string, epgTimezone: string, referenceDate = new Date()) {
 
     // Work out when the show will air in the station timezone
 
@@ -137,7 +138,7 @@ export function epgTimeToLocal(epgTime: string, day: number, localTimezone: stri
     let time_groups = epgTime.match(time_regex);
 
     let epgTimeConverted = DateTime.fromJSDate(
-        new Date(),
+        referenceDate,
         {
             zone: epgTimezone
         }
@@ -163,9 +164,10 @@ export function epgTimeToLocal(epgTime: string, day: number, localTimezone: stri
  * @param userTimezone The user's timezone.
  * @param stationTimezone  The station timezone.
  * @param includeDay Indicates if the day should be included.
+ * @param referenceDate An optional setting for the date we reference on the conversion.
  */
 
-export function showTimeSlug(show, day, userTimezone, stationTimezone, includeDay) {
+export function showTimeSlug(show, day, userTimezone, stationTimezone, includeDay, referenceDate = new Date()) {
 
     // Work out if we're in different time zones
 
@@ -181,7 +183,7 @@ export function showTimeSlug(show, day, userTimezone, stationTimezone, includeDa
 
         // Show both the friendly time slug and a conversion to local
 
-        friendlyTime = `${epgTimeToFriendly(show.start)} [${epgTimeToLocal(show.start, day, userTimezone, stationTimezone)}]`;
+        friendlyTime = `${epgTimeToFriendly(show.start)} [${epgTimeToLocal(show.start, day, userTimezone, stationTimezone, referenceDate)}]`;
 
     }
 

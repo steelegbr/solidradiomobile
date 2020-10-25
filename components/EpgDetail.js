@@ -16,7 +16,14 @@ class EpgDetail extends Component {
 
         const { listing, stationTimezone, userTimezone, day, styles, navigation } = this.props;
 
-        const timeSlug = showTimeSlug(listing, day, userTimezone, stationTimezone, true);
+        let timeSlug = null;
+
+        if (__DEV__) {
+            // Fixed time for testing against (so DST doesn't fail tests)
+            timeSlug = showTimeSlug(listing, day, userTimezone, stationTimezone, true, new Date(1601456400000));
+        } else {
+            timeSlug = showTimeSlug(listing, day, userTimezone, stationTimezone, true);
+        }
 
         return  (
             <ScrollView

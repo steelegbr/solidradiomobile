@@ -2,7 +2,7 @@
  * Tests the EPG utilities.
  */
 
-import { DayTime, getEpgEntry, epgTimeToFriendly, epgTimeToLocal, dayFromIndex } from '../epg/timezone';
+import { DayTime, getEpgEntry, epgTimeToFriendly, epgTimeToLocal, dayFromIndex, showTimeSlug } from '../epg/timezone';
 import { Duration } from 'luxon';
 
 describe('day-time', () => {
@@ -150,9 +150,11 @@ describe('friendly-time-conversion', () => {
 
         // Arrange
 
+        const referenceDate = new Date(1601456400000)
+
         // Act
 
-        const converted = epgTimeToLocal(epgTime, day, localTimezone, epgTimezone);
+        const converted = epgTimeToLocal(epgTime, day, localTimezone, epgTimezone, referenceDate);
 
         // Assert
 
@@ -180,6 +182,34 @@ describe('friendly-time-conversion', () => {
         // Assert
 
         expect(convertedDay).toBe(day);
+
+    });
+
+    it.each`
+    epgTime | day | localTimezone | epgTimezone | expected | includeDay
+    ${"08:00:00"} | ${6} | ${'Europe/London'} | ${'America/Los_Angeles'} | ${'08:00 [Sun 16:00]'} | ${false}
+    ${"16:00:00"} | ${6} | ${'America/Los_Angeles'} | ${'Europe/London'} | ${'16:00 [Sun 08:00]'} | ${false}
+    ${"08:00:00"} | ${6} | ${'Europe/London'} | ${'America/Los_Angeles'} | ${'Sun 08:00 [Sun 16:00]'} | ${true}
+    ${"16:00:00"} | ${6} | ${'America/Los_Angeles'} | ${'Europe/London'} | ${'Sun 16:00 [Sun 08:00]'} | ${true}
+    ${"16:00:00"} | ${6} | ${'Europe/London'} | ${'Europe/London'} | ${'16:00'} | ${false}
+    ${"16:00:00"} | ${6} | ${'Europe/London'} | ${'Europe/London'} | ${'Sun 16:00'} | ${true}
+    `('show-time-slug', ({ epgTime, day, localTimezone, epgTimezone, expected, includeDay }) => {
+
+        // Arrange
+
+        const show = {
+            start: epgTime
+        }
+
+        const referenceDate = new Date(1601456400000)
+
+        // Act
+
+        const converted = showTimeSlug(show, day, localTimezone, epgTimezone, includeDay, referenceDate);
+
+        // Assert
+
+        expect(converted).toStrictEqual(expected)
 
     });
 

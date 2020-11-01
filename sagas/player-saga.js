@@ -223,6 +223,7 @@ function* loadPlayerStation(action) {
     };
 
     yield TrackPlayer.add([stationTrack]);
+    yield TrackPlayer.play();
 
     // Log the start
 
@@ -312,7 +313,7 @@ function* playerStateChange(action) {
                 yield call(loadPlayerStation, { stationName: newState.currentStation });
             }
 
-        }
+      }
 
     }
 

@@ -1574,7 +1574,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              00:00 [Sun 17:00]
+              00:00 [Sun 16:00]
             </Text>
           </View>
         </View>
@@ -1715,7 +1715,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              06:00 [Sun 23:00]
+              06:00 [Sun 22:00]
             </Text>
           </View>
         </View>
@@ -1856,7 +1856,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              10:00 [Mon 03:00]
+              10:00 [Mon 02:00]
             </Text>
           </View>
         </View>
@@ -1997,7 +1997,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              12:00 [Mon 05:00]
+              12:00 [Mon 04:00]
             </Text>
           </View>
         </View>
@@ -2138,7 +2138,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              13:00 [Mon 06:00]
+              13:00 [Mon 05:00]
             </Text>
           </View>
         </View>
@@ -2279,7 +2279,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              14:00 [Mon 07:00]
+              14:00 [Mon 06:00]
             </Text>
           </View>
         </View>
@@ -2420,7 +2420,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              15:00 [Mon 08:00]
+              15:00 [Mon 07:00]
             </Text>
           </View>
         </View>
@@ -2561,7 +2561,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              17:00 [Mon 10:00]
+              17:00 [Mon 09:00]
             </Text>
           </View>
         </View>
@@ -2702,7 +2702,7 @@ exports[`renders 2`] = `
                 ]
               }
             >
-              19:00 [Mon 12:00]
+              19:00 [Mon 11:00]
             </Text>
           </View>
         </View>

@@ -57,9 +57,11 @@ function* playerInitSaga() {
                     yield put(audioPlayerPlay(SOURCE))
                     break;
                 case EVENT_PLAYER_PAUSE:
-                    yield call(audioPlayerPause(SOURCE));
+                    yield put(audioPlayerPause(SOURCE));
+                    break;
                 case EVENT_PLAYER_STOP:
-                    yield call(audioPlayerStop(SOURCE));
+                    yield put(audioPlayerStop(SOURCE));
+                    break;
             }
 
         }
@@ -205,6 +207,10 @@ function* loadPlayerStation(action) {
             TrackPlayer.CAPABILITY_PLAY,
             TrackPlayer.CAPABILITY_PAUSE,
             TrackPlayer.CAPABILITY_STOP
+        ],
+        compactCapabilities: [
+            TrackPlayer.CAPABILITY_PLAY,
+            TrackPlayer.CAPABILITY_PAUSE
         ]
     });
 

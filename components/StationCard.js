@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { View, TouchableOpacity, Image, Dimensions, Platform } from 'react-native';
 import { Button, Title, Caption, Surface } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { generateStationTheme } from '../branding/branding';
@@ -23,6 +23,10 @@ class StationCard extends Component {
         const onAirImage = onAir.image == null ? station.logo_square : onAir.image;
         const onAirShow = onAir.show == null ? 'Loading...' : onAir.show;
 
+        // Work out our offsets
+
+        const verticalImageOffset = Platform.OS === 'android' ? 450 : 600;
+
         // Dynamically adjust layout for screen size
 
         const styles = {
@@ -39,7 +43,7 @@ class StationCard extends Component {
             },
             showImageVertical: {
                 width: "100%",
-                height: Dimensions.get('window').height - 600,
+                height: Dimensions.get('window').height - verticalImageOffset,
                 resizeMode: "cover"
             },
             showImageHorizontal: {

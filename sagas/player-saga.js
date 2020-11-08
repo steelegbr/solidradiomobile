@@ -207,10 +207,6 @@ function* loadPlayerStation(action) {
             TrackPlayer.CAPABILITY_PLAY,
             TrackPlayer.CAPABILITY_PAUSE,
             TrackPlayer.CAPABILITY_STOP
-        ],
-        compactCapabilities: [
-            TrackPlayer.CAPABILITY_PLAY,
-            TrackPlayer.CAPABILITY_PAUSE
         ]
     });
 

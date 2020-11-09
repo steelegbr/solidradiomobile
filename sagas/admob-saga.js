@@ -2,10 +2,10 @@
  * Saga for handling admob configuration.
  */
 
-import admob, { MaxAdContentRating, AdsConsent, AdsConsentStatus } from "@react-native-firebase/admob";
+import admob, { MaxAdContentRating, AdsConsent, AdsConsentStatus, AdsConsentDebugGeography } from "@react-native-firebase/admob";
 import { takeLatest, select, all, put } from "redux-saga/effects";
 import { setAdMobConsent, SET_ADMOB_PRIVACY_POLICY, initialLoadFailure } from '../reducers/actions';
-import crashlytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 import analytics from '@react-native-firebase/analytics';
 
 /**
@@ -15,6 +15,12 @@ import analytics from '@react-native-firebase/analytics';
 function* adMobSaga() {
 
     try {
+
+        // Test non-EEA location
+
+        if (__DEV__) {
+            yield AdsConsent.setDebugGeography(AdsConsentDebugGeography.NOT_EEA);
+        }
 
         // Set the ratings information
 
@@ -33,22 +39,35 @@ function* adMobSaga() {
 
         if (consentInfo.status == AdsConsentStatus.UNKNOWN) {
 
-            const formResult = yield AdsConsent.showForm({
-                privacyPolicy: state.admob.privacyPolicy,
-                withPersonalizedAds: true,
-                withNonPersonalizedAds: true,
-                withAdFree: false
-            });
+            if (consentInfo.isRequestLocationInEeaOrUnknown) {
 
-            // Update the local state
+                // EEA - we need consent
 
-            yield put(setAdMobConsent(formResult.status));
+                const formResult = yield AdsConsent.showForm({
+                    privacyPolicy: state.admob.privacyPolicy,
+                    withPersonalizedAds: true,
+                    withNonPersonalizedAds: true,
+                    withAdFree: false
+                });
 
-            // Log it back to HQ
+                // Update the local state
 
-            analytics().logEvent('admob_consent', {
-                level: formResult.status
-            });
+                yield put(setAdMobConsent(formResult.status));
+
+                // Log it back to HQ
+
+                analytics().logEvent('admob_consent', {
+                    level: formResult.status
+                });
+
+            } else {
+
+                // Shadier parts of the world - no concent needed
+                // We'll fall back to non-personalised
+
+                yield put(setAdMobConsent(AdsConsentStatus.NON_PERSONALIZED));
+                
+            }
 
         }
 

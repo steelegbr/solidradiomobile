@@ -10,4 +10,4 @@ jobs:
         with:
           node-version: "10.15.3"
       - run: npm install
-      - run: npm test
+      - run: npm test -- --silent

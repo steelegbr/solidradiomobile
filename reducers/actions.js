@@ -1,4 +1,22 @@
 /**
+    Solid Radio Mobile App
+    Copyright (C) 2020-2021 Marc Steele
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
  * Solid Radio Mobile App Reducers
  */
 
@@ -55,9 +73,9 @@ export const PRESENTERS_LOAD_SUCCESS = 'PRESENTERS_LOAD_SUCCESS';
 export const PRESENTERS_LOAD_FAIL = 'PRESENTERS_LOAD_FAIL';
 export const SET_PRESENTERS_STATION = 'SET_PRESENTERS_STATION';
 
-defaultState = { 
+defaultState = {
     initialLoad: 'not_started',
-    api : {
+    api: {
         server: null,
         key: null
     },
@@ -96,7 +114,7 @@ defaultState = {
     }
 }
 
-export function reducer(baseState=defaultState, action) {
+export function reducer(baseState = defaultState, action) {
 
     return produce(baseState, draftState => {
         switch (action.type) {
@@ -104,7 +122,7 @@ export function reducer(baseState=defaultState, action) {
                 draftState.initialLoad = 'started';
                 break;
             case INITIAL_LOAD_API:
-                draftState.api =  {
+                draftState.api = {
                     server: action.server,
                     key: action.key
                 };
@@ -255,8 +273,8 @@ export function initialLoad() {
  */
 
 export function initialLoadStarted() {
-    return { 
-        type: INITIAL_LOAD_START 
+    return {
+        type: INITIAL_LOAD_START
     };
 }
 

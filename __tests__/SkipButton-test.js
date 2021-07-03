@@ -1,4 +1,22 @@
 /**
+    Solid Radio Mobile App
+    Copyright (C) 2020-2021 Marc Steele
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
  * Tests the skip button.
  */
 
@@ -25,7 +43,7 @@ describe('mid-playlist', () => {
         store = mockStore({
             theme: generateTheme(false),
             player: {
-                playlist: [ {}, {}, {} ],
+                playlist: [{}, {}, {}],
                 currentItem: 1
             }
         });
@@ -49,7 +67,7 @@ describe('mid-playlist', () => {
         expect(skipButton).toMatchSnapshot();
 
     });
-    
+
     it('renders-forward-large', () => {
 
         // Arrange
@@ -65,9 +83,9 @@ describe('mid-playlist', () => {
         // Assert
 
         expect(skipButton).toMatchSnapshot();
-    
+
     });
-    
+
     it('renders-backward-small', () => {
 
         // Arrange
@@ -83,9 +101,9 @@ describe('mid-playlist', () => {
         // Assert
 
         expect(skipButton).toMatchSnapshot();
-    
+
     });
-    
+
     it('renders-backward-large', () => {
 
         // Arrange
@@ -101,25 +119,25 @@ describe('mid-playlist', () => {
         // Assert
 
         expect(skipButton).toMatchSnapshot();
-    
+
     });
 
     it('renders-unexpected-direction', () => {
 
         // Arrange
-    
+
         const skipButton = renderer.create(
             <Provider store={store}>
                 <SkipButton direction={5} />
             </Provider>
         ).toJSON();
-    
+
         // Act
-    
+
         // Assert
-    
+
         expect(skipButton).toMatchSnapshot();
-    
+
     });
 
     /*
@@ -178,7 +196,7 @@ it('renders-forward-disable', () => {
     store = mockStore({
         theme: generateTheme(false),
         player: {
-            playlist: [ {}, {}, {} ],
+            playlist: [{}, {}, {}],
             currentItem: 2
         }
     });
@@ -204,7 +222,7 @@ it('renders-backward-disable', () => {
     store = mockStore({
         theme: generateTheme(false),
         player: {
-            playlist: [ {}, {}, {} ],
+            playlist: [{}, {}, {}],
             currentItem: 0
         }
     });

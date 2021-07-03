@@ -1,4 +1,22 @@
 /**
+    Solid Radio Mobile App
+    Copyright (C) 2020-2021 Marc Steele
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
  * Tests the reducer actions.
  */
 
@@ -10,9 +28,9 @@ import { generateTheme } from '../branding/branding';
 
 describe('reducer', () => {
 
-    const state = { 
+    const state = {
         initialLoad: 'not_started',
-        api : {
+        api: {
             server: null,
             key: null
         },
@@ -52,30 +70,30 @@ describe('reducer', () => {
     it('initial-load', () => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, initialLoad());
-    
+
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
-    
+
     });
 
     it('initial-load-started', () => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, initialLoadStarted());
-    
+
         // Assert
 
         expect(newState.initialLoad).toBe('started');
-    
+
     });
 
     it.each`
@@ -87,14 +105,14 @@ describe('reducer', () => {
         // Arrange
 
         // Act
-    
+
         const newState = reducer(state, setApiParams(server, key));
-    
+
         // Assert
 
         expect(newState.api.server).toBe(server);
         expect(newState.api.key).toBe(key);
-    
+
     });
 
     it.each`
@@ -105,16 +123,16 @@ describe('reducer', () => {
     `('load-station-request', ({ stationName }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, loadStation(stationName));
-    
+
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
-    
+
     });
 
     it.each`
@@ -123,16 +141,16 @@ describe('reducer', () => {
         ${null}
         ${''}
     `('onair-load-request', ({ stationName }) => {
-    
+
         // Act
-    
+
         const newState = reducer(state, loadOnAir(stationName));
-    
+
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
-    
+
     });
 
     it.each`
@@ -143,16 +161,16 @@ describe('reducer', () => {
     `('initial-load-fail', (error) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, initialLoadFailure(error));
-    
+
         // Assert
 
         expect(newState.initialLoad).toBe('error');
         expect(newState.error).toBe(error);
-    
+
     });
 
     it.each`
@@ -163,16 +181,16 @@ describe('reducer', () => {
     `('now-playing-success', ({ stationName }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, nowPlayingSuccess(stationName));
-    
+
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
-    
+
     });
 
     it.each`
@@ -183,16 +201,16 @@ describe('reducer', () => {
     `('now-playing-fail', ({ stationName, error }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, nowPlayingFailure(stationName, error));
-    
+
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
-    
+
     });
 
     it.each`
@@ -200,7 +218,7 @@ describe('reducer', () => {
         ${'Test Station'} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
         ${null} | ${null} | ${null} | ${null}
         ${''} | ${''} | ${''} | ${''}
-    `('now-playing-update', ({ stationName, artist ,title, artUrl }) => {
+    `('now-playing-update', ({ stationName, artist, title, artUrl }) => {
 
         // Arrange
 
@@ -209,11 +227,11 @@ describe('reducer', () => {
         };
 
         miniState.stations[stationName] = {};
-    
+
         // Act
-    
+
         const newState = reducer(miniState, nowPlayingUpdate(stationName, artist, title, artUrl));
-    
+
         // Assert
 
         const station = newState.stations[stationName];
@@ -222,7 +240,7 @@ describe('reducer', () => {
         expect(nowPlaying.artist).toBe(artist);
         expect(nowPlaying.title).toBe(title);
         expect(nowPlaying.artUrl).toBe(artUrl);
-    
+
     });
 
     it.each`
@@ -233,14 +251,14 @@ describe('reducer', () => {
     `('now-playing-bad-station', ({ stationName, artist, title, artUrl }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, nowPlayingUpdate(stationName, artist, title, artUrl));
-    
+
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -252,15 +270,15 @@ describe('reducer', () => {
     `('change-orientation', ({ vertical }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, changeOrientation(vertical));
-    
+
         // Assert
 
         expect(newState.vertical).toStrictEqual(vertical);
-    
+
     });
 
     it.each`
@@ -270,15 +288,15 @@ describe('reducer', () => {
     `('is-tablet', ({ tablet }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, setTablet(tablet));
-    
+
         // Assert
 
         expect(newState.tablet).toStrictEqual(tablet);
-    
+
     });
 
     it.each`
@@ -288,16 +306,16 @@ describe('reducer', () => {
     `('set-dark-mode-no-station', ({ darkMode }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, setDarkMode(darkMode));
-    
+
         // Assert
 
         expect(newState.settings.darkMode).toBe(darkMode);
         expect(newState.theme.dark).toBe(darkMode)
-    
+
     });
 
     it.each`
@@ -317,16 +335,16 @@ describe('reducer', () => {
         };
 
         miniState.stations[stationName] = {}
-    
+
         // Act
-    
+
         const newState = reducer(miniState, setDarkMode(darkMode));
-    
+
         // Assert
 
         expect(newState.settings.darkMode).toBe(darkMode);
         expect(newState.theme.dark).toBe(darkMode)
-    
+
     });
 
     it.each`
@@ -361,7 +379,7 @@ describe('reducer', () => {
             currentStation: null,
             stations: {},
             settings: {},
-            stationNames: [ stationName ]
+            stationNames: [stationName]
         };
 
         miniState.stations[stationName] = {
@@ -393,7 +411,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -413,7 +431,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState.stationNames).toStrictEqual(list);
         expect(newState.stationNames).toHaveLength(listLength);
 
@@ -463,7 +481,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -482,7 +500,7 @@ describe('reducer', () => {
         const newState = reducer(state, setAdMobPublisher(publisherId));
 
         // Assert
-    
+
         expect(newState.admob.publisher).toBe(publisherId);
 
     });
@@ -501,7 +519,7 @@ describe('reducer', () => {
         const newState = reducer(state, setAdMobConsent(consent));
 
         // Assert
-    
+
         expect(newState.admob.consent).toBe(consent);
 
     });
@@ -520,15 +538,15 @@ describe('reducer', () => {
         const newState = reducer(state, setAdmobPrivacyPolicy(uri));
 
         // Assert
-    
+
         expect(newState.admob.privacyPolicy).toBe(uri);
 
     });
 
     it.each`
         units
-        ${[ {name: 'name1', id: 'id1'} ]}
-        ${[ {name: 'name1', id: 'id1'}, {name: 'name2', id: 'id2'} ]}
+        ${[{ name: 'name1', id: 'id1' }]}
+        ${[{ name: 'name1', id: 'id1' }, { name: 'name2', id: 'id2' }]}
     `('set-admob-unit-id', ({ units }) => {
 
         // Arrange
@@ -566,7 +584,7 @@ describe('reducer', () => {
         const newState = reducer(state, setPlayerState(playerState, null));
 
         // Assert
-    
+
         expect(newState.player.state).toBe(playerState);
 
     });
@@ -585,7 +603,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -606,7 +624,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -625,7 +643,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -644,7 +662,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -665,7 +683,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -684,7 +702,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -703,7 +721,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -722,7 +740,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -741,7 +759,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toStrictEqual(state);
 
     });
@@ -759,7 +777,7 @@ describe('reducer', () => {
         const newState = reducer(state, setTimezone(timezone));
 
         // Assert
-    
+
         expect(newState.timezone).toBe(timezone);
 
     });
@@ -867,7 +885,7 @@ describe('reducer', () => {
 
         const expected = {
             type: ONAIR_UPDATE,
-            show: show, 
+            show: show,
             station: station
         };
 
@@ -982,7 +1000,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toBe(state);
 
     });
@@ -1001,7 +1019,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState).toBe(state);
 
     });
@@ -1025,7 +1043,7 @@ describe('reducer', () => {
 
         // Assert
         // This is a no side-effects change
-    
+
         expect(newState.player.expectedState).toBe(playerState);
 
     });
@@ -1049,16 +1067,16 @@ describe('reducer', () => {
                 ]
             }
         }
-    
+
         // Act
-    
+
         const newState = reducer(state, action);
-    
+
         // Assert
 
         expect(newState.presenters.stations).toHaveProperty('Test Station');
         expect(newState.presenters.stations['Test Station']).toBe(action.payload.data);
-    
+
     });
 
     it.each`
@@ -1069,17 +1087,17 @@ describe('reducer', () => {
     `('set-presenters-station', ({ stationName }) => {
 
         // Arrange
-    
+
         // Act
-    
+
         const newState = reducer(state, setPresentersStation(stationName));
-    
+
         // Assert
 
         expect(newState.presenters.currentStation).toStrictEqual(stationName);
-    
+
     });
- 
+
 });
 
 // Tests the pure action calls
@@ -1093,15 +1111,15 @@ describe('actions', () => {
         const expected = {
             type: INITIAL_LOAD_REQUESTED
         }
-    
+
         // Act
-    
+
         const action = initialLoad();
-    
+
         // Assert
-    
+
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it('initial-load-started', () => {
@@ -1111,15 +1129,15 @@ describe('actions', () => {
         const expected = {
             type: INITIAL_LOAD_START
         }
-    
+
         // Act
-    
+
         const action = initialLoadStarted();
-    
+
         // Assert
-    
+
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1135,15 +1153,15 @@ describe('actions', () => {
             server: server,
             key: key
         };
-    
+
         // Act
-    
+
         const action = setApiParams(server, key);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1164,15 +1182,15 @@ describe('actions', () => {
                 }
             }
         };
-    
+
         // Act
-    
+
         const action = loadStation(stationName);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1192,15 +1210,15 @@ describe('actions', () => {
                 }
             }
         };
-    
+
         // Act
-    
+
         const action = loadOnAir(stationName);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1216,15 +1234,15 @@ describe('actions', () => {
             type: INITIAL_LOAD_FAIL,
             error: error
         };
-    
+
         // Act
-    
+
         const action = initialLoadFailure(error);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1240,15 +1258,15 @@ describe('actions', () => {
             type: NOW_PLAYING_SUCCESS,
             station: stationName
         };
-    
+
         // Act
-    
+
         const action = nowPlayingSuccess(stationName);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1265,15 +1283,15 @@ describe('actions', () => {
             station: stationName,
             error: error
         };
-    
+
         // Act
-    
+
         const action = nowPlayingFailure(stationName, error);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1281,7 +1299,7 @@ describe('actions', () => {
         ${'Test Station'} | ${'Test Artist'} | ${'Test Title'} | ${'art.png'}
         ${null} | ${null} | ${null} | ${null}
         ${''} | ${''} | ${''} | ${''}
-    `('now-playing-update', ({ stationName, artist ,title, artUrl }) => {
+    `('now-playing-update', ({ stationName, artist, title, artUrl }) => {
 
         // Arrange
 
@@ -1292,15 +1310,15 @@ describe('actions', () => {
             title: title,
             artUrl: artUrl
         };
-    
+
         // Act
-    
+
         const action = nowPlayingUpdate(stationName, artist, title, artUrl);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -1315,11 +1333,11 @@ describe('actions', () => {
             type: ORIENTATION_UPDATE,
             vertical: vertical
         };
-    
+
         // Act
-    
+
         const action = changeOrientation(vertical);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
@@ -1338,11 +1356,11 @@ describe('actions', () => {
             type: TABLET_UPDATE,
             tablet: tablet
         };
-    
+
         // Act
-    
+
         const action = setTablet(tablet);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
@@ -1363,9 +1381,9 @@ describe('actions', () => {
         };
 
         // Act
-    
+
         const action = setDarkMode(darkMode);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
@@ -1386,9 +1404,9 @@ describe('actions', () => {
         };
 
         // Act
-    
+
         const action = setHighBitrate(highBitrate);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
@@ -1851,7 +1869,7 @@ describe('actions', () => {
 
         const expected = {
             type: ONAIR_UPDATE,
-            show: show, 
+            show: show,
             station: station
         };
 
@@ -2037,15 +2055,15 @@ describe('actions', () => {
                 }
             }
         };
-    
+
         // Act
-    
+
         const action = loadStationPresenters(stationName);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
     it.each`
@@ -2061,15 +2079,15 @@ describe('actions', () => {
             type: SET_PRESENTERS_STATION,
             stationName: stationName
         };
-    
+
         // Act
-    
+
         const action = setPresentersStation(stationName);
-    
+
         // Assert
 
         expect(action).toStrictEqual(expected);
-    
+
     });
 
 });

@@ -1,3 +1,21 @@
+/**
+    Solid Radio Mobile App
+    Copyright (C) 2020-2021 Marc Steele
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -19,7 +37,7 @@ class PlayerOverlay extends Component {
         const { styles } = this.props;
 
         if (Platform.OS === 'ios') {
-            return(
+            return (
                 <View style={styles.contentContainer}>
                     <PlayerCarousel />
                     <PlayerOverlayControls />
@@ -27,7 +45,7 @@ class PlayerOverlay extends Component {
                 </View>
             );
         } else {
-            return(
+            return (
                 <View style={styles.contentContainer}>
                     <PlayerList />
                     <PlayerOverlayControls />
@@ -35,7 +53,7 @@ class PlayerOverlay extends Component {
                 </View>
             );
         }
-        
+
     }
 
     onHeaderPress = () => {
@@ -50,7 +68,7 @@ class PlayerOverlay extends Component {
 
         const { fall } = this.props;
 
-        return(
+        return (
             <OverlayHeader fall={fall} onHeaderPress={this.onHeaderPress} />
         );
     }
@@ -61,14 +79,14 @@ class PlayerOverlay extends Component {
 
         if (showOnscreen) {
 
-            return(
-                    <BottomSheet
-                        ref={this.bottomSheetRef}
-                        snapPoints={snapPoints}
-                        renderContent={this.renderContent}
-                        renderHeader={this.renderHeader}
-                        callbackNode={fall}
-                    />
+            return (
+                <BottomSheet
+                    ref={this.bottomSheetRef}
+                    snapPoints={snapPoints}
+                    renderContent={this.renderContent}
+                    renderHeader={this.renderHeader}
+                    callbackNode={fall}
+                />
             );
 
         } else {

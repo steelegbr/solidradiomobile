@@ -1,3 +1,21 @@
+/**
+    Solid Radio Mobile App
+    Copyright (C) 2020-2021 Marc Steele
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 import React from 'react';
 import { Component } from 'react';
 import { View, TouchableOpacity, Image, Dimensions, Platform } from 'react-native';
@@ -35,7 +53,7 @@ class StationCard extends Component {
                 borderTopLeftRadius: borderRadius,
                 borderTopRightRadius: borderRadius
             },
-            logo : {
+            logo: {
                 height: 50,
                 borderTopLeftRadius: borderRadius,
                 borderTopRightRadius: borderRadius,
@@ -95,7 +113,7 @@ class StationCard extends Component {
 
         if (vertical) {
 
-            return(
+            return (
                 <TouchableOpacity
                     activeOpacity={1}
                     style={styles.wrapper}
@@ -104,8 +122,8 @@ class StationCard extends Component {
                         style={styles.surface}
                     >
                         <View style={styles.logoWrapper}>
-                            <Image 
-                                source={{ uri: station.logo }} 
+                            <Image
+                                source={{ uri: station.logo }}
                                 style={styles.logo}
                             />
                         </View>
@@ -143,7 +161,7 @@ class StationCard extends Component {
 
         } else {
 
-            return(
+            return (
                 <TouchableOpacity
                     activeOpacity={1}
                     style={styles.wrapper}
@@ -152,8 +170,8 @@ class StationCard extends Component {
                         style={styles.surface}
                     >
                         <View style={styles.logoWrapper}>
-                            <Image 
-                                source={{ uri: station.logo }} 
+                            <Image
+                                source={{ uri: station.logo }}
                                 style={styles.logo}
                             />
                         </View>
@@ -173,7 +191,7 @@ class StationCard extends Component {
                                     <Title>Now Playing</Title>
                                     <Caption>{nowPlaying.artist} - {nowPlaying.title}</Caption>
                                 </View>
-                                { tablet && nowPlaying.artUrl != null &&
+                                {tablet && nowPlaying.artUrl != null &&
                                     <View>
                                         <Image
                                             source={{ uri: nowPlaying.artUrl }}

@@ -1,3 +1,21 @@
+/**
+    Solid Radio Mobile App
+    Copyright (C) 2020-2021 Marc Steele
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -16,12 +34,12 @@ class PlayerCarousel extends Component {
 
         const carouselItem = item[0];
         const station = item[1];
-        
+
         switch (index) {
             case 0:
-                return(<OnAirCard onAir={carouselItem} station={station} />);
+                return (<OnAirCard onAir={carouselItem} station={station} />);
             case 1:
-                return(<NowPlayingCard nowPlaying={carouselItem} station={station} />);
+                return (<NowPlayingCard nowPlaying={carouselItem} station={station} />);
         }
 
         return null;
@@ -43,7 +61,7 @@ class PlayerCarousel extends Component {
 
         switch (renderMethod) {
             case "renderStationItem":
-                return(
+                return (
                     <View style={carouselStyles.parent}>
                         <Carousel
                             ref={(c) => { this._carousel = c; }}
@@ -62,7 +80,7 @@ class PlayerCarousel extends Component {
                 return null;
         }
 
-        
+
     }
 
 }
@@ -85,7 +103,7 @@ const mapStateToProps = state => {
     let items = [];
 
     if (currentItem !== undefined && currentItem.type == 'station') {
-        
+
         const station = state.stations[currentItem.name];
 
         return {
@@ -101,7 +119,7 @@ const mapStateToProps = state => {
         }
     }
 
-    
+
 };
 
 const mapDispatchToProps = dispatch => {
